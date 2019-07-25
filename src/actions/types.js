@@ -1,0 +1,1 @@
+export const SHOW_REAL_APP = "show_real_app";

@@ -11,11 +11,7 @@ const App = () => {
     const store= createStore(reducers,{}, applyMiddleware(ReduxThunk))
     return (
       <Provider  store={store}>
-        <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
-          {/* <StatusBar barStyle="dark-content" /> */}
           <Router/>
-          {/* <Text>jhkhhjhhkh</Text> */}
-        </SafeAreaView>
       </Provider>
   );
 };

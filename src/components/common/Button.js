@@ -1,13 +1,13 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 
-const Button = (props) =>{
+const Button = ({onPress, children,title}) =>{
     return(
         <TouchableOpacity 
             style={styles.butttonStyle}
-            onPress={props.onPress}
+            onPress={onPress}
         >
-            <Text>{props.children}</Text>        
+            <Text>{children}</Text>        
         </TouchableOpacity>
     )
 }
@@ -15,8 +15,7 @@ const Button = (props) =>{
 const styles ={
 
     butttonStyle: {
-        flex: 1,
-        flexDirection: 'column',
+        alignItems: 'center',
         justifyContent: 'center',
         height: 50,
         fontSize: 20,

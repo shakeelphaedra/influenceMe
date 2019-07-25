@@ -1,15 +1,16 @@
 import React from 'react';
-import HomeScreen from '../src/components/Home';
+import WelcomeScreen from '../src/components/WelcomeScreen';
+import LoginForm from '../src/components/LoginForm';
 
 import {createAppContainer,createStackNavigator} from 'react-navigation';
 const AppNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
+    WelcomeScreen,
+    LoginForm,
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "WelcomeScreen"
   }
 );
 
 export default createAppContainer(AppNavigator)
-  
