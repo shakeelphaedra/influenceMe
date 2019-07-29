@@ -27,7 +27,12 @@ target 'influenceMe' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 
+  pod 'ReactNativeExceptionHandler', :path => '../node_modules/react-native-exception-handler'
 
   target 'influenceMeTests' do
     inherit! :search_paths

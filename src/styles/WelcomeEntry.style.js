@@ -28,7 +28,12 @@ export const styles = {
     buttonStyle: {
         backgroundColor: '#cd5c5c',
         alignSelf: 'center',
-        padding: 20,
+        padding: 10,
+        color: '#ffffff',
+        fontWeight: "600",
+        fontSize: 20,
+        paddingLeft: 50,
+        paddingRight: 50,
         borderRadius: 20
     },
 
@@ -43,6 +48,30 @@ export const styles = {
         shadowOffset: { width: 0, height: 10 },
         shadowRadius: 10,
         borderRadius: entryBorderRadius
+    },
+    introContainerStyle: {
+        alignItems: 'center', 
+        flex: 1,
+        justifyContent: 'flex-end',
+        fontSize: 18,
+        paddingBottom: 50,
+        color: '#ffffff'
+    },
+    titleStyle: {
+        alignItems: 'center', 
+        fontSize: 30,
+        color: '#ffffff',
+        fontWeight: "800",
+    },
+    descriptionStyle: {
+        fontSize: 18,
+        alignSelf: 'center',
+        color: '#ffffff',
+    },
+    bottomTextStyle: {
+        color: '#ffffff',
+        marginBottom: 50,
+        alignSelf: 'center',
     },
     imageContainer: {
         flex: 1,

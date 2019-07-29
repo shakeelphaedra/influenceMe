@@ -1,53 +1,66 @@
 import React, {Component} from 'react';
 import {View, Text, Image, ImageBackground} from 'react-native'; 
-import {Button} from  './common';
-import Carousel from 'react-native-snap-carousel';
 import {connect} from  'react-redux';
 import * as actions from '../actions';
-import {sliderWidth,itemWidth, styles} from  '../styles';
+import {styles} from  '../styles';
+import {Button} from './common';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import firebase from 'react-native-firebase';
+
 
 class WelcomeScreen extends Component {
-  goToSignIn () {
-      
+  static navigationOptions = {
+    header: null,
+  };
+
+  _renderLogo(logo){
+    if(logo != undefined){
+      return <Image source={logo} style={{width: 100, height: 100}} resizeMode='stretch'  /> 
+    }
   }
-  _renderItem = ({item}) => {
+
+  _renderLogo2(logo){
+    if(logo != undefined){
+      return <Image source={logo} style={{ height: 50, width: 200}} resizeMode='stretch' /> 
+    }
+  }
+  
+  _renderItem ({item}) {
     return (
-        <View style={styles.slide}>
           <ImageBackground source={item.image} style={{ flex: 1, width: null, height: null, resizeMode: 'cover'}} >
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.text}>{item.text}</Text>
+            <View style={styles.introContainerStyle}>
+              {this._renderLogo(item.logo)}
+              {this._renderLogo2(item.logo2)}
+              <Text style={styles.descriptionStyle}>{item.text}</Text>
+              <Button propStyles={{backgroundColor: item.buttonColor}} onPress={() => {return this.props.navigation.navigate('AfterWelcomeScreen')  }} >EMPEZER</Button>
+            </View>
           </ImageBackground>
-        </View>
     );
   }
-  _onDone = () => {
-    this.props.navigation.navigate('LoginForm')
-    // User finished the introduction. Show real app through
-    // navigation or simply by controlling state
 
+  _onslideChnage (currentSlide, previousSlide) {
   }
   render () {
     return (
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, backgroundColor: '#000000'}}>
               <AppIntroSlider 
-                renderItem={this._renderItem} 
+                renderItem={this._renderItem.bind(this)} 
                 slides={this.props.slides} 
-                onDone={this._onDone} 
                 bottomButton
                 buttonStyle={{backgroundColor: '#1a1917'}}
                 renderNextButton={()=> {return <Text style={styles.buttonStyle}>EMPEZER</Text>}}
                 renderDoneButton={()=> {return <Text style={styles.buttonStyle}>EMPEZER</Text>}}
-                onDone={this._onDone.bind(this)} 
-                style={{flex: 8}}
+                style={{paddingBottom: 60}}
+                showNextButton={false}
+                onSlideChange={this._onslideChnage.bind(this)}
+                showDoneButton={false}
               />
-              <View style={{backgroundColor: "#1a1917" }}>
-                <Text>jaiss</Text>
-              </View>
+                <Text style={styles.bottomTextStyle}>jaiss</Text>
             </View>
             )
   }
 }
+
 
 const mapStatsToProps = (state,ownProps) =>{
   console.log(state)

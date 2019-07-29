@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* influenceMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* influenceMeTests.m */; };
+		04B61D8B22EB275200189232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B61D8A22EB275200189232 /* GoogleService-Info.plist */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -46,6 +47,7 @@
 		00E356F21AD99517003FC87E /* influenceMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = influenceMeTests.m; sourceTree = "<group>"; };
 		0185E5DA975DE79311B88550 /* Pods-influenceMe-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMe-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-influenceMe-tvOSTests/Pods-influenceMe-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		01F4B663A6387BBF05C9FAD9 /* Pods-influenceMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMeTests.debug.xcconfig"; path = "Target Support Files/Pods-influenceMeTests/Pods-influenceMeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		04B61D8A22EB275200189232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C85CEDC41D8D636171D8CBB /* libPods-influenceMe-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-influenceMe-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* influenceMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = influenceMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = influenceMe/AppDelegate.h; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* influenceMe */ = {
 			isa = PBXGroup;
 			children = (
+				04B61D8A22EB275200189232 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +197,6 @@
 				01F4B663A6387BBF05C9FAD9 /* Pods-influenceMeTests.debug.xcconfig */,
 				5A69D6951031F572956D9FF1 /* Pods-influenceMeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -338,6 +341,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				04B61D8B22EB275200189232 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +639,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.influenceMe;
 				PRODUCT_NAME = influenceMe;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -654,7 +658,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.influenceMe;
 				PRODUCT_NAME = influenceMe;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
