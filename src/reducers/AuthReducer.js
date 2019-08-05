@@ -1,7 +1,6 @@
 import {PHONE_CHANGE, COUNTRYCODE_CHANGE, INFLUENCER_CHANGE, CONFIRM_RESULT_CHANGE, CONFIRM_CODE_CHANGE, SET_CURRENT_USER}  from '../actions/types'
 import { authState } from './defaults'
 export default (state=authState, action) =>{
-    console.log(state)
     switch (action.type){
         case PHONE_CHANGE:
             return {...state, phone: action.payload}

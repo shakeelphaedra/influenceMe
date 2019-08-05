@@ -50,7 +50,6 @@ export const loginUser = ({number, navigation}) => {
                 navigation.push("ConfirmCodeScreen")
             })
             .catch(error =>{
-                debugger
             });
     }
 }

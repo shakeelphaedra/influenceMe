@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "936558734737",
+    "firebase_url": "https://influence-me-84671.firebaseio.com",
+    "project_id": "influence-me-84671",
+    "storage_bucket": "influence-me-84671.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936558734737:android:1c03da405bcde78c",
+        "android_client_info": {
+          "package_name": "com.influenceme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "936558734737-dgjvpus3qbqjn2jcafke3lapsjoopf2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn89dLPyKV3dwjxZsraKLp4WRvkFQDgs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "936558734737-dgjvpus3qbqjn2jcafke3lapsjoopf2a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "936558734737-13s2dvfuo1q3smtrh3bja7vl1kvpraoj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.firebaseSample"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

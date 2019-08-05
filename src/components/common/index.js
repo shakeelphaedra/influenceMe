@@ -5,3 +5,6 @@ export * from './Spinner';
 export * from './Input';
 export * from './SelectTag';
 export * from './BlackButton';
+export * from './WhiteButton';
+export * from './GreyHeader';
+export * from './WhiteHeader';

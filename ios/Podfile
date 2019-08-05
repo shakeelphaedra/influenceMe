@@ -34,6 +34,8 @@ target 'influenceMe' do
 
   pod 'ReactNativeExceptionHandler', :path => '../node_modules/react-native-exception-handler'
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   target 'influenceMeTests' do
     inherit! :search_paths
     # Pods for testing

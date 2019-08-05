@@ -1,28 +1,29 @@
-export const authState = {countryCode: '+1', influencer: 'Shakeel', phone: '', confirmResult: {}, message: "", confirmCode: ''}
+export const authState = {countryCode: '+1', influencer: 'alice', phone: '', confirmResult: {}, message: "", confirmCode: ''}
 export const sliderState = [
-    {
+    
+    {key: 'somethun1',
+        title: 'EXPLORA',
+        text: 'Existe un plan para cada una de las areas que deseas trabajar',
+        image: require('../assets/www/dist/img/influencer_alex.jpg'),
+        buttonColor: '#212020',
+        color: 'red'
+    },{
+        key: 'somethun1',
+        title: 'EXPLORA',
+        text: 'Existe un plan para cada una de las areas que deseas trabajar',
+        image: require('../assets/www/dist/img/influencer_yarishna.jpg'),
+        buttonColor: '#212020',
+        color: 'red'
+    },{
         key: 'somethun',
         title: 'InfluenceMe',
         text: 'Entrena usando las runtinas personales de tus influencers Favoritors',
         image: require('../assets/www/dist/img/influencers.jpg'),
         logo: require('../assets/www/dist/img/Icono-blanco.png'),
         logo2: require("../assets/www/dist/img/Logo-blanco-sin.png"),
-        buttonColor: '#59b2ab',
+        buttonColor: '#212020',
+        color: 'red'
     },
-    {
-        key: 'somethun-dos',
-        title: 'ENTRENA',
-        text: 'Elige tu nivel  de resistencia y personaliza tu rutina',
-        image: require('../assets/www/dist/img/influencer_alex.jpg'),
-        buttonColor: '#febe29',
-    },
-    {
-        key: 'somethun1',
-        title: 'EXPLORA',
-        text: 'Existe un plan para cada una de las areas que deseas trabajar',
-        image: require('../assets/www/dist/img/influencer_giovanni.jpg'),
-        buttonColor: '#22bcb5',
-    }
 ] 
 
 export const confirmResult = {};
