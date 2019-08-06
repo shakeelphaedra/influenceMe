@@ -15,7 +15,7 @@ const AppNavigator = createStackNavigator(
     HomeScreenNavigator: HomeScreenNavigator
   },
   {
-    initialRouteName: "HomeScreenNavigator",
+    initialRouteName: "LoginFormScreen",
     defaultNavigationOptions: {
       header: null
     },

@@ -1,4 +1,4 @@
-export const authState = {countryCode: '+1', influencer: 'alice', phone: '', confirmResult: {}, message: "", confirmCode: ''}
+export const authState = {flag: 'US',countryCode: '+1', influencer: 'Altice', phone: '', confirmResult: {}, message: "", confirmCode: ''}
 export const sliderState = [
     
     {key: 'somethun1',
@@ -27,5 +27,5 @@ export const sliderState = [
 ] 
 
 export const confirmResult = {};
-export const influencerList = [{value: 'Alice'}, {value: 'Shakeel'}, {value: 'Rauf'}];
-export const countryCodeList = [{value: '+92'}, {value: '+1'}, {value: '+32'}, {value: '+32'}]
+export const influencerList = [{value: 'Altice'}, {value: 'Shakeel'}, {value: 'Rauf'}];
+export const countryCodeList = [{value: '+92', flag: 'PK'}, {value: '+1', flag: 'US'}, {value: '+57', flag: 'FR'}, {value: '+58', flag: 'FR'}]

@@ -9,7 +9,7 @@ class Influencer extends Component {
             <TouchableWithoutFeedback key={id} onPress={onPress}>
                 <View  style={styles.backgroundImageContainerStyle} >
                     <ImageBackground 
-                        style={{width: '100%', height: 200, }}
+                        style={{width: '100%', height: '100%', }}
                         source={{uri: BASE_URL + image_url}}
                     >
                         <View style={styles.boxShadow}>

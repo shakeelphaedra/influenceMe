@@ -57,14 +57,15 @@ class LoginFormScreen extends Component{
             <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
                <WhiteHeader />
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 100}}>
-                    <View >
-                        <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18}}>Ingresa con tu numero movil</Text>
-                        <View style={{ flexDirection: 'row', marginTop: 30}}>
+                    <View style={{position:'relative',zIndex:9999}}>
+                        <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18, fontWeight: '300'}}>Ingresa con tu numero movil</Text>
+                        <View style={{ flexDirection: 'row',position:'relative',zIndex:9999}}>
                         <SelectTag options={countryCodeList}
                                     label="country_code"
                                     showList={this.state.showCodeOptions}
                                     onSelect={this._onCountryCodeChange.bind(this)}
                                     value={this.props.countryCode}
+                                    flag={this.props.flag}
                                     onPress={()=> {this.setState({showInfluencerOptions: false})}}
                                     style={{width: 10}}/>
                         <SelectTag options={influencerList}
@@ -100,7 +101,6 @@ class LoginFormScreen extends Component{
                                 checked={this.state.checked}
                                 onPress={() => this.setState({checked: !this.state.checked})}
                             />
-
                         </View>
                     </View>
                     <View>
@@ -112,13 +112,13 @@ class LoginFormScreen extends Component{
     }
 }
 
-const mapStateToProps = (state)=>{
-    return {phone: state.auth.phone, 
-            loading: state.auth.loading,
-            phoneCode: state.auth.phoneCode,
-            countryCode: state.auth.countryCode,
-            influencer: state.auth.influencer
-        }
-}
+const mapStateToProps = (state)=>({
+    phone: state.auth.phone, 
+    loading: state.auth.loading,
+    phoneCode: state.auth.phoneCode,
+    countryCode: state.auth.countryCode,
+    influencer: state.auth.influencer,
+    flag: state.auth.flag
+})
 
 export default connect(mapStateToProps, actions)(LoginFormScreen);

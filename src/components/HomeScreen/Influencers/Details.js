@@ -3,6 +3,7 @@ import {View, ScrollView, ImageBackground, Text, StyleSheet} from 'react-native'
 import {Spinner} from '../../common';
 import {BASE_URL, getInfluencerDetails} from '../../../../API';
 import Video from 'react-native-video';
+import {Influencer} from '../common';
 
 class Details extends Component {
 
@@ -21,16 +22,24 @@ class Details extends Component {
         })
     };
 
+    _renderPlanes (plans) {
+        return plans.map((plan)=>(
+            <View style={{marginTop: 35, height: 150}}>
+                <Influencer id={plan.id} name={plan.title} description={plan.description} image_url={plan.image_url} /> 
+            </View>
+        ))
+    }
+
     _renderDetails () {
         const {loading, influencer} = this.state;
-        const {image_url, name, video_url} = influencer;
+        const {image_url, name, video_url, plans} = influencer;
         if(loading)
             return <Spinner/> 
         return(
             <ImageBackground style={{flex: 1, backgroundColor: '#4C4C4C' }} source={{uri: image_url ? BASE_URL + image_url : null}}>
-                <ScrollView style={{margin: 25}}>
-                    <View>
-                        <View style={{alignItems: 'center', height:  200, marginTop: '20%', marginBottom: '30%'}}>
+                <ScrollView>
+                    <View style={{margin: 25}}>
+                        <View style={{alignItems: 'center', height:  300, marginBottom: '30%'}}>
                             <Text style={{
                                 fontFamily: 'Esphimere',
                                 alignSelf: 'center', color: 'white',
@@ -57,6 +66,9 @@ class Details extends Component {
                             }}>
                                 PLANES
                             </Text>
+                            <View>
+                                {this._renderPlanes(plans)}
+                            </View>
                         </View>
                     </View>
                 </ScrollView>

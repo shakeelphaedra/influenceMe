@@ -37,7 +37,9 @@ class InfluencersScreen extends Component {
     _renderInfluencers(){
         return this.state.influencersList.map((influencer)=>{
             return (
-                <Influencer id={influencer.id} onPress={() => this._goToInfluencerDetails(influencer.id)} image_url={influencer.image_url} name={influencer.name} description={influencer.description}/>
+                <View style={{height: 200}}>
+                    <Influencer id={influencer.id} onPress={() => this._goToInfluencerDetails(influencer.id)} image_url={influencer.image_url} name={influencer.name} description={influencer.description}/>
+                </View>
             )
         }) 
     }
