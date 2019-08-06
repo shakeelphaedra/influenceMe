@@ -29,13 +29,14 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  for (NSString* family in [UIFont familyNames])
+  for(NSString *fontfamilyname in [UIFont familyNames])
   {
-    NSLog(@"%@", family);
-    for (NSString* name in [UIFont fontNamesForFamilyName: family])
+    NSLog(@"family:'%@'",fontfamilyname);
+    for(NSString *fontName in [UIFont fontNamesForFamilyName:fontfamilyname])
     {
-      NSLog(@" %@", name);
+      NSLog(@"\tfont:'%@'",fontName);
     }
+    NSLog(@"-------------");
   }
   return YES;
 }

@@ -1,17 +1,32 @@
 import React from 'react';
-import EnteranceScreen  from '../src/components/HomeScreen/EnteranceScreen'
-import ProfileScreen  from '../src/components/HomeScreen/ProfileScreen'
-import ProgressScreen  from '../src/components/HomeScreen/ProgressScreen'
-import { createBottomTabNavigator} from 'react-navigation';
-import {Image, TouchableHighlight} from 'react-native';
-import  HomeScreenTopNavigator from './TopTabNavigation';
+import EnteranceScreen  from '../components/HomeScreen/EnteranceScreen'
+import ExplorerScreen  from '../components/HomeScreen/ExplorerScreen';
+import ProfileScreen  from '../components/HomeScreen/ProfileScreen';
+import ProgressScreen  from '../components/HomeScreen/ProgressScreen';
+import InfluencerDetails  from '../components/HomeScreen/Influencers/Details';
+import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faGlobe, faRedo, faSignOutAlt,faUser, faSearch, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+
+const ExplorerStack = createStackNavigator(
+  {
+    ExplorerScreen: ExplorerScreen,
+    InfluencerDetails: InfluencerDetails
+  },
+  {
+    initialRouteName: "ExplorerScreen",
+    defaultNavigationOptions: {
+      header: null
+    }
+
+  }
+  
+);
 
 const HomeScreenRouter = createBottomTabNavigator(
   {
     Explore: {
-      screen: EnteranceScreen, 
+      screen: ExplorerStack, 
       navigationOptions: {
         tabBarLabel:"Explorer",
         tabBarIcon: ({ tintColor }) => (

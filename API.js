@@ -7,16 +7,27 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.get['Content-Type'] = 'application/json';
 
 const getInfluencersURL = "/influencers/list"
+const getInfluencerURL = "/influencers/"
 
 async function getInfluencers() {
-    try {
-      const response = await axios.get(getInfluencersURL);
-      var data = response.data
-      var influencers = data.influencers
-      return influencers;
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    const response = await axios.get(getInfluencersURL);
+    var data = response.data
+    var influencers = data.influencers
+    return influencers;
+  } catch (error) {
+    console.error(error);
+  }
+}
+async function getInfluencerDetails(id) {
+  try {
+    const response = await axios.get(getInfluencerURL + id);
+    var data = response.data
+    var influencers = data.influencers
+    return influencers;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-export {getInfluencers, BASE_URL, API_URL}
+export {getInfluencers, BASE_URL, API_URL, getInfluencerDetails}

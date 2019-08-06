@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {SafeAreaView} from 'react-native';
-import MainNavigator from './config/MainNavigator';
+import MainNavigator from './MainNavigator';
 import ReduxThunk from 'redux-thunk';
 import {createStore, applyMiddleware} from 'redux';
 import reducers  from './src/reducers';

@@ -9,12 +9,9 @@ class BlackButton extends Component {
     render () {
         return (
             <Button 
-                propStyles={
-                    this.state.pressStatus
-                        ? styles.orangeColorButton
-                        : {
-                            color: this.props.color,
-                            fontFamily: 'halflings',
+                propStyles={[
+                        {color: this.props.color,
+                            fontFamily: 'Esphimere',
                             backgroundColor: this.props.backgroundColor,
                             padding: 10,
                             alignItems: 'center',
@@ -27,13 +24,9 @@ class BlackButton extends Component {
                             width:  200,
                             alignSelf: 'center',
                             paddingRight: 15,
-                        }
+                        },this.props.style]
                 }
-                textStyle={
-                    this.state.pressStatus
-                        ? styles.white
-                        : styles.textColor
-                    }
+                textStyle={[styles.textColor,{color: this.props.color}]}
                 onPress={this.props.onPress} 
                 backgroundColor={this.props.backgroundColor}
             >{this.props.children}
@@ -44,9 +37,9 @@ class BlackButton extends Component {
 
 const styles = { 
     white: {
-        color: 'red',
         fontSize: 20,
-        fontWeight: "300"
+        fontWeight: "300",
+        fontFamily: 'Esphimere',
     },
     orangeColorButton: {
         backgroundColor: 'black',
@@ -55,12 +48,13 @@ const styles = {
         fontSize: 30,
         borderRadius: 50,
         fontWeight: 'bold',
+        fontFamily: 'Esphimere',
         paddingLeft: 35,
         paddingRight: 35,
     },
     textColor: {
-        color: 'red',
         fontSize: 20,
+        fontFamily: 'Esphimere',
         fontWeight: "400"
     }
 }

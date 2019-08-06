@@ -29,11 +29,11 @@ class WelcomeScreen extends Component {
         onPanResponderMove: (evt, gestureState) => {
             // DO JUNK HERE
             Animated.timing(this.state.fadeIn, {
-              toValue: 1-gestureState.dx/screenWidth,
+              toValue: 1-gestureState.dx/screenWidth*2,
               duration: 300
             }).start()
             Animated.timing(this.state.fadeOut, {
-              toValue: gestureState.dx/screenWidth,
+              toValue: gestureState.dx/screenWidth*2,
               duration: 300
             }).start()
         },
@@ -43,10 +43,10 @@ class WelcomeScreen extends Component {
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, {vx, dx}) => {
-        if(dx/screenWidth >0.3){
+        if(dx/screenWidth < -0.3){
           return this._nextSlide()
         }else{
-          if(dx/screenWidth < -0.3){
+          if(dx/screenWidth > 0.3){
             console.log("back")
             return this._prevSlide()
           }else{
@@ -206,7 +206,7 @@ class WelcomeScreen extends Component {
                 <View style={{marginTop: 30}}>
                     <BlackButton onPress={this._navigateNext.bind(this)} color={item.color} backgroundColor={item.buttonColor}>EMPREZAR</BlackButton>
                 </View>
-                <Text style={{color: 'white'}}>Ingresa a ty cuenta</Text>
+                <Text style={{color: 'white', fontFamily: 'Esphimere'}}>Ingresa a ty cuenta</Text>
               </View>
               <View style={{flex: 1, flexDirection: 'row', position: 'absolute', zIndex: 444, bottom: 135, justifyContent:'center', alignItems: 'center',left: 0,right: 0}}>
                 {this._renderDot()}

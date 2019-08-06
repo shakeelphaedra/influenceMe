@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, ScrollView, Image, Button, ImageBackground} from 'react-native';
 import {getInfluencers, req,BASE_URL} from '../../../API';
 import {Spinner} from '../common';
+import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {Influencer} from '../HomeScreen/common';
 
 class InfluencersScreen extends Component {
     state = {
@@ -19,31 +21,23 @@ class InfluencersScreen extends Component {
             console.log(this.state.influencersList)
         })
     }
+    
+    _goToInfluencerDetails(id) {
+        this.props.navigation.navigate('InfluencerDetails', {
+            influencerId: id,
+        });
+    }
 
     _renderContent () {
-        if(this.state.influencersList.length == 0){
+        if(this.state.influencersList.length == 0)
             return <Spinner/>
-        }else{
-            return this._renderInfluencers()
-        }
+        return this._renderInfluencers()
     }
 
     _renderInfluencers(){
         return this.state.influencersList.map((influencer)=>{
             return (
-                <View  key={influencer.id} style={styles.backgroundImageContainerStyle}>
-                    <ImageBackground 
-                        style={{width: '100%', height: 200, }}
-                        source={{uri: BASE_URL + influencer.image_url}}
-                    >
-                        <View style={styles.boxShadow}>
-                            <View style={{position: 'relative', flexDirection: 'column', flex: 1}}>
-                                <Text style={styles.titleStyle}>{influencer.name}</Text>
-                                <Text style={styles.descriptionStyle}>{influencer.description}</Text>
-                            </View>
-                        </View>
-                    </ImageBackground>
-                </View>
+                <Influencer id={influencer.id} onPress={() => this._goToInfluencerDetails(influencer.id)} image_url={influencer.image_url} name={influencer.name} description={influencer.description}/>
             )
         }) 
     }

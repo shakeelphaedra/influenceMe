@@ -29,8 +29,9 @@ class SelectTag extends Component {
             }}
             style={{
               borderWidth: 1,
-              borderColo: 'black',
+              borderColor: 'black',
               height: 50,
+              fontFamily: 'Esphimere',
               position: 'relative',
               zIndex: 444444090450945490950,
             }}
@@ -46,12 +47,15 @@ class SelectTag extends Component {
   }
   render() {
     return (
-      <View style={{ width: 120,flex: 1, justifyContent: 'center' ,alignItems: 'center' }}>
-          <View style={{ borderRadius: 50,width: 120, height: 55, backgroundColor: 'white', borderColor: '#e0e3e5', borderWidth: 0.4}}>
-            <TouchableHighlight onPress={this._toggleOption.bind(this)} style={{width: 120,height: '100%', justifyContent: 'center', alignItems: 'center'}}>
-              <Text>{this.state.text}
-                <FontAwesomeIcon icon={faCaretDown}  color='grey' size={20}  />
-              </Text>
+      <View style={{flex: 1, margin: 20 }}>
+          <View style={{ padding: 15, borderRadius: 50,height: 55, backgroundColor: 'white',width: "100%", borderColor: '#e0e3e5', borderWidth: 0.4}}>
+            <TouchableHighlight onPress={this._toggleOption.bind(this)} style={{height: '100%', justifyContent: 'center'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text></Text>
+                <Text style={{fontFamily: 'Esphimere'}}>{this.state.text}
+                </Text>
+                <FontAwesomeIcon icon={faCaretDown}  color='grey' size={20} />
+              </View>
             </TouchableHighlight>
           </View>
 

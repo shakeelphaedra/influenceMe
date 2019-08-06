@@ -5,15 +5,15 @@ export const sliderState = [
         title: 'EXPLORA',
         text: 'Existe un plan para cada una de las areas que deseas trabajar',
         image: require('../assets/www/dist/img/influencer_alex.jpg'),
-        buttonColor: '#212020',
-        color: 'red'
+        buttonColor: '#1a1a1a',
+        color: '#d75019'
     },{
         key: 'somethun1',
-        title: 'EXPLORA',
+        title: 'ENTRENA',
         text: 'Existe un plan para cada una de las areas que deseas trabajar',
         image: require('../assets/www/dist/img/influencer_yarishna.jpg'),
-        buttonColor: '#212020',
-        color: 'red'
+        buttonColor: '#1a1a1a',
+        color: '#d75019'
     },{
         key: 'somethun',
         title: 'InfluenceMe',
@@ -21,8 +21,8 @@ export const sliderState = [
         image: require('../assets/www/dist/img/influencers.jpg'),
         logo: require('../assets/www/dist/img/Icono-blanco.png'),
         logo2: require("../assets/www/dist/img/Logo-blanco-sin.png"),
-        buttonColor: '#212020',
-        color: 'red'
+        buttonColor: '#1a1a1a',
+        color: '#d75019'
     },
 ] 
 

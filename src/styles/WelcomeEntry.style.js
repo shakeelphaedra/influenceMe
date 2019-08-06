@@ -62,9 +62,9 @@ export const styles = {
     titleStyle: {
         alignItems: 'center', 
         fontSize: 39,
+        fontFamily: 'Esphimere',
         marginTop: 10,
         color: '#ffffff',
-        fontWeight: "300",
     },
     descriptionStyle: {
         fontSize: 14,
@@ -72,6 +72,8 @@ export const styles = {
         width: '82%',
         marginBottom: 20,
         textAlign: 'center',
+        fontFamily: 'Esphimere',
+
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'center',

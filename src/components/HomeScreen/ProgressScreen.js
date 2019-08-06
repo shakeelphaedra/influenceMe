@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View,TouchableHighlight} from 'react-native';
-import  HomeScreenTopNavigator from '../../../config/TopTabNavigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
@@ -38,7 +37,7 @@ class ProgressScreen extends Component {
     
     render () {
         return (
-                <HomeScreenTopNavigator/>
+          <View></View>
         )
     }
 }

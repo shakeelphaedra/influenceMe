@@ -16,8 +16,7 @@ class LoginFormScreen extends Component{
           showInfluencerOptions: false,
           checked: false
         };
-      }
-    
+    }
     static navigationOptions = ({ navigation }) => {
         return {
                 headerStyle: {
@@ -55,11 +54,11 @@ class LoginFormScreen extends Component{
     }
     render(){
         return (
-            <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#FAFAFA'}}>
+            <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
                <WhiteHeader />
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 100}}>
                     <View >
-                        <Text style={{alignSelf: 'center', fontSize: 18, fontWeight: '200'}}>Ingresa con tu numero movil</Text>
+                        <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18}}>Ingresa con tu numero movil</Text>
                         <View style={{ flexDirection: 'row', marginTop: 30}}>
                         <SelectTag options={countryCodeList}
                                     label="country_code"
@@ -78,30 +77,34 @@ class LoginFormScreen extends Component{
                         </View>
                     </View>
                     <View>
-                        <CardSection>
-                            <Input 
-                                value={this.props.phone}
-                                label="Phone"
-                                onSelect={() => this.setState({showList: false})}
-                                placeholder="1234223"
-                                keyboardType='numeric'
-                                onChangeText={this._oPhoneChange.bind(this)}
-                            ></Input>
-                        </CardSection>
+                        <Input 
+                            value={this.props.phone}
+                            label="Phone"
+                            onSelect={() => this.setState({showList: false})}
+                            placeholder="Numero de Celular"
+                            keyboardType='numeric'
+                            inputStyle={{borderRadius: 50, height: '100%'}}
+                            onChangeText={this._oPhoneChange.bind(this)}
+                        />
+                    </View>
+                    <View style={{padding: 20}}>
+                        <Text style= {{fontSize: 22, textAlign: 'justify', fontFamily: 'Esphimere', fontWeight: '300'}}>
+                            Te enviaremos un mensaje de texto con tu codigo de validacaion recuerda verificar que  tu numero de celular fue ingresado
+                            correctamente
+                        </Text>
                     </View>
                     <View style={{ flexDirection: 'column'}}>
-                    <View style={{ flexDirection: 'row' }}>
-                    <Text style={{marginTop: 5}}> Accept the licence</Text>
-                    <CheckBox
-                        checked={this.state.checked}
-                        onPress={() => this.setState({checked: !this.state.checked})}
+                        <View style={{ flexDirection: 'row', alignItems: 'center',justifyContent: 'center',marginBottom: 30 }}>
+                            <Text style={{fontSize: 18, fontFamily: 'Esphimere'}}> Acepto los terminos y condiciones</Text>
+                            <CheckBox
+                                checked={this.state.checked}
+                                onPress={() => this.setState({checked: !this.state.checked})}
+                            />
 
-                        />
-
-                    </View>
+                        </View>
                     </View>
                     <View>
-                        <BlackButton onPress={this._onButtonPress.bind(this)}>Login</BlackButton>
+                        <BlackButton color="#d75019" backgroundColor="black" style={{paddingVertical: 20}} onPress={this._onButtonPress.bind(this)}>ENVIAR SMS</BlackButton>
                     </View>
                 </View>
             </View>

@@ -49,7 +49,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -66,7 +66,7 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
+		<string/>
 		<string>glyphicons-halflings-regular.ttf</string>
 		<string>glyphicons-halflings-regular.woff</string>
 		<string>glyphicons-halflings-regular.woff2</string>
@@ -89,6 +89,28 @@
 		<string>Font Awesome 5 Brands-Regular-400.otf</string>
 		<string>Font Awesome 5 Free-Regular-400.otf</string>
 		<string>Font Awesome 5 Free-Solid-900.otf</string>
+		<string>Roboto-Bold.woff</string>
+		<string>Roboto-Bold.woff2</string>
+		<string>Roboto-Light.woff</string>
+		<string>Roboto-Light.woff2</string>
+		<string>Roboto-Medium.woff</string>
+		<string>Roboto-Medium.woff2</string>
+		<string>Roboto-Regular.woff</string>
+		<string>Roboto-Regular.woff2</string>
+		<string>Roboto-Thin.woff</string>
+		<string>Roboto-Thin.woff2</string>
+		<string>Esphimere Bold Italic.otf</string>
+		<string>Esphimere Extra Light Italic.otf</string>
+		<string>Esphimere Extra Light.otf</string>
+		<string>Esphimere Italic.otf</string>
+		<string>Esphimere Light Italic.otf</string>
+		<string>Esphimere Semi Bold Italic.otf</string>
+		<string>Esphimere Thin Italic.otf</string>
+		<string>Esphimere Thin.otf</string>
+		<string>Esphimere_Bold.otf</string>
+		<string>Esphimere_Light.otf</string>
+		<string>Esphimere_Semi_Bold.otf</string>
+		<string>Esphimere.otf</string>
 	</array>
 </dict>
 </plist>

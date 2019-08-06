@@ -11,13 +11,13 @@ class AfterWelcome extends Component{
     _renderButtton(){
         if (Platform.OS === 'android') {
            return <TouchableNativeFeedback style={{fontSize: 20}} onPress={()=>{this.props.navigation.push("LoginFormScreen")}}>
-                 <Text>TU TELEFONE</Text>
+                 <Text style={{fontFamily: 'Esphimere'}}>TU TELÉFONE</Text>
             </TouchableNativeFeedback>    
         } else {
            return <TouchableHighlight style={{fontSize: 20,width: '80%', borderRadius: 60,backgroundColor: 'black',  alignItems: 'center', alignSelf: 'center', padding: 20,}} onPress={()=>{this.props.navigation.push("LoginFormScreen")}} underlayColor="black">
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <Image source={require('../assets/www/dist/img/smartphone-call.png')} style={{height: 30,width: 30,marginRight: 15 }}/>
-                    <Text style={{color: 'red', fontWeight: 400, fontSize: 16}}>TU TELEFONE </Text>
+                    <Text style={{color: '#d75019', fontFamily: 'Esphimere', fontSize: 16}}>TU TELÉFONE </Text>
                 </View>
             </TouchableHighlight>    
         }
@@ -30,7 +30,7 @@ class AfterWelcome extends Component{
             resizeMode='stretch' >
                 <SafeAreaView style={{flex: 1,justifyContent: 'flex-end'}}>
                     <View style={styles.containerStyle}>
-                        <Text style={{textAlign: 'center',marginBottom: 30, fontWeight: 300, fontSize: 18}}>INGRESAR CON</Text>
+                        <Text style={{textAlign: 'center',marginBottom: 30,  fontSize: 18, fontFamily: 'Esphimere'}}>INGRESAR CON</Text>
                         {this._renderButtton()}
                     </View>
                 </SafeAreaView>
