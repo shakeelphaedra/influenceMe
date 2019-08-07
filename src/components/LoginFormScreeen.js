@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
-import {View, Text, SafeAreaView, Picker, Header,Image} from 'react-native';
-import {Button,Spinner,SelectTag,Input, Card, CardSection, BlackButton, WhiteHeader} from './common'
+import {View, Text,Image} from 'react-native';
+import {Spinner,SelectTag,Input, BlackButton, WhiteHeader} from './common'
 import * as actions from '../actions';
 import {connect} from  'react-redux';
 import { influencerList, countryCodeList } from '../reducers';
@@ -84,7 +84,7 @@ class LoginFormScreen extends Component{
                             onSelect={() => this.setState({showList: false})}
                             placeholder="Numero de Celular"
                             keyboardType='numeric'
-                            inputStyle={{borderRadius: 50, height: '100%'}}
+                            inputStyle={{borderRadius: 50, height: '100%', fontWeight: '200'}}
                             onChangeText={this._oPhoneChange.bind(this)}
                         />
                     </View>
@@ -98,6 +98,8 @@ class LoginFormScreen extends Component{
                         <View style={{ flexDirection: 'row', alignItems: 'center',justifyContent: 'center',marginBottom: 30 }}>
                             <Text style={{fontSize: 18, fontFamily: 'Esphimere'}}> Acepto los terminos y condiciones</Text>
                             <CheckBox
+                                checkedColor="#308b82"
+                                uncheckedColor="#585858"
                                 checked={this.state.checked}
                                 onPress={() => this.setState({checked: !this.state.checked})}
                             />

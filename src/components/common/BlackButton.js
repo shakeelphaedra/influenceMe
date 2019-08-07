@@ -14,19 +14,18 @@ class BlackButton extends Component {
                             fontFamily: 'Esphimere',
                             backgroundColor: this.props.backgroundColor,
                             padding: 10,
+                            color: '#d75019',
                             alignItems: 'center',
                             margin: 10, 
                             zIndex: 444,
                             marginTop: -17,
                             fontSize: 30,
                             borderRadius: 50,
-                            paddingLeft: 15,
                             width:  200,
                             alignSelf: 'center',
-                            paddingRight: 15,
                         },this.props.style]
                 }
-                textStyle={[styles.textColor,{color: this.props.color}]}
+                textStyle={[styles.textColor,{color: this.props.color ? this.props.color : styles.textColor.color},{fontSize: this.props.fontSize ? this.props.fontSize : styles.textColor.fontSize}]}
                 onPress={this.props.onPress} 
                 backgroundColor={this.props.backgroundColor}
             >{this.props.children}
@@ -55,6 +54,7 @@ const styles = {
     textColor: {
         fontSize: 20,
         fontFamily: 'Esphimere',
+        color: '#d75019',
         fontWeight: "400"
     }
 }

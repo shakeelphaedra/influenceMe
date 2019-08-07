@@ -1,7 +1,7 @@
 import CodeInput from 'react-native-confirmation-code-input';
 import React, {Component} from 'react';
-import {Button, BlackButton, WhiteButton} from './common';
-import {View, Alert, Image,TouchableHighlight, Text} from 'react-native';
+import { BlackButton, WhiteButton, WhiteHeader} from './common';
+import {View, Alert, Image, Text} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import {SET_CURRENT_USER} from '../actions/types'
@@ -25,7 +25,8 @@ class ConfirmCodeScreen extends Component {
             return Alert.alert("Code is empty ")
         }else{
             this.props.confirmResult.confirm(this.props.confirmCode).then((user) => {
-                this.props.navigation.push("HomeHomeScreenNavigatorScreen")
+                debugger
+                this.props.navigation.push("HomeScreenNavigator")
                 return  (dispatch) => {
                     dispatch({
                         type: SET_CURRENT_USER,
@@ -34,7 +35,6 @@ class ConfirmCodeScreen extends Component {
                 }
             })
         }
-        
     }
 
     _onFinishCheckingCode1(code){
@@ -44,9 +44,10 @@ class ConfirmCodeScreen extends Component {
     render (){
         return (
             <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#EFF0F1' }}>
-                <View style={{ marginLeft: 50, marginRight: 50, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
-                    <Text>Ingresa el Codigo</Text>
-                    <Text style={{color: 'red', top: 0}}>{this.props.phone}</Text>
+                <WhiteHeader/>
+                <View style={{ marginLeft: 50, marginRight: 50,  marginTop: 50,flexDirection: 'column', alignItems: 'center', }}>
+                    <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18,marginTop: 60, fontWeight: '300'}}>Ingresa el Codigo</Text>
+                    <Text style={{color: '#d75019', top: 0,fontWeight: '300', fontFamily: 'Esphimere',fontSize: 22,marginVertical: 30, marginTop: 50}}>{this.props.phone}</Text>
                     <View style={{height: 100}}>
                         <CodeInput
                             ref="codeInputRef2"
@@ -59,20 +60,17 @@ class ConfirmCodeScreen extends Component {
                             codeInputStyle={{}}
                             containerStyle={{}}
                             onFulfill={(isValid) => this._onFinishCheckingCode1(isValid)}
-                            containerStyle={{ marginTop: 30 }}
-                            codeInputStyle={{ borderWidth: 0, borderRadius: 9, width: 25, height: 40 , backgroundColor: 'white', borderBottom: 1, 
-                            borderBottomColor: 'black',
-                            borderBottomWidth: 0.5,
+                            containerStyle={{ } }
+                            codeInputStyle={{ color: 'black', borderRadius: 12, width: 25, height: 40 , backgroundColor: 'white',  borderWidth: 0,
                             marginLeft: 20}}
                             />
                     </View>
-                    <Text style={{color: 'red'}}>No obtuve un codigo</Text>
+                    <Text style={{color: '#d75019' ,fontFamily: 'Esphimere',fontWeight: '300',marginTop: 0, marginBottom: 60, fontSize: 22}}>No obtuve un codigo</Text>
                     
-                    <Text style={{alignSelf: 'center'}}>RECIBIRALS UN NUEVO CODIGO EN UNDOS SEGUNDOS</Text>
 
                     <View style={{ height: '50%', alignItems: 'center'}}>
-                        <BlackButton onPress={this._onConfirmCode.bind(this)}>REGISTRAR</BlackButton>
-                        <WhiteButton onPress={this._onConfirmCode.bind(this)}>CAMBRIAR</WhiteButton>
+                        <BlackButton color="#d75019" backgroundColor="black" fontSize={25} style={{paddingVertical: 30,  width: 300}} onPress={this._onConfirmCode.bind(this)}>REGISTRAR</BlackButton >
+                        <BlackButton color="black" backgroundColor="white" fontSize={25} style={{paddingVertical: 30, paddingLeft: 5, paddingRight: 5 , width: 300, marginTop: 5}} onPress={this._onConfirmCode.bind(this)}>CAMBRIAR NUMBERO</BlackButton >
                     </View>    
                 </View>    
             </View>

@@ -39,11 +39,8 @@ const HomeScreenRouter = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Progreso",
         tabBarIcon: ({ tintColor }) => (
-
           <FontAwesomeIcon icon={faRedo}  color={tintColor} />
-
-        ), 
-        
+        )
       }
     },
     EnteranceScreen: {

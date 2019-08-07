@@ -19,10 +19,9 @@ class ExplorerScreen extends Component {
     
     render () {
         return (
-            <View style={{flex: 10}}>
-                <View style={{flex: 1, backgroundColor: 'yello'}}>
-                    <GreyHeader> 
-                    </GreyHeader>
+            <View style={{flex: 12}}>
+                <View style={{flex: 1}}>
+                    <GreyHeader /> 
                 </View>
                 <View style={{flex: 1, backgroundColor: 'red'}}>
                    <View style={{flexDirection: 'row', flex: 1}}>
@@ -42,7 +41,7 @@ class ExplorerScreen extends Component {
                         </TouchableHighlight>
                     </View>
                 </View>
-                <View style={{flex: 8}}>
+                <View style={{flex: 11}}>
                     {this._renderContent()}
                 </View>
             </View>
@@ -97,7 +96,7 @@ const styles = {
         alignItems: 'center'
     },
     activeTabStyle: {
-        borderBottomWidth: 10,
+        borderBottomWidth: 4,
         borderBottomColor: 'red',
     },
     activeTabTextStyle: {
