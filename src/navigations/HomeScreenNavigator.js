@@ -1,7 +1,8 @@
 import React from 'react';
 import EnteranceScreen  from '../components/HomeScreen/EnteranceScreen'
 import ExplorerScreen  from '../components/HomeScreen/ExplorerScreen';
-import ProfileScreen  from '../components/HomeScreen/ProfileScreen';
+// import ProfileScreen  from '../components/HomeScreen/ProfileScreen';
+import ProfileScreen  from '../containers/TabNavigator/Profile';
 import ProgressScreen  from '../components/HomeScreen/ProgressScreen';
 import InfluencerDetails  from '../components/HomeScreen/Influencers/Details';
 import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
@@ -11,7 +12,8 @@ import { faGlobe, faRedo, faSignOutAlt,faUser, faSearch, faQuestionCircle } from
 const ExplorerStack = createStackNavigator(
   {
     ExplorerScreen: ExplorerScreen,
-    InfluencerDetails: InfluencerDetails
+    InfluencerDetails: InfluencerDetails,
+
   },
   {
     initialRouteName: "ExplorerScreen",
