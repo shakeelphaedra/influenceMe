@@ -25,7 +25,6 @@ class ConfirmCodeScreen extends Component {
             return Alert.alert("Code is empty ")
         }else{
             this.props.confirmResult.confirm(this.props.confirmCode).then((user) => {
-                debugger
                 this.props.navigation.push("HomeScreenNavigator")
                 return  (dispatch) => {
                     dispatch({

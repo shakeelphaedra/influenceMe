@@ -54,9 +54,6 @@ class LoginFormScreen extends Component{
     _onInfluencerChange(text){
         this.props.influencerChanged(text)
     }
-    _onBack(){
-        debugger
-    }
     render(){
         return (
             <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
