@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
-import {View, ScrollView, StyleSheet, Dimensions, Text, TouchableOpacity} from 'react-native';
-import {Spinner} from '../../common';
+import {View, ScrollView, Image,StyleSheet, Dimensions, Text, TouchableOpacity} from 'react-native';
+import {Spinner, BackButton} from '../../common';
 import Day from '../common/Card';
 import {getPlanDetails} from '../../../../API';
 import Video from 'react-native-video';
@@ -39,11 +39,20 @@ class Details extends Component {
             animated: true
         });
     };
-   
+    _renderDays (daus,name) {
+        return daus.map((day)=>(
+            <View style={{marginTop: 35, height: 150}}>
+                <Day id={day.id} name={name} titleStyle={{fontSize: 16, marginBottom: 0, marginLeft: 22}} typeStyle={{ fontSize: 24, marginLeft: 22, marginBottom: 4}} type={day.title} image_url={day.image_url} /> 
+            </View>
+        ))
+    }
     render () {
-
+        const {loading, plan} = this.state;
+        if(loading)
+            return <Spinner/> 
         return (
             <View style={{flex: 1, backgroundColor: SCREEN_BG_COLOR}}>
+                <BackButton onPress={()=> this.props.navigation.push("HomeScreenNavigator")}/>
                 <ScrollView
                         ref="scrollView"
                         onLayout={ev => {
@@ -51,58 +60,55 @@ class Details extends Component {
                         const fixedContentHeight = ev.nativeEvent.layout.height;
                         this.prevHeight = fixedContentHeight;
                         }}
-                        style={{ marginHorizontal: 20}}
                     >
-
-                        <View style={{alignItems: 'center', marginTop: 40}}>
-                            <Text style={styles.textStyle}>Resumen del plan</Text>
-                            <Video source={require('../../../assets/a.mp4')}   // Can be a URL or a local file.
-                                ref={(ref) => {
-                                    this.player = ref
-                                }}                                      // Store reference
-                                onBuffer={this.onBuffer}                // Callback when remote video is buffering
-                                onError={this.videoError}  
-                                style={styles.backgroundVideo} />
-                            
-                            <Text style={[styles.textStyle,{marginTop: 8}]}>Resumen del plan</Text>
-                            <Text style={[styles.textStyle,{marginVertical: 12, fontSize: 15, fontWeight: '500'}]}>Gluteos de Acero</Text>
-                            <Text style={[styles.textStyle,{marginBottom: 3}]}>6 Smenas | 5 dias a la Semana | 60 Mins</Text>
-                            <Text style={[styles.textStyle,{fontWeight: '400', lineHeight: 12, textAlign: 'justify' }]}>Gloteos mas grandas y mas firmas: Yarishna to propone su plan inflible pare que lograr la cola que siemore has querido sea una realided.</Text>
-                        </View>
-                        <View style={{flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', borderColor: 'white', borderWidth: 1, borderBottomWidth: 0}}>
-                            <View style={{justifyContent: 'center', marginHorizontal: 25, marginVertical: 10}}>
-                                <Text style={[styles.textStyle,{fontSize: 12, fontWeight: '400'}]}>NIVEL</Text>
+                        <View style={{ marginHorizontal: 20}}>
+                            <View style={{alignItems: 'center', marginTop: 40}}>
+                                <Text style={styles.textStyle}>Resumen del plan</Text>
+                                <Video source={require('../../../assets/a.mp4')}   // Can be a URL or a local file.
+                                    ref={(ref) => {
+                                        this.player = ref
+                                    }}                                      // Store reference
+                                    onBuffer={this.onBuffer}                // Callback when remote video is buffering
+                                    onError={this.videoError}  
+                                    style={styles.backgroundVideo} />
+                                
+                                <Text style={[styles.textStyle,{marginTop: 8}]}>Resumen del plan</Text>
+                                <Text style={[styles.textStyle,{marginVertical: 12, fontSize: 15, fontWeight: '500'}]}>Gluteos de Acero</Text>
+                                <Text style={[styles.textStyle,{marginBottom: 3}]}>6 Smenas | 5 dias a la Semana | 60 Mins</Text>
+                                <Text style={[styles.textStyle,{fontWeight: '400', lineHeight: 12, textAlign: 'justify' }]}>Gloteos mas grandas y mas firmas: Yarishna to propone su plan inflible pare que lograr la cola que siemore has querido sea una realided.</Text>
                             </View>
-                            <View style={{ justifyContent: 'center', marginHorizontal: 25, marginVertical: 10}}>
-                                <Text style={[styles.textStyle,{fontSize: 12, fontWeight: '400'}]}>TIPO</Text>
+                            <View style={{flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', borderColor: 'white', borderWidth: 1, borderBottomWidth: 0}}>
+                                <View style={{justifyContent: 'center', marginHorizontal: 25, marginVertical: 10}}>
+                                    <Text style={[styles.textStyle,{fontSize: 12, fontWeight: '400'}]}>NIVEL</Text>
+                                </View>
+                                <View style={{ justifyContent: 'center', marginHorizontal: 25, marginVertical: 10}}>
+                                    <Text style={[styles.textStyle,{fontSize: 12, fontWeight: '400'}]}>TIPO</Text>
+                                </View>
+                                <View style={{ justifyContent: 'center', marginHorizontal: 25, marginVertical: 10}}>
+                                    <Text style={[styles.textStyle,{fontSize: 12, fontWeight: '400'}]}>UBICACION</Text>
+                                </View>
                             </View>
-                            <View style={{ justifyContent: 'center', marginHorizontal: 25, marginVertical: 10}}>
-                                <Text style={[styles.textStyle,{fontSize: 12, fontWeight: '400'}]}>UBICACION</Text>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between', borderColor: 'white', borderWidth: 1}}>
+                                <View style={{justifyContent: 'center',alignSelf: 'center', marginVertical: 10, marginLeft: 10}}>
+                                    <Text style={[styles.textStyle,{fontSize: 12,alignSelf: 'center', fontWeight: '300'}]}>Principiante</Text>
+                                </View>
+                                <View style={{ justifyContent: 'center',alignSelf: 'center', marginVertical: 10}}>
+                                    <Text style={[styles.textStyle,{fontSize: 12,alignSelf: 'center', fontWeight: '300'}]}>Pesas-Funcional</Text>
+                                </View>
+                                <View style={{ justifyContent: 'center',alignSelf: 'center', marginVertical: 10}}>
+                                    <Text style={[styles.textStyle,{fontSize: 12, alignSelf: 'center',fontWeight: '300', marginRight: 10}]}>Gimnacio</Text>
+                                </View>
                             </View>
-                        </View>
-                        <View style={{flexDirection: 'row', justifyContent: 'space-between', borderColor: 'white', borderWidth: 1}}>
-                            <View style={{justifyContent: 'center',alignSelf: 'center', marginVertical: 10, marginLeft: 10}}>
-                                <Text style={[styles.textStyle,{fontSize: 12,alignSelf: 'center', fontWeight: '300'}]}>Principiante</Text>
-                            </View>
-                            <View style={{ justifyContent: 'center',alignSelf: 'center', marginVertical: 10}}>
-                                <Text style={[styles.textStyle,{fontSize: 12,alignSelf: 'center', fontWeight: '300'}]}>Pesas-Funcional</Text>
-                            </View>
-                            <View style={{ justifyContent: 'center',alignSelf: 'center', marginVertical: 10}}>
-                                <Text style={[styles.textStyle,{fontSize: 12, alignSelf: 'center',fontWeight: '300', marginRight: 10}]}>Gimnacio</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <TouchableOpacity onPress={()=> this._scrollToBottom()} style={{marginTop: 15, alignSelf: 'center'}}>
-                                <FontAwesomeIcon icon={faChevronDown}  color={'white'} size={50} style={{fontWeight: '200'}} />
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{alignItems: 'center', marginTop: 45}}>
-                            <Text style={[styles.textStyle, {marginVertical: 30}]}>Rutine del Plans</Text>
                             <View>
-
-                                <Day/>
-                                <Day />
-                                <Day/>
+                                <TouchableOpacity onPress={()=> this._scrollToBottom()} style={{marginTop: 15, alignSelf: 'center'}}>
+                                    <Image source={require('../../../assets/icons/down-arrow1.png')} width={20} height={20} style={{height: 60, width: 60}}/>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={{alignItems: 'center', marginTop: 45, width: '100%'}}>
+                            <Text style={[styles.textStyle, {marginTop: 30}]}>Rutine del Plans</Text>
+                            <View style={{flex: 1,width: '100%'}}>
+                                {this._renderDays([{as: 'a'}])}
                             </View>
                         </View>
                 </ScrollView>

@@ -17,7 +17,7 @@ const ExplorerStack = createStackNavigator(
     PlanDetails: PlanDetails
   },
   {
-    initialRouteName: "PlanDetails",
+    initialRouteName: "ExplorerScreen",
     defaultNavigationOptions: {
       header: null
     }

@@ -9,7 +9,6 @@ import { CheckBox } from 'react-native-elements';
 class LoginFormScreen extends Component{
     constructor(props) {
         super(props);
-    
         this.state = {
           canada: '',
           showCodeOptions: false,
@@ -55,10 +54,13 @@ class LoginFormScreen extends Component{
     _onInfluencerChange(text){
         this.props.influencerChanged(text)
     }
+    _onBack(){
+        debugger
+    }
     render(){
         return (
             <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
-               <WhiteHeader />
+               <WhiteHeader onPress={()=> this.props.navigation.push("AfterWelcomeScreen")}/>
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 100}}>
                     <View>
                         <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18, fontWeight: '300'}}>Ingresa con tu numero movil</Text>

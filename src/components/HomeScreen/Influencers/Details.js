@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import {View, ScrollView,TouchableOpacity,ImageBackground, Text, StyleSheet, Dimensions} from 'react-native';
-import {Spinner} from '../../common';
+import {Spinner, BackButton} from '../../common';
 import {BASE_URL, getInfluencerDetails} from '../../../../API';
 import Video from 'react-native-video';
 import Influencer from '../common/Card';
@@ -35,17 +35,23 @@ class Details extends Component {
         return(
           <Text onPress={onPress} style={styles.viewMoreStyle}>View more</Text>
         )
-      }
-      renderViewLess(onPress){
+    }
+    renderViewLess(onPress){
         return(
-          <Text onPress={onPress} style={styles.viewMoreStyle}>Leer Menos ^</Text>
+            <Text onPress={onPress} style={styles.viewMoreStyle}>Leer Menos ^</Text>
         )
-      }
+    }
+
+    _goToPlanDetails(id) {
+        this.props.navigation.navigate('PlanDetails', {
+            planId: id,
+        });
+    }
 
     _renderPlanes (plans,name) {
         return plans.map((plan)=>(
             <View style={{marginTop: 35, height: 150}}>
-                <Influencer id={plan.id} name={name} titleStyle={{fontSize: 16, marginBottom: 0, marginLeft: 22}} typeStyle={{ fontSize: 24, marginLeft: 22, marginBottom: 4}} type={plan.title} image_url={plan.image_url} /> 
+                <Influencer id={plan.id} onPress={() => this._goToPlanDetails(plan.id)} name={name} titleStyle={{fontSize: 16, marginBottom: 0, marginLeft: 22}} typeStyle={{ fontSize: 24, marginLeft: 22, marginBottom: 4}} type={plan.title} image_url={plan.image_url} /> 
             </View>
         ))
     }
@@ -64,6 +70,8 @@ class Details extends Component {
             return <Spinner/> 
         return(
             <ImageBackground style={{flex: 1, backgroundColor: BG_COLOR }} source={{uri: image_url ? BASE_URL + image_url : null}}>
+                <BackButton onPress={()=> this.props.navigation.push("HomeScreenNavigator")}/>
+               
                 <ScrollView
                         ref="scrollView"
                         onLayout={ev => {
