@@ -40,8 +40,11 @@ class LoginFormScreen extends Component{
     }
     _onButtonPress(){
         this.setState({showList: false})
-        const {countryCode, phone, navigation} = this.props;
-        this.props.loginUser({number: countryCode+phone, navigation: navigation})
+        if(this.state.checked){
+            const {countryCode, phone, navigation} = this.props;
+            this.props.loginUser({number: countryCode+phone, navigation: navigation})
+        }
+       
     }
     _oPhoneChange(text){
         this.props.phoneChange(text)
@@ -57,9 +60,9 @@ class LoginFormScreen extends Component{
             <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
                <WhiteHeader />
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 100}}>
-                    <View style={{position:'relative',zIndex:9999}}>
+                    <View style={{position:'relative',zIndex:2}}>
                         <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18, fontWeight: '300'}}>Ingresa con tu numero movil</Text>
-                        <View style={{ flexDirection: 'row',position:'relative',zIndex:9999}}>
+                        <View style={{ flexDirection: 'row',position:'relative'}}>
                         <SelectTag options={countryCodeList}
                                     label="country_code"
                                     showList={this.state.showCodeOptions}

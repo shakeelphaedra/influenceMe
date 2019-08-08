@@ -1,6 +1,11 @@
 import { StyleSheet, Dimensions, Colors, Platform } from 'react-native';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+const FONT_FAMILY = "Esphimere";
+const BG_COLOR = "#4C4C4C";
+const RED_TEXT = "#d75019";
+const FONT_SIZE = 17;
+export {FONT_FAMILY, BG_COLOR, RED_TEXT, FONT_SIZE}
 
 const IS_IOS = Platform.OS === 'ios';
 function wp (percentage) {

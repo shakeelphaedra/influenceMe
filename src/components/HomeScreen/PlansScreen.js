@@ -1,44 +1,38 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, Image, Button, ImageBackground} from 'react-native';
-import {getInfluencers, req,BASE_URL} from '../../../API';
+import {View, ScrollView} from 'react-native';
+import {getPlans} from '../../../API';
 import {Spinner} from '../common';
-import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import {Influencer} from './common';
+import {Plan} from './common';
 
-class InfluencersScreen extends Component {
+class PlanesScreen extends Component {
     state = {
-        influencersList: []
+        plansList: []
     }
 
     componentDidMount(){
-        getInfluencers().then(data => {
-            data.map(e => {
-                splittedArray = e.video_url.split("v=");
-                e['video_id'] =  splittedArray[splittedArray.length - 1]
-                return e;
-            })
-            this.setState({influencersList: data})
-            console.log(this.state.influencersList)
+        getPlans().then(data => {
+            this.setState({plansList: data})
+            console.log(this.state.plansList)
         })
     }
     
-    _goToInfluencerDetails(id) {
-        this.props.navigation.navigate('InfluencerDetails', {
-            influencerId: id,
+    _goToPlanDetails(id) {
+        this.props.navigation.navigate('planDetails', {
+            planId: id,
         });
     }
 
     _renderContent () {
-        if(this.state.influencersList.length == 0)
+        if(this.state.plansList.length == 0)
             return <Spinner/>
-        return this._renderInfluencers()
+        return this._renderPlans()
     }
 
-    _renderInfluencers(){
-        return this.state.influencersList.map((influencer)=>{
+    _renderPlans(){
+        return this.state.plansList.map((plan)=>{
             return (
-                <View style={{height: 200}}>
-                    <Influencer id={influencer.id} onPress={() => this._goToInfluencerDetails(influencer.id)} image_url={influencer.image_url} name={influencer.name} type={influencer.type}/>
+                <View style={{height: 150}}>
+                    <Plan id={plan.id} onPress={() => this._goToPlanDetails(plan.id)} image_url={plan.image_url} name={plan.name} type={plan.type}/>
                 </View>
             )
         }) 
@@ -89,4 +83,4 @@ const styles = {
 
 }
 
-export default InfluencersScreen
+export default PlanesScreen

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableHighlight} from 'react-native';
 import InfluencersScreen from './InfluencersScreen';
+import PlansScreen from './PlansScreen';
 import {GreyHeader} from '../common';
 
 class ExplorerScreen extends Component {
@@ -9,12 +10,9 @@ class ExplorerScreen extends Component {
     }
     
     _renderContent () {
-        if(this.state.activeTab == 1){
+        if(this.state.activeTab == 1)
            return <InfluencersScreen navigation={this.props.navigation}/>
-        }
-        if(this.state.activeTab==2){
-            console.log("planeScreen")
-        }
+        return <PlansScreen navigation={this.props.navigation}/>
     }
     
     render () {
