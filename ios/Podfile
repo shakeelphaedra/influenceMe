@@ -28,13 +28,10 @@ target 'influenceMe' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
   
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
 
-  pod 'ReactNativeExceptionHandler', :path => '../node_modules/react-native-exception-handler'
 
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   target 'influenceMeTests' do
     inherit! :search_paths

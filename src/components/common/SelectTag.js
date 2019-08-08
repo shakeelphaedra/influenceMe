@@ -30,39 +30,36 @@ class SelectTag extends Component {
       )
     }
   }
-  _renderOptionsContent () {
-    return this.props.options.map( (option,i) => {
-      return (
-        <TouchableHighlight key={option.value}
-          onPress={() => {
-            this.selectOption(option)
-          }}
-          style={{
-            backgroundColor: 'white',
-            fontFamily: 'Esphimere',
-            width: '100%',
-            alignSelf: 'center',
-            paddingVertical: 6,
-            height: 40,
-            borderBottomColor: '#d6d6d6',
-            borderBottomLeftRadius: this.props.options.length -1 == i ? 16 : 0, 
-            borderBottomRightRadius: this.props.options.length -1 == i ? 16 : 0, 
-            borderBottomWidth: this.props.options.length -1 == i ? 0 : 1,
-          }}
-          >
-            <View style={{alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row'}}>
-              {this._renderFlag(option)}
-              <Text style={{fontFamily: 'Esphimere',marginLeft: 5}}>{option.value}</Text>
-            </View>
-        </TouchableHighlight>
-      )
-    })
-  }
   _renderOptions (){
     if(this.state.showList){
       return (
-        <View style={{position: 'absolute',top: 60,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'}}>
-          {this._renderOptionsContent()}
+        <View style={{zIndex:555555, position: 'absolute',top: 60,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'}}>
+          {this.props.options.map( (option,i) => {
+            return (
+              <TouchableHighlight key={option.value}
+                onPress={() => {
+                  this.selectOption(option)
+                }}
+                style={{
+                  backgroundColor: 'white',
+                  fontFamily: 'Esphimere',
+                  width: '100%',
+                  alignSelf: 'center',
+                  paddingVertical: 6,
+                  height: 40,
+                  borderBottomColor: '#d6d6d6',
+                  borderBottomLeftRadius: this.props.options.length -1 == i ? 16 : 0, 
+                  borderBottomRightRadius: this.props.options.length -1 == i ? 16 : 0, 
+                  borderBottomWidth: this.props.options.length -1 == i ? 0 : 1,
+                }}
+                >
+                  <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+                    {this._renderFlag(option)}
+                    <Text style={{fontFamily: 'Esphimere',marginLeft: 5}}>{option.value}</Text>
+                  </View>
+              </TouchableHighlight>
+            )
+          })}
         </View>
       )
       
@@ -83,7 +80,7 @@ class SelectTag extends Component {
   }
   render() {
     return (
-      <View style={{flex: 1, margin: 20,position:'relative',zIndex:555555 }}>
+      <View style={{flex: 1, margin: 20 }}>
           <View style={{ padding: 15, borderRadius: 50,height: 55, backgroundColor: 'white',width: "100%", borderColor: '#e0e3e5', borderWidth: 0.4}}>
             <TouchableHighlight onPress={this._toggleOption.bind(this)} style={{height: '100%', justifyContent: 'center'}}>
               <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -95,7 +92,7 @@ class SelectTag extends Component {
               </View>
             </TouchableHighlight>
           </View>
-            {this._renderOptions()}
+          {this._renderOptions()}
       </View>
     );
   }
