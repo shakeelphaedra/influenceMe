@@ -1,7 +1,8 @@
 import React from 'react';
 import EnteranceScreen  from '../components/HomeScreen/EnteranceScreen'
 import ExplorerScreen  from '../components/HomeScreen/ExplorerScreen';
-import ProfileScreen  from '../components/HomeScreen/ProfileScreen';
+// import ProfileScreen  from '../components/HomeScreen/ProfileScreen';
+import ProfileScreen  from '../containers/TabNavigator/Profile';
 import ProgressScreen  from '../components/HomeScreen/ProgressScreen';
 import InfluencerDetails  from '../components/HomeScreen/Influencers/Details';
 import PlanDetails  from '../components/HomeScreen/Plans/Details';

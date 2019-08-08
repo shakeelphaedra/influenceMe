@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* influenceMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* influenceMeTests.m */; };
 		03A94213627B4ACF8A96C3AF /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A587E206027C4C3DB81D3CAD /* FontAwesome5_Regular.ttf */; };
@@ -49,6 +48,16 @@
 		E03EE5B158724BB89E4A5C40 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95B25A8314A245A5B5F4D033 /* Feather.ttf */; };
 		F9968A5D557C4A5290D992AA /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E566D63ABA415E87DA0650 /* Ionicons.ttf */; };
 		FA197BF5A9E933505110CD36 /* libPods-influenceMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8098908CE1395EFA75D5491A /* libPods-influenceMeTests.a */; };
+		CC179C7131D04DA695D09255 /* Roboto-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 319C465BB03D4CDA9904DB13 /* Roboto-Bold.woff */; };
+		72CE029DC5A8443EAD359DA3 /* Roboto-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 07DA79036525426AAC3723EA /* Roboto-Bold.woff2 */; };
+		8B0E7794EB614491B89E6329 /* Roboto-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 86B5D04F8E564DE887917AD8 /* Roboto-Light.woff */; };
+		1F251DBADC4B48ADB3984F87 /* Roboto-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 4B430A1F52FA41D2863100A3 /* Roboto-Light.woff2 */; };
+		364A1774FF26420CBB981EBE /* Roboto-Medium.woff in Resources */ = {isa = PBXBuildFile; fileRef = 49C19B1DFB4C42B5A685E2E6 /* Roboto-Medium.woff */; };
+		E078248000E84CB4BBEAA394 /* Roboto-Medium.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E1462788A4D1287F9B56A /* Roboto-Medium.woff2 */; };
+		46632E771EAE427AA2BB55B9 /* Roboto-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = E319AC8B35E246EABCD3BBCE /* Roboto-Regular.woff */; };
+		E7B7572B73114B868E7842FD /* Roboto-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */; };
+		35895E3016F142A9A5D36F3B /* Roboto-Thin.woff in Resources */ = {isa = PBXBuildFile; fileRef = CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */; };
+		FC7A763EA49C4C7EBC6B4981 /* Roboto-Thin.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 4D73BE208C2E4410A3A2E76C /* Roboto-Thin.woff2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +134,16 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		ED71F5B9535F417C878389AB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		FA62CE9CA7C841AF8CAD25A1 /* Esphimere_Semi_Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Esphimere_Semi_Bold.otf; path = ../src/assets/fonts/Esphimere_Semi_Bold.otf; sourceTree = "<group>"; };
+		319C465BB03D4CDA9904DB13 /* Roboto-Bold.woff */ = {isa = PBXFileReference; name = "Roboto-Bold.woff"; path = "../src/assets/fonts/Roboto-Bold.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		07DA79036525426AAC3723EA /* Roboto-Bold.woff2 */ = {isa = PBXFileReference; name = "Roboto-Bold.woff2"; path = "../src/assets/fonts/Roboto-Bold.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		86B5D04F8E564DE887917AD8 /* Roboto-Light.woff */ = {isa = PBXFileReference; name = "Roboto-Light.woff"; path = "../src/assets/fonts/Roboto-Light.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4B430A1F52FA41D2863100A3 /* Roboto-Light.woff2 */ = {isa = PBXFileReference; name = "Roboto-Light.woff2"; path = "../src/assets/fonts/Roboto-Light.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		49C19B1DFB4C42B5A685E2E6 /* Roboto-Medium.woff */ = {isa = PBXFileReference; name = "Roboto-Medium.woff"; path = "../src/assets/fonts/Roboto-Medium.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2F0E1462788A4D1287F9B56A /* Roboto-Medium.woff2 */ = {isa = PBXFileReference; name = "Roboto-Medium.woff2"; path = "../src/assets/fonts/Roboto-Medium.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E319AC8B35E246EABCD3BBCE /* Roboto-Regular.woff */ = {isa = PBXFileReference; name = "Roboto-Regular.woff"; path = "../src/assets/fonts/Roboto-Regular.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */ = {isa = PBXFileReference; name = "Roboto-Regular.woff2"; path = "../src/assets/fonts/Roboto-Regular.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */ = {isa = PBXFileReference; name = "Roboto-Thin.woff"; path = "../src/assets/fonts/Roboto-Thin.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4D73BE208C2E4410A3A2E76C /* Roboto-Thin.woff2 */ = {isa = PBXFileReference; name = "Roboto-Thin.woff2"; path = "../src/assets/fonts/Roboto-Thin.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +315,16 @@
 				368707E332BF4708A33B35F0 /* Esphimere_Light.otf */,
 				FA62CE9CA7C841AF8CAD25A1 /* Esphimere_Semi_Bold.otf */,
 				B0F77968CA54494CB9F58132 /* Esphimere.otf */,
+				319C465BB03D4CDA9904DB13 /* Roboto-Bold.woff */,
+				07DA79036525426AAC3723EA /* Roboto-Bold.woff2 */,
+				86B5D04F8E564DE887917AD8 /* Roboto-Light.woff */,
+				4B430A1F52FA41D2863100A3 /* Roboto-Light.woff2 */,
+				49C19B1DFB4C42B5A685E2E6 /* Roboto-Medium.woff */,
+				2F0E1462788A4D1287F9B56A /* Roboto-Medium.woff2 */,
+				E319AC8B35E246EABCD3BBCE /* Roboto-Regular.woff */,
+				E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */,
+				CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */,
+				4D73BE208C2E4410A3A2E76C /* Roboto-Thin.woff2 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -471,6 +500,16 @@
 				C5E75D27703E43FC83F68534 /* Esphimere_Light.otf in Resources */,
 				B7387002C0684427BA813659 /* Esphimere_Semi_Bold.otf in Resources */,
 				BA69C190D5234AE9B6EDC41A /* Esphimere.otf in Resources */,
+				CC179C7131D04DA695D09255 /* Roboto-Bold.woff in Resources */,
+				72CE029DC5A8443EAD359DA3 /* Roboto-Bold.woff2 in Resources */,
+				8B0E7794EB614491B89E6329 /* Roboto-Light.woff in Resources */,
+				1F251DBADC4B48ADB3984F87 /* Roboto-Light.woff2 in Resources */,
+				364A1774FF26420CBB981EBE /* Roboto-Medium.woff in Resources */,
+				E078248000E84CB4BBEAA394 /* Roboto-Medium.woff2 in Resources */,
+				46632E771EAE427AA2BB55B9 /* Roboto-Regular.woff in Resources */,
+				E7B7572B73114B868E7842FD /* Roboto-Regular.woff2 in Resources */,
+				35895E3016F142A9A5D36F3B /* Roboto-Thin.woff in Resources */,
+				FC7A763EA49C4C7EBC6B4981 /* Roboto-Thin.woff2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +852,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = influenceMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -833,6 +873,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = influenceMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
