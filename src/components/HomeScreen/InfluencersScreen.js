@@ -3,7 +3,7 @@ import {View, Text, ScrollView, Image, Button, ImageBackground} from 'react-nati
 import {getInfluencers, req,BASE_URL} from '../../../API';
 import {Spinner} from '../common';
 import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import {Influencer} from './common';
+import Influencer from './common/Card';
 
 class InfluencersScreen extends Component {
     state = {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, ScrollView} from 'react-native';
 import {getPlans} from '../../../API';
 import {Spinner} from '../common';
-import {Plan} from './common';
+import  Plan from './common/Card';
 
 class PlanesScreen extends Component {
     state = {
@@ -17,7 +17,7 @@ class PlanesScreen extends Component {
     }
     
     _goToPlanDetails(id) {
-        this.props.navigation.navigate('planDetails', {
+        this.props.navigation.navigate('PlanDetails', {
             planId: id,
         });
     }

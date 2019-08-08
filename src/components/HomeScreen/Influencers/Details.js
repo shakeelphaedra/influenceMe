@@ -3,7 +3,7 @@ import {View, ScrollView,TouchableOpacity,ImageBackground, Text, StyleSheet, Dim
 import {Spinner} from '../../common';
 import {BASE_URL, getInfluencerDetails} from '../../../../API';
 import Video from 'react-native-video';
-import {Influencer} from '../common';
+import Influencer from '../common/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import ViewMoreText from 'react-native-view-more-text';

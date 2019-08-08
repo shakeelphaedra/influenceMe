@@ -4,6 +4,7 @@ import ExplorerScreen  from '../components/HomeScreen/ExplorerScreen';
 import ProfileScreen  from '../components/HomeScreen/ProfileScreen';
 import ProgressScreen  from '../components/HomeScreen/ProgressScreen';
 import InfluencerDetails  from '../components/HomeScreen/Influencers/Details';
+import PlanDetails  from '../components/HomeScreen/Plans/Details';
 import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faGlobe, faRedo, faSignOutAlt,faUser, faSearch, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +12,11 @@ import { faGlobe, faRedo, faSignOutAlt,faUser, faSearch, faQuestionCircle } from
 const ExplorerStack = createStackNavigator(
   {
     ExplorerScreen: ExplorerScreen,
-    InfluencerDetails: InfluencerDetails
+    InfluencerDetails: InfluencerDetails,
+    PlanDetails: PlanDetails
   },
   {
-    initialRouteName: "ExplorerScreen",
+    initialRouteName: "PlanDetails",
     defaultNavigationOptions: {
       header: null
     }

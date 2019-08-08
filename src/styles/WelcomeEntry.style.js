@@ -5,7 +5,8 @@ const FONT_FAMILY = "Esphimere";
 const BG_COLOR = "#4C4C4C";
 const RED_TEXT = "#d75019";
 const FONT_SIZE = 17;
-export {FONT_FAMILY, BG_COLOR, RED_TEXT, FONT_SIZE}
+const SCREEN_BG_COLOR = "#1A1A1A";
+export {FONT_FAMILY, SCREEN_BG_COLOR,BG_COLOR, RED_TEXT, FONT_SIZE}
 
 const IS_IOS = Platform.OS === 'ios';
 function wp (percentage) {
