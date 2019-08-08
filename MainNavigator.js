@@ -19,7 +19,7 @@ const AppNavigator = createStackNavigator(
     UpdateEmailScreen: UpdateEmail,
   },
   {
-    initialRouteName: "LoginFormScreen",
+    initialRouteName: "WelcomeScreen",
     defaultNavigationOptions: {
       header: null
     },

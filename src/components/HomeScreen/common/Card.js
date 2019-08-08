@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {TouchableWithoutFeedback,View, ImageBackground, Text} from 'react-native';
 import {getInfluencers, req,BASE_URL} from '../../../../API';
+import {FONT_FAMILY} from '../../../styles';
 
-class Influencer extends Component {
+class Card extends Component {
     render () {
-        const  {onPress, description, name, id, image_url} = this.props;
+        const  {onPress, type, name, id, image_url, titleStyle, typeStyle} = this.props;
         return (
             <TouchableWithoutFeedback key={id} onPress={onPress}>
                 <View  style={styles.backgroundImageContainerStyle} >
@@ -14,8 +15,8 @@ class Influencer extends Component {
                     >
                         <View style={styles.boxShadow}>
                             <View style={{position: 'relative', flexDirection: 'column', flex: 1}}>
-                                <Text style={styles.titleStyle}>{name}</Text>
-                                <Text style={styles.descriptionStyle}>{description}</Text>
+                                <Text style={[styles.titleStyle, titleStyle]}>{name}</Text>
+                                <Text style={[styles.descriptionStyle, typeStyle]}>{type}</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -34,11 +35,21 @@ const styles = {
         zIndex: 2,
         fontSize: 30,
         marginBottom: 20,
+        fontFamily: FONT_FAMILY,
+
+        textShadowColor: 'black',
+        textShadowOffset: {width: 1, height: 1},
+        textShadowRadius: 5,
         color: 'white',
         opacity: 0.8
     },
     descriptionStyle: {
         zIndex: 2,
+
+        textShadowColor: 'black',
+        textShadowOffset: {width: 1, height: 1},
+        textShadowRadius: 5,
+        fontFamily: FONT_FAMILY,
         fontSize: 20,
         color: 'white',
         opacity: 0.8
@@ -61,4 +72,4 @@ const styles = {
     }
 
 }
-export {Influencer}
+export default Card;

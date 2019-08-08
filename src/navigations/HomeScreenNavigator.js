@@ -5,6 +5,7 @@ import ExplorerScreen  from '../components/HomeScreen/ExplorerScreen';
 import ProfileScreen  from '../containers/TabNavigator/Profile';
 import ProgressScreen  from '../components/HomeScreen/ProgressScreen';
 import InfluencerDetails  from '../components/HomeScreen/Influencers/Details';
+import PlanDetails  from '../components/HomeScreen/Plans/Details';
 import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faGlobe, faRedo, faSignOutAlt,faUser, faSearch, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +14,7 @@ const ExplorerStack = createStackNavigator(
   {
     ExplorerScreen: ExplorerScreen,
     InfluencerDetails: InfluencerDetails,
-
+    PlanDetails: PlanDetails
   },
   {
     initialRouteName: "ExplorerScreen",
@@ -41,11 +42,8 @@ const HomeScreenRouter = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Progreso",
         tabBarIcon: ({ tintColor }) => (
-
           <FontAwesomeIcon icon={faRedo}  color={tintColor} />
-
-        ), 
-        
+        )
       }
     },
     EnteranceScreen: {

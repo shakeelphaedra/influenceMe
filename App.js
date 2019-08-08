@@ -11,7 +11,7 @@ class App extends Component {
       const store= createStore(reducers,{}, applyMiddleware(ReduxThunk))
       return (
         <Provider store={store}>
-            <SafeAreaView style={{flex: 1, backgroundColor: '#4C4C4C'}}>
+            <SafeAreaView style={{flex: 1, backgroundColor: '#1A1A1A'}}>
               <MainNavigator/>
             </SafeAreaView>
         </Provider>

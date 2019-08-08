@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableHighlight} from 'react-native';
 import InfluencersScreen from './InfluencersScreen';
+import PlansScreen from './PlansScreen';
 import {GreyHeader} from '../common';
 
 class ExplorerScreen extends Component {
@@ -9,20 +10,16 @@ class ExplorerScreen extends Component {
     }
     
     _renderContent () {
-        if(this.state.activeTab == 1){
+        if(this.state.activeTab == 1)
            return <InfluencersScreen navigation={this.props.navigation}/>
-        }
-        if(this.state.activeTab==2){
-            console.log("planeScreen")
-        }
+        return <PlansScreen navigation={this.props.navigation}/>
     }
     
     render () {
         return (
-            <View style={{flex: 10}}>
-                <View style={{flex: 1, backgroundColor: 'yello'}}>
-                    <GreyHeader> 
-                    </GreyHeader>
+            <View style={{flex: 12}}>
+                <View style={{flex: 1}}>
+                    <GreyHeader /> 
                 </View>
                 <View style={{flex: 1, backgroundColor: 'red'}}>
                    <View style={{flexDirection: 'row', flex: 1}}>
@@ -42,7 +39,7 @@ class ExplorerScreen extends Component {
                         </TouchableHighlight>
                     </View>
                 </View>
-                <View style={{flex: 8}}>
+                <View style={{flex: 11}}>
                     {this._renderContent()}
                 </View>
             </View>
@@ -97,7 +94,7 @@ const styles = {
         alignItems: 'center'
     },
     activeTabStyle: {
-        borderBottomWidth: 10,
+        borderBottomWidth: 4,
         borderBottomColor: 'red',
     },
     activeTabTextStyle: {
