@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import {View, Animated, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import AppText from '../../common/AppText';
 import {NAMED_COLORS} from '../../common/AppColors';
 
@@ -10,6 +10,25 @@ let Screenheight = Dimensions.get('window').height;
 import defaultUser from '../../assets/www/dist/img/userM.png';
 
 class SettingsScreen extends Component {
+    constructor(props) {
+        super(props)
+    
+        this._opacityAnimationValue = new Animated.Value(-100);
+        this._moveAnimationValue = new Animated.ValueXY();
+      }
+    
+    componentDidMount() {
+        Animated.sequence([
+            Animated.timing(this._moveAnimationValue, {
+                toValue: 0,
+                duration: 300
+            }),
+            Animated.timing(this._opacityAnimationValue, {
+                toValue: 1,
+                duration: 300
+            })
+        ]).start()
+    }
     render () {
         const { handleGmailUpdate } = this.props;
         return (
@@ -26,17 +45,18 @@ class SettingsScreen extends Component {
                 </View>
                 {/* ============= header end ============= */}
 
-                <View style={styles.userPic}>
-                    <Image source={defaultUser} style={{flex: 0.7, height:undefined, width:undefined, resizeMode:"contain"}}/>
-
-                </View>
+                
                 <ScrollView style={{flex:0.65, backgroundColor: NAMED_COLORS.backgroundDarkGray}}>
-                    <View style={styles.row}>
+                    <View style={styles.userPic}>
+                        <Image source={defaultUser} style={{flex: 0.7, height:undefined, width:undefined, resizeMode:"contain"}}/>
+                    </View>
+                    <Animated.View style={[styles.row,{opacity: this._opacityAnimationValue, transform: this._moveAnimationValue.getTranslateTransform()}]}>
+
                         <AppText style={{flex:0.6, alignSelf:'center'}}>Nombre</AppText>
                         <View style={styles.leftArrowWithText}>
                             <AppText style={styles.innerTextStyle}>test</AppText>
                         </View>
-                    </View>
+                    </Animated.View>
                     
                     <View style={styles.row}>
                         <AppText style={{flex:0.6, alignSelf:'center'}}> 
@@ -90,6 +110,11 @@ class SettingsScreen extends Component {
                             </TouchableOpacity>
                         </View> 
                     </View>
+
+                    {/* =============== logout ================ */}
+                    <View style={[styles.headingRow, {backgroundColor:NAMED_COLORS.orangeColor}]}>
+                      <AppText style={{alignSelf:'center'}}>Cerrar Sesion</AppText>
+                    </View>
                     
                 </ScrollView>
             </View>
@@ -109,7 +134,7 @@ const styles = StyleSheet.create({
         paddingRight: 10,
     },
     userPic: {
-        flex:0.23,
+        height:Screenheight*0.22,
         backgroundColor: NAMED_COLORS.backgroundDarkGray,
         justifyContent:'center'
     },

@@ -4,8 +4,8 @@ import {Spinner,SelectTag,Input, BlackButton, WhiteHeader} from './common'
 import * as actions from '../actions';
 import {connect} from  'react-redux';
 import { influencerList, countryCodeList } from '../reducers';
-
 import { CheckBox } from 'react-native-elements';
+
 class LoginFormScreen extends Component{
     constructor(props) {
         super(props);
@@ -60,9 +60,9 @@ class LoginFormScreen extends Component{
             <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
                <WhiteHeader />
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 100}}>
-                    <View style={{position:'relative',zIndex:2}}>
+                    <View>
                         <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18, fontWeight: '300'}}>Ingresa con tu numero movil</Text>
-                        <View style={{ flexDirection: 'row',position:'relative'}}>
+                        <View style={{ flexDirection: 'row'}}>
                         <SelectTag options={countryCodeList}
                                     label="country_code"
                                     showList={this.state.showCodeOptions}
@@ -80,7 +80,6 @@ class LoginFormScreen extends Component{
                                     style={{width: 20}}/>
                         </View>
                     </View>
-                    <View>
                         <Input 
                             value={this.props.phone}
                             label="Phone"
@@ -90,7 +89,6 @@ class LoginFormScreen extends Component{
                             inputStyle={{borderRadius: 50, height: '100%', fontWeight: '200'}}
                             onChangeText={this._oPhoneChange.bind(this)}
                         />
-                    </View>
                     <View style={{padding: 20}}>
                         <Text style= {{fontSize: 22, textAlign: 'justify', fontFamily: 'Esphimere', fontWeight: '300'}}>
                             Te enviaremos un mensaje de texto con tu codigo de validacaion recuerda verificar que  tu numero de celular fue ingresado
