@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, View, Text, TouchableHighlight} from 'react-native';
+import {Image, View, Text, TouchableHighlight, Platform} from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCaretDown} from '@fortawesome/free-solid-svg-icons';
@@ -31,9 +31,10 @@ class SelectTag extends Component {
     }
   }
   _renderOptions (){
+    const dropdownStyle = Platform.OS === 'ios' ? {position: 'absolute',top: 60,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'} : {zIndex:555555, position: 'absolute',top: 60,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'};
     if(this.state.showList){
       return (
-        <View style={{zIndex:555555, position: 'absolute',top: 60,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'}}>
+        <View style={dropdownStyle}>
           {this.props.options.map( (option,i) => {
             return (
               <TouchableHighlight key={option.value}
