@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import {View, Text,Image} from 'react-native';
+import {View, Text,Image, Platform} from 'react-native';
 import {Spinner,SelectTag,Input, BlackButton, WhiteHeader} from './common'
 import * as actions from '../actions';
 import {connect} from  'react-redux';
@@ -55,13 +55,14 @@ class LoginFormScreen extends Component{
         this.props.influencerChanged(text)
     }
     render(){
+        const dropdownStyle = Platform.OS === 'ios' ? {flexDirection: 'row',position:'relative',zIndex:9999} : {flexDirection: 'row'};
         return (
             <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
                <WhiteHeader onPress={()=> this.props.navigation.push("AfterWelcomeScreen")}/>
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 100}}>
-                    <View>
+                    <View style={Platform.OS === 'ios'? {position:'relative',zIndex:9999}: {}}>
                         <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18, fontWeight: '300'}}>Ingresa con tu numero movil</Text>
-                        <View style={{ flexDirection: 'row'}}>
+                        <View style={dropdownStyle}>
                         <SelectTag options={countryCodeList}
                                     label="country_code"
                                     showList={this.state.showCodeOptions}
