@@ -15,16 +15,22 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1BAE15E007A34CCE9FC0FDC9 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12DB57DE7C60466B925786C5 /* FontAwesome5_Solid.ttf */; };
 		1F12B484568F4350979B8253 /* Esphimere Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A3899EDF74BA4BBC8B2FFB7C /* Esphimere Light Italic.otf */; };
+		1F251DBADC4B48ADB3984F87 /* Roboto-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 4B430A1F52FA41D2863100A3 /* Roboto-Light.woff2 */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* influenceMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* influenceMeTests.m */; };
 		313B7397D72446D8A0A0C9EF /* Esphimere Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A04DDFF53A5A4110AFE7CDAE /* Esphimere Bold Italic.otf */; };
 		3416F8F6E70B46A7A6CBC3B4 /* Esphimere Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF1C7A1DF9F4103B40EAFBF /* Esphimere Thin.otf */; };
+		35895E3016F142A9A5D36F3B /* Roboto-Thin.woff in Resources */ = {isa = PBXBuildFile; fileRef = CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */; };
+		364A1774FF26420CBB981EBE /* Roboto-Medium.woff in Resources */ = {isa = PBXBuildFile; fileRef = 49C19B1DFB4C42B5A685E2E6 /* Roboto-Medium.woff */; };
 		3A2A56E595064CCFBBAF7C7F /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF1EE85B38A547029F957EB4 /* Entypo.ttf */; };
 		4126C8AA44474FA0BA3F17A6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED71F5B9535F417C878389AB /* SimpleLineIcons.ttf */; };
+		46632E771EAE427AA2BB55B9 /* Roboto-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = E319AC8B35E246EABCD3BBCE /* Roboto-Regular.woff */; };
 		5DAD7501789940A7A43A43C9 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8941438546D34DCEAC747FCC /* Foundation.ttf */; };
+		72CE029DC5A8443EAD359DA3 /* Roboto-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 07DA79036525426AAC3723EA /* Roboto-Bold.woff2 */; };
 		75D52FFBEB8842E1837131C8 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BCD39107ACE4340A732EBAA /* MaterialIcons.ttf */; };
+		8B0E7794EB614491B89E6329 /* Roboto-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 86B5D04F8E564DE887917AD8 /* Roboto-Light.woff */; };
 		9013988CC6DC4B54B67AB1FE /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA2E7F20277C427EA610488A /* FontAwesome5_Brands.ttf */; };
 		91059D27C5B04C73BC71C1BD /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 132AE3AC250E4F8E88D4BA2B /* MaterialCommunityIcons.ttf */; };
 		97FFB63FDAA74DBD949D486E /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 928F5DD23F3641FB94BEDFE4 /* Octicons.ttf */; };
@@ -42,22 +48,27 @@
 		C5E75D27703E43FC83F68534 /* Esphimere_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 368707E332BF4708A33B35F0 /* Esphimere_Light.otf */; };
 		C607E6B5E4314CD99D5176D9 /* Esphimere Thin Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CBBD88BB064DC494B457F5 /* Esphimere Thin Italic.otf */; };
 		CB2C9E0E8BAA47D194FFBF63 /* Esphimere Extra Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2AE50B18EDEE4214A9AD5265 /* Esphimere Extra Light Italic.otf */; };
+		CC179C7131D04DA695D09255 /* Roboto-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 319C465BB03D4CDA9904DB13 /* Roboto-Bold.woff */; };
 		CC83D8DAED05470AB2789BEC /* Esphimere Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 73073E53549B4E27897FBAC0 /* Esphimere Italic.otf */; };
 		D16EC795ECDB3195A1C54943 /* libPods-influenceMe-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F938567EB0480CE167DA81B /* libPods-influenceMe-tvOS.a */; };
 		D5754597CE734A8ABCAF78B4 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4BB417D2EF14974B44A3A9E /* Fontisto.ttf */; };
 		E03EE5B158724BB89E4A5C40 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95B25A8314A245A5B5F4D033 /* Feather.ttf */; };
+		E078248000E84CB4BBEAA394 /* Roboto-Medium.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E1462788A4D1287F9B56A /* Roboto-Medium.woff2 */; };
+		E7B7572B73114B868E7842FD /* Roboto-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */; };
 		F9968A5D557C4A5290D992AA /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E566D63ABA415E87DA0650 /* Ionicons.ttf */; };
 		FA197BF5A9E933505110CD36 /* libPods-influenceMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8098908CE1395EFA75D5491A /* libPods-influenceMeTests.a */; };
-		CC179C7131D04DA695D09255 /* Roboto-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 319C465BB03D4CDA9904DB13 /* Roboto-Bold.woff */; };
-		72CE029DC5A8443EAD359DA3 /* Roboto-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 07DA79036525426AAC3723EA /* Roboto-Bold.woff2 */; };
-		8B0E7794EB614491B89E6329 /* Roboto-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 86B5D04F8E564DE887917AD8 /* Roboto-Light.woff */; };
-		1F251DBADC4B48ADB3984F87 /* Roboto-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 4B430A1F52FA41D2863100A3 /* Roboto-Light.woff2 */; };
-		364A1774FF26420CBB981EBE /* Roboto-Medium.woff in Resources */ = {isa = PBXBuildFile; fileRef = 49C19B1DFB4C42B5A685E2E6 /* Roboto-Medium.woff */; };
-		E078248000E84CB4BBEAA394 /* Roboto-Medium.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E1462788A4D1287F9B56A /* Roboto-Medium.woff2 */; };
-		46632E771EAE427AA2BB55B9 /* Roboto-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = E319AC8B35E246EABCD3BBCE /* Roboto-Regular.woff */; };
-		E7B7572B73114B868E7842FD /* Roboto-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */; };
-		35895E3016F142A9A5D36F3B /* Roboto-Thin.woff in Resources */ = {isa = PBXBuildFile; fileRef = CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */; };
 		FC7A763EA49C4C7EBC6B4981 /* Roboto-Thin.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 4D73BE208C2E4410A3A2E76C /* Roboto-Thin.woff2 */; };
+		527EEA8D421D492D9E8E4A37 /* Esphimere-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 89C6D815AF764574847C27B8 /* Esphimere-Bold.otf */; };
+		7B24E35E100F4289BA4CC861 /* Esphimere-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD73EE4B36A64682AD960DE1 /* Esphimere-BoldItalic.otf */; };
+		DFDF409B9E574B3696E71C25 /* Esphimere-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7FFE994DB768443FBF83155A /* Esphimere-ExtraLight.otf */; };
+		9953EC34DE35409FBD908AA7 /* Esphimere-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DCB33B8F52CA4F26B63D900F /* Esphimere-ExtraLightItalic.otf */; };
+		C52FAB981E034BB5AA53E832 /* Esphimere-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C4FB2A112844A0B65CE89C /* Esphimere-Italic.otf */; };
+		D88E7E32A88C447F9AA4CBA1 /* Esphimere-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC3F460EB854D71A23D870C /* Esphimere-Light.otf */; };
+		7B8C886D2B32470CAAB10894 /* Esphimere-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5283FA0B6AA349B2A69609E9 /* Esphimere-LightItalic.otf */; };
+		28C6979DDD4B4334ADC77955 /* Esphimere-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B01C764F851244C0887E959D /* Esphimere-SemiBold.otf */; };
+		82240547AF3746AAADE15737 /* Esphimere-SemiBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07D76BBB937D4A0389565820 /* Esphimere-SemiBoldItalic.otf */; };
+		B4B48616196A4FA3ABFD897F /* Esphimere-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = E0C37A32D07C421C86B868C7 /* Esphimere-Thin.otf */; };
+		8D384E8A02BF4ACD8010FE1F /* Esphimere-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D21E174B6F7943B7832D3121 /* Esphimere-ThinItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +98,7 @@
 		01F4B663A6387BBF05C9FAD9 /* Pods-influenceMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMeTests.debug.xcconfig"; path = "Target Support Files/Pods-influenceMeTests/Pods-influenceMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		03CE134BD331441093AEC916 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		04B61D8A22EB275200189232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		07DA79036525426AAC3723EA /* Roboto-Bold.woff2 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.woff2"; path = "../src/assets/fonts/Roboto-Bold.woff2"; sourceTree = "<group>"; };
 		0C85CEDC41D8D636171D8CBB /* libPods-influenceMe-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-influenceMe-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DB57DE7C60466B925786C5 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		132AE3AC250E4F8E88D4BA2B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -101,16 +113,22 @@
 		2AE50B18EDEE4214A9AD5265 /* Esphimere Extra Light Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Esphimere Extra Light Italic.otf"; path = "../src/assets/fonts/Esphimere Extra Light Italic.otf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* influenceMe-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "influenceMe-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* influenceMe-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "influenceMe-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F0E1462788A4D1287F9B56A /* Roboto-Medium.woff2 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.woff2"; path = "../src/assets/fonts/Roboto-Medium.woff2"; sourceTree = "<group>"; };
+		319C465BB03D4CDA9904DB13 /* Roboto-Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.woff"; path = "../src/assets/fonts/Roboto-Bold.woff"; sourceTree = "<group>"; };
 		368707E332BF4708A33B35F0 /* Esphimere_Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Esphimere_Light.otf; path = ../src/assets/fonts/Esphimere_Light.otf; sourceTree = "<group>"; };
 		3BCD39107ACE4340A732EBAA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		44E566D63ABA415E87DA0650 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		49C19B1DFB4C42B5A685E2E6 /* Roboto-Medium.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.woff"; path = "../src/assets/fonts/Roboto-Medium.woff"; sourceTree = "<group>"; };
+		4B430A1F52FA41D2863100A3 /* Roboto-Light.woff2 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.woff2"; path = "../src/assets/fonts/Roboto-Light.woff2"; sourceTree = "<group>"; };
 		4CF1C7A1DF9F4103B40EAFBF /* Esphimere Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Esphimere Thin.otf"; path = "../src/assets/fonts/Esphimere Thin.otf"; sourceTree = "<group>"; };
+		4D73BE208C2E4410A3A2E76C /* Roboto-Thin.woff2 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.woff2"; path = "../src/assets/fonts/Roboto-Thin.woff2"; sourceTree = "<group>"; };
 		4D9EAE8E1915F1EE15D19F4D /* Pods-influenceMe-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMe-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-influenceMe-tvOS/Pods-influenceMe-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		59325233400542E2BB4B3208 /* Esphimere_Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Esphimere_Bold.otf; path = ../src/assets/fonts/Esphimere_Bold.otf; sourceTree = "<group>"; };
 		5A69D6951031F572956D9FF1 /* Pods-influenceMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMeTests.release.xcconfig"; path = "Target Support Files/Pods-influenceMeTests/Pods-influenceMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		73073E53549B4E27897FBAC0 /* Esphimere Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Esphimere Italic.otf"; path = "../src/assets/fonts/Esphimere Italic.otf"; sourceTree = "<group>"; };
 		7C9512B415604CCBBB211642 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		8098908CE1395EFA75D5491A /* libPods-influenceMeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-influenceMeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86B5D04F8E564DE887917AD8 /* Roboto-Light.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.woff"; path = "../src/assets/fonts/Roboto-Light.woff"; sourceTree = "<group>"; };
 		8941438546D34DCEAC747FCC /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		928F5DD23F3641FB94BEDFE4 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		93045BB4274D9C5893C4BAED /* Pods-influenceMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMe.release.xcconfig"; path = "Target Support Files/Pods-influenceMe/Pods-influenceMe.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,24 +144,28 @@
 		B4BB417D2EF14974B44A3A9E /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		BCF00BB3E2CBBC44756D608B /* Pods-influenceMe-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMe-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-influenceMe-tvOSTests/Pods-influenceMe-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		CAA0ACB71E1A2282F648D252 /* Pods-influenceMe-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMe-tvOS.release.xcconfig"; path = "Target Support Files/Pods-influenceMe-tvOS/Pods-influenceMe-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.woff"; path = "../src/assets/fonts/Roboto-Thin.woff"; sourceTree = "<group>"; };
 		CF21DB8E7D6545F5BAD7953B /* Esphimere Semi Bold Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Esphimere Semi Bold Italic.otf"; path = "../src/assets/fonts/Esphimere Semi Bold Italic.otf"; sourceTree = "<group>"; };
 		D438905B15865B0938ECF2E0 /* Pods-influenceMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMe.debug.xcconfig"; path = "Target Support Files/Pods-influenceMe/Pods-influenceMe.debug.xcconfig"; sourceTree = "<group>"; };
 		DD6A7963D38A7C6BE4CE8A31 /* libPods-influenceMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-influenceMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E319AC8B35E246EABCD3BBCE /* Roboto-Regular.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.woff"; path = "../src/assets/fonts/Roboto-Regular.woff"; sourceTree = "<group>"; };
+		E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.woff2"; path = "../src/assets/fonts/Roboto-Regular.woff2"; sourceTree = "<group>"; };
 		EA2E7F20277C427EA610488A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		ED71F5B9535F417C878389AB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		FA62CE9CA7C841AF8CAD25A1 /* Esphimere_Semi_Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Esphimere_Semi_Bold.otf; path = ../src/assets/fonts/Esphimere_Semi_Bold.otf; sourceTree = "<group>"; };
-		319C465BB03D4CDA9904DB13 /* Roboto-Bold.woff */ = {isa = PBXFileReference; name = "Roboto-Bold.woff"; path = "../src/assets/fonts/Roboto-Bold.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		07DA79036525426AAC3723EA /* Roboto-Bold.woff2 */ = {isa = PBXFileReference; name = "Roboto-Bold.woff2"; path = "../src/assets/fonts/Roboto-Bold.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		86B5D04F8E564DE887917AD8 /* Roboto-Light.woff */ = {isa = PBXFileReference; name = "Roboto-Light.woff"; path = "../src/assets/fonts/Roboto-Light.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4B430A1F52FA41D2863100A3 /* Roboto-Light.woff2 */ = {isa = PBXFileReference; name = "Roboto-Light.woff2"; path = "../src/assets/fonts/Roboto-Light.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		49C19B1DFB4C42B5A685E2E6 /* Roboto-Medium.woff */ = {isa = PBXFileReference; name = "Roboto-Medium.woff"; path = "../src/assets/fonts/Roboto-Medium.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2F0E1462788A4D1287F9B56A /* Roboto-Medium.woff2 */ = {isa = PBXFileReference; name = "Roboto-Medium.woff2"; path = "../src/assets/fonts/Roboto-Medium.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E319AC8B35E246EABCD3BBCE /* Roboto-Regular.woff */ = {isa = PBXFileReference; name = "Roboto-Regular.woff"; path = "../src/assets/fonts/Roboto-Regular.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */ = {isa = PBXFileReference; name = "Roboto-Regular.woff2"; path = "../src/assets/fonts/Roboto-Regular.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */ = {isa = PBXFileReference; name = "Roboto-Thin.woff"; path = "../src/assets/fonts/Roboto-Thin.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4D73BE208C2E4410A3A2E76C /* Roboto-Thin.woff2 */ = {isa = PBXFileReference; name = "Roboto-Thin.woff2"; path = "../src/assets/fonts/Roboto-Thin.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		89C6D815AF764574847C27B8 /* Esphimere-Bold.otf */ = {isa = PBXFileReference; name = "Esphimere-Bold.otf"; path = "../src/assets/fonts/Esphimere-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD73EE4B36A64682AD960DE1 /* Esphimere-BoldItalic.otf */ = {isa = PBXFileReference; name = "Esphimere-BoldItalic.otf"; path = "../src/assets/fonts/Esphimere-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7FFE994DB768443FBF83155A /* Esphimere-ExtraLight.otf */ = {isa = PBXFileReference; name = "Esphimere-ExtraLight.otf"; path = "../src/assets/fonts/Esphimere-ExtraLight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DCB33B8F52CA4F26B63D900F /* Esphimere-ExtraLightItalic.otf */ = {isa = PBXFileReference; name = "Esphimere-ExtraLightItalic.otf"; path = "../src/assets/fonts/Esphimere-ExtraLightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B0C4FB2A112844A0B65CE89C /* Esphimere-Italic.otf */ = {isa = PBXFileReference; name = "Esphimere-Italic.otf"; path = "../src/assets/fonts/Esphimere-Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1CC3F460EB854D71A23D870C /* Esphimere-Light.otf */ = {isa = PBXFileReference; name = "Esphimere-Light.otf"; path = "../src/assets/fonts/Esphimere-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5283FA0B6AA349B2A69609E9 /* Esphimere-LightItalic.otf */ = {isa = PBXFileReference; name = "Esphimere-LightItalic.otf"; path = "../src/assets/fonts/Esphimere-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B01C764F851244C0887E959D /* Esphimere-SemiBold.otf */ = {isa = PBXFileReference; name = "Esphimere-SemiBold.otf"; path = "../src/assets/fonts/Esphimere-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		07D76BBB937D4A0389565820 /* Esphimere-SemiBoldItalic.otf */ = {isa = PBXFileReference; name = "Esphimere-SemiBoldItalic.otf"; path = "../src/assets/fonts/Esphimere-SemiBoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E0C37A32D07C421C86B868C7 /* Esphimere-Thin.otf */ = {isa = PBXFileReference; name = "Esphimere-Thin.otf"; path = "../src/assets/fonts/Esphimere-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D21E174B6F7943B7832D3121 /* Esphimere-ThinItalic.otf */ = {isa = PBXFileReference; name = "Esphimere-ThinItalic.otf"; path = "../src/assets/fonts/Esphimere-ThinItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +347,17 @@
 				E38D68CD852E487E98B2C7E3 /* Roboto-Regular.woff2 */,
 				CE98CC5B5DAD4EAEA63904F0 /* Roboto-Thin.woff */,
 				4D73BE208C2E4410A3A2E76C /* Roboto-Thin.woff2 */,
+				89C6D815AF764574847C27B8 /* Esphimere-Bold.otf */,
+				AD73EE4B36A64682AD960DE1 /* Esphimere-BoldItalic.otf */,
+				7FFE994DB768443FBF83155A /* Esphimere-ExtraLight.otf */,
+				DCB33B8F52CA4F26B63D900F /* Esphimere-ExtraLightItalic.otf */,
+				B0C4FB2A112844A0B65CE89C /* Esphimere-Italic.otf */,
+				1CC3F460EB854D71A23D870C /* Esphimere-Light.otf */,
+				5283FA0B6AA349B2A69609E9 /* Esphimere-LightItalic.otf */,
+				B01C764F851244C0887E959D /* Esphimere-SemiBold.otf */,
+				07D76BBB937D4A0389565820 /* Esphimere-SemiBoldItalic.otf */,
+				E0C37A32D07C421C86B868C7 /* Esphimere-Thin.otf */,
+				D21E174B6F7943B7832D3121 /* Esphimere-ThinItalic.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -510,6 +543,17 @@
 				E7B7572B73114B868E7842FD /* Roboto-Regular.woff2 in Resources */,
 				35895E3016F142A9A5D36F3B /* Roboto-Thin.woff in Resources */,
 				FC7A763EA49C4C7EBC6B4981 /* Roboto-Thin.woff2 in Resources */,
+				527EEA8D421D492D9E8E4A37 /* Esphimere-Bold.otf in Resources */,
+				7B24E35E100F4289BA4CC861 /* Esphimere-BoldItalic.otf in Resources */,
+				DFDF409B9E574B3696E71C25 /* Esphimere-ExtraLight.otf in Resources */,
+				9953EC34DE35409FBD908AA7 /* Esphimere-ExtraLightItalic.otf in Resources */,
+				C52FAB981E034BB5AA53E832 /* Esphimere-Italic.otf in Resources */,
+				D88E7E32A88C447F9AA4CBA1 /* Esphimere-Light.otf in Resources */,
+				7B8C886D2B32470CAAB10894 /* Esphimere-LightItalic.otf in Resources */,
+				28C6979DDD4B4334ADC77955 /* Esphimere-SemiBold.otf in Resources */,
+				82240547AF3746AAADE15737 /* Esphimere-SemiBoldItalic.otf in Resources */,
+				B4B48616196A4FA3ABFD897F /* Esphimere-Thin.otf in Resources */,
+				8D384E8A02BF4ACD8010FE1F /* Esphimere-ThinItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,7 +937,6 @@
 			baseConfigurationReference = 4D9EAE8E1915F1EE15D19F4D /* Pods-influenceMe-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -923,7 +966,6 @@
 			baseConfigurationReference = CAA0ACB71E1A2282F648D252 /* Pods-influenceMe-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;

@@ -40,6 +40,7 @@ export const influencerChanged = (value) => {
 
 
 export const loginUser = ({number, navigation}) => {
+    console.log("button clicked");
     return (dispatch) => {
         firebase.auth().signInWithPhoneNumber(number)
             .then(confirmResult => {

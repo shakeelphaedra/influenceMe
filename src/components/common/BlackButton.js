@@ -25,6 +25,7 @@ class BlackButton extends Component {
                             alignSelf: 'center',
                         },this.props.style]
                 }
+                styleC={this.props.styleC}
                 textStyle={[styles.textColor,{color: this.props.color ? this.props.color : styles.textColor.color},{fontSize: this.props.fontSize ? this.props.fontSize : styles.textColor.fontSize}]}
                 onPress={this.props.onPress} 
                 backgroundColor={this.props.backgroundColor}

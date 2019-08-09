@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import {connect} from  'react-redux';
 import { influencerList, countryCodeList } from '../reducers';
 import { CheckBox } from 'react-native-elements';
+import { fonts} from '../styles';
 
 class LoginFormScreen extends Component{
     constructor(props) {
@@ -28,16 +29,8 @@ class LoginFormScreen extends Component{
                 headerRight: null
             }
     }
-
-    _renderButton(){
-        if(this.props.loading){
-            return <Spinner size='small'/>
-        }
-        return(
-            <BlackButton onPress={this._onButtonPress.bind(this)}><Text>Log In</Text></BlackButton>
-        )
-    }
     _onButtonPress(){
+        console.log("clci")
         this.setState({showList: false})
         if(this.state.checked){
             const {countryCode, phone, navigation} = this.props;
@@ -59,9 +52,9 @@ class LoginFormScreen extends Component{
         return (
             <View style={{flex: 1,justifyContent: 'center', flexDirection: 'column',backgroundColor: '#f2f2f2'}}>
                <WhiteHeader onPress={()=> this.props.navigation.push("AfterWelcomeScreen")}/>
-                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 100}}>
+                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 20}}>
                     <View style={Platform.OS === 'ios'? {position:'relative',zIndex:9999}: {}}>
-                        <Text style={{fontFamily: 'Esphimere',alignSelf: 'center', fontSize: 18, fontWeight: '300'}}>Ingresa con tu numero movil</Text>
+                        <Text style={{fontFamily: fonts.esp_extraLight, alignSelf: 'center', fontSize: 18, }}>Ingresa con tu numero movil</Text>
                         <View style={dropdownStyle}>
                         <SelectTag options={countryCodeList}
                                     label="country_code"
@@ -86,28 +79,29 @@ class LoginFormScreen extends Component{
                             onSelect={() => this.setState({showList: false})}
                             placeholder="Numero de Celular"
                             keyboardType='numeric'
-                            inputStyle={{borderRadius: 50, height: '100%', fontWeight: '200'}}
+                            // inputStyle={{borderRadius: 50, height: '100%', fontWeight: '200'}}
                             onChangeText={this._oPhoneChange.bind(this)}
                         />
                     <View style={{padding: 20}}>
-                        <Text style= {{fontSize: 22, textAlign: 'justify', fontFamily: 'Esphimere', fontWeight: '300'}}>
+                        <Text style= {{fontSize: 18, textAlign: 'justify', fontFamily: fonts.esp_extraLight, fontWeight: '300'}}>
                             Te enviaremos un mensaje de texto con tu codigo de validacaion recuerda verificar que  tu numero de celular fue ingresado
                             correctamente
                         </Text>
                     </View>
                     <View style={{ flexDirection: 'column'}}>
                         <View style={{ flexDirection: 'row', alignItems: 'center',justifyContent: 'center',marginBottom: 30 }}>
-                            <Text style={{fontSize: 18, fontFamily: 'Esphimere'}}> Acepto los terminos y condiciones</Text>
+                            <Text style={{fontSize: 15, fontFamily: fonts.esp_light}}> Acepto los terminos y condiciones</Text>
                             <CheckBox
                                 checkedColor="#308b82"
                                 uncheckedColor="#585858"
+                                containerStyle={{margin: 0}}
                                 checked={this.state.checked}
                                 onPress={() => this.setState({checked: !this.state.checked})}
                             />
                         </View>
                     </View>
                     <View>
-                        <BlackButton color="#d75019" backgroundColor="black" style={{paddingVertical: 20}} onPress={this._onButtonPress.bind(this)}>ENVIAR SMS</BlackButton>
+                        <BlackButton color="#d75019" backgroundColor="black" style={{paddingVertical: 20}} onPress={() =>this._onButtonPress()}>ENVIAR SMS</BlackButton>
                     </View>
                 </View>
             </View>

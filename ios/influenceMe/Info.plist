@@ -111,6 +111,17 @@
 		<string>Esphimere_Light.otf</string>
 		<string>Esphimere_Semi_Bold.otf</string>
 		<string>Esphimere.otf</string>
+		<string>Esphimere-Bold.otf</string>
+		<string>Esphimere-BoldItalic.otf</string>
+		<string>Esphimere-ExtraLight.otf</string>
+		<string>Esphimere-ExtraLightItalic.otf</string>
+		<string>Esphimere-Italic.otf</string>
+		<string>Esphimere-Light.otf</string>
+		<string>Esphimere-LightItalic.otf</string>
+		<string>Esphimere-SemiBold.otf</string>
+		<string>Esphimere-SemiBoldItalic.otf</string>
+		<string>Esphimere-Thin.otf</string>
+		<string>Esphimere-ThinItalic.otf</string>
 	</array>
 </dict>
 </plist>

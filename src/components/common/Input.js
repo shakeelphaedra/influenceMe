@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
 import {View, Text, TextInput} from 'react-native';
+import { fonts} from '../../styles';
 
 const Input = ({label,value, onChangeText,placeholder,secureTextEntry,keyboardType,inputStyle, onPress}) => {
     return(
@@ -26,7 +27,9 @@ const styles = {
         textAlign: 'center',
         alignSelf: 'center',
         justifyContent: 'center',
-        fontSize: 18,
+        fontfamily: fonts.esp_extraLight,
+        fontSize: 14,
+        height: 55,
     },
     containerStyle: {
         padding: 15,
@@ -38,7 +41,7 @@ const styles = {
         borderColor: '#e0e3e5', 
         borderWidth: 0.4,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     labelStyle: {
         fontSize: 18,

@@ -9,18 +9,21 @@ class AfterWelcome extends Component{
         header: null,
     };
     _renderButtton(){
-        if (Platform.OS === 'android') {
-           return <TouchableNativeFeedback style={{fontSize: 20}} onPress={()=>{this.props.navigation.push("LoginFormScreen")}}>
-                 <Text style={{fontFamily: 'Esphimere'}}>TU TELÉFONE</Text>
-            </TouchableNativeFeedback>    
-        } else {
+        // if (Platform.OS === 'android') {
+        //    return <TouchableNativeFeedback style={{fontSize: 20,width: '80%', borderRadius: 60,backgroundColor: 'black',  alignItems: 'center', alignSelf: 'center', padding: 20,}} onPress={()=>{this.props.navigation.push("LoginFormScreen")}}>
+        //          <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+        //             <Image source={require('../assets/www/dist/img/smartphone-call.png')} style={{height: 30,width: 30,marginRight: 15 }}/>
+        //             <Text style={{color: '#d75019', fontFamily: 'Esphimere', fontSize: 16}}>TU TELÉFONE </Text>
+        //         </View>
+        //     </TouchableNativeFeedback>    
+        // } else {
            return <TouchableHighlight style={{fontSize: 20,width: '80%', borderRadius: 60,backgroundColor: 'black',  alignItems: 'center', alignSelf: 'center', padding: 20,}} onPress={()=>{this.props.navigation.push("LoginFormScreen")}} underlayColor="black">
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <Image source={require('../assets/www/dist/img/smartphone-call.png')} style={{height: 30,width: 30,marginRight: 15 }}/>
                     <Text style={{color: '#d75019', fontFamily: 'Esphimere', fontSize: 16}}>TU TELÉFONE </Text>
                 </View>
             </TouchableHighlight>    
-        }
+        // }
     }
     render () {
         console.log('jjj: ', screenHeight, screenWidth);

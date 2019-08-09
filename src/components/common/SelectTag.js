@@ -4,6 +4,7 @@ import {Image, View, Text, TouchableHighlight, Platform} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCaretDown} from '@fortawesome/free-solid-svg-icons';
 import Flag from 'react-native-flags';
+import { fonts } from '../../styles';
 
 class SelectTag extends Component {
   state = {
@@ -63,7 +64,6 @@ class SelectTag extends Component {
           })}
         </View>
       )
-      
     }
   }
   _toggleOption () {
@@ -87,7 +87,7 @@ class SelectTag extends Component {
               <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View style={{alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row'}}>
                   {this._renderSelectedFlag(this.state.selectedFlag)}
-                  <Text style={{fontFamily: 'Esphimere', marginLeft: 5}}>{this.state.text}</Text>
+                  <Text style={{fontFamily: fonts.esp_light, marginLeft: 5}}>{this.state.text}</Text>
                 </View>
                 <FontAwesomeIcon icon={faCaretDown}  color='grey' size={20} />
               </View>

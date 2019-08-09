@@ -27,5 +27,5 @@ export const sliderState = [
 ] 
 
 export const confirmResult = {};
-export const influencerList = [{value: 'Altice'}, {value: 'Shakeel'}, {value: 'Rauf'}];
+export const influencerList = [{value: 'Altice'}, {value: 'Claro'}, {value: 'Viva'}];
 export const countryCodeList = [{value: '+92', flag: 'PK'}, {value: '+1', flag: 'US'}, {value: '+57', flag: 'FR'}, {value: '+58', flag: 'FR'}]

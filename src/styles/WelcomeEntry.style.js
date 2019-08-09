@@ -2,11 +2,25 @@ import { StyleSheet, Dimensions, Colors, Platform } from 'react-native';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 const FONT_FAMILY = "Esphimere";
+const fonts = {
+    esp_extraLightItalic: 'Esphimere-ExtraLightItalic',
+    esp_semibold: 'Esphimere-SemiBold',
+    esp_thin: 'Esphimere-Thin',
+    esp_lightItalic: 'Esphimere-LightItalic',
+    esp_extraLight: 'Esphimere-ExtraLight',
+    esp_light: 'Esphimere-Light',
+    esp_thinItalic: 'Esphimere-ThinItalic',
+    esp: 'Esphimere',
+    esp_boldItalic: 'Esphimere-BoldItalic',
+    esp_semiBoldItalic: 'Esphimere-SemiBoldItalic',
+    esp_italic: 'Esphimere-Italic',
+    esp_bold: 'Esphimere-Bold'
+};
 const BG_COLOR = "#4C4C4C";
 const RED_TEXT = "#d75019";
 const FONT_SIZE = 17;
 const SCREEN_BG_COLOR = "#1A1A1A";
-export {FONT_FAMILY, SCREEN_BG_COLOR,BG_COLOR, RED_TEXT, FONT_SIZE}
+export {FONT_FAMILY, SCREEN_BG_COLOR,BG_COLOR, RED_TEXT, FONT_SIZE, fonts}
 
 const IS_IOS = Platform.OS === 'ios';
 function wp (percentage) {
