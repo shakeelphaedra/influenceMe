@@ -145,7 +145,11 @@ class WelcomeScreen extends Component {
     if(item.logo != undefined){
       return <Image source={item.logo} style={{width: 110, height: 110, marginBottom: -10}} resizeMode='stretch'  /> 
     }else{
-      return <Text style={styles.titleStyle}>{item.title}</Text>
+      return (
+      <Text style={styles.titleStyle}>
+          {item.title}
+      </Text>
+      )
     }
   }
 
@@ -188,12 +192,12 @@ class WelcomeScreen extends Component {
 
   _renderItem (item, index) {
     return (
-        <View>
           <Animated.View 
             key={index} 
             style={{
                 height: screenHeight*0.88,
-                width: screenWidth,position: 'absolute',
+                width: screenWidth,
+                position: 'absolute',
                 opacity: this._setOpacity(index),
                 alignItems: 'center' ,alignSelf: 'center', 
                 flexDirection: 'column', justifyContend: 'center'
@@ -202,11 +206,15 @@ class WelcomeScreen extends Component {
               <View style={styles.introContainerStyle}>
                 {this._renderLogo(item)}
                 {this._renderLogo2(item.logo2)}
-                <Text style={styles.descriptionStyle}>{item.text}</Text>
+                <Text style={styles.descriptionStyle}>
+                  {item.text}
+                </Text>
                 <View style={{marginTop: 30}}>
                     <BlackButton onPress={this._navigateNext.bind(this)} color={item.color} backgroundColor={item.buttonColor}>EMPREZAR</BlackButton>
                 </View>
-                <Text style={{color: 'white', fontFamily: 'Esphimere'}}>Ingresa a ty cuenta</Text>
+                <Text style={{color: 'white', fontFamily: 'Esphimere'}}>
+                  Ingresa a ty cuenta
+                </Text>
               </View>
               <View style={{flex: 1, flexDirection: 'row', position: 'absolute', zIndex: 444, bottom: 135, justifyContent:'center', alignItems: 'center',left: 0,right: 0}}>
                 {this._renderDot()}
@@ -214,7 +222,6 @@ class WelcomeScreen extends Component {
             </ImageBackground>
           </Animated.View>
           
-        </View>
     );
   }
   renderItems () {

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "936558734737-mm9tncsf66upio9150aresv0vr6f8hhi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.influenceme",
+            "certificate_hash": "0440aae8481b3e49d645ea165267015bbbec33f9"
+          }
+        },
+        {
           "client_id": "936558734737-dgjvpus3qbqjn2jcafke3lapsjoopf2a.apps.googleusercontent.com",
           "client_type": 3
         }
