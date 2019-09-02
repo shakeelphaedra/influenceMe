@@ -23,16 +23,19 @@ class SelectTag extends Component {
   }
   _renderFlag(option) {
     if(option.flag){
-      return (
-        <Flag
-          code={option.flag}
-          size={24}
-        />
-      )
+      switch (option.flag){
+        case 'do':
+          return <Image source={require(`../../assets/flags/do.png`)} style={{height: 13, width: 18}}/>
+        case 've':
+          return <Image source={require(`../../assets/flags/ve.png`)} style={{height: 13, width: 18}}/>
+        case 'co':
+          return <Image source={require(`../../assets/flags/co.png`)} style={{height: 13, width: 18}}/>
+        
+      }
     }
   }
   _renderOptions (){
-    const dropdownStyle = Platform.OS === 'ios' ? {position: 'absolute',top: 60,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'} : {zIndex:555555, position: 'absolute',top: 60,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'};
+    const dropdownStyle = Platform.OS === 'ios' ? {position: 'absolute',top: 55,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'} : {zIndex:555555, position: 'absolute',top: 55,left:0,right:0,borderColor:'#d6d6d6',borderBottomRightRadius: 10, borderBottomLeftRadius: 10, borderWidth:1,backgroundColor: '#fff'};
     if(this.state.showList){
       return (
         <View style={dropdownStyle}>
@@ -48,16 +51,16 @@ class SelectTag extends Component {
                   width: '100%',
                   alignSelf: 'center',
                   paddingVertical: 6,
-                  height: 40,
+                  height: 30,
                   borderBottomColor: '#d6d6d6',
                   borderBottomLeftRadius: this.props.options.length -1 == i ? 16 : 0, 
                   borderBottomRightRadius: this.props.options.length -1 == i ? 16 : 0, 
                   borderBottomWidth: this.props.options.length -1 == i ? 0 : 1,
-                }}
+                }} underlayColor='white'
                 >
                   <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
                     {this._renderFlag(option)}
-                    <Text style={{fontFamily: 'Esphimere',marginLeft: 5}}>{option.value}</Text>
+                    <Text style={{fontFamily: 'Esphimere',marginLeft: 5, fontSize: 13}}>{option.value}</Text>
                   </View>
               </TouchableHighlight>
             )
@@ -71,25 +74,27 @@ class SelectTag extends Component {
   }
   _renderSelectedFlag(flag){
     if(flag){
-      return (
-        <Flag
-          code={flag}
-          size={24}
-        />
-      )
+      switch (flag){
+        case 'do':
+          return <Image source={require(`../../assets/flags/do.png`)} style={{height: 13, width: 18}}/>
+        case 've':
+          return <Image source={require(`../../assets/flags/ve.png`)} style={{height: 13, width: 18}}/>
+        case 'co':
+          return <Image source={require(`../../assets/flags/co.png`)} style={{height: 13, width: 18}}/>
+      }
     }
   }
   render() {
     return (
       <View style={{flex: 1, margin: 20 }}>
           <View style={{ padding: 15, borderRadius: 50,height: 55, backgroundColor: 'white',width: "100%", borderColor: '#e0e3e5', borderWidth: 0.4}}>
-            <TouchableHighlight onPress={this._toggleOption.bind(this)} style={{height: '100%', justifyContent: 'center'}}>
+            <TouchableHighlight onPress={this._toggleOption.bind(this)} style={{height: '100%', backgroundColor: 'white',justifyContent: 'center', flex: 1}} underlayColor='white'>
               <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View style={{alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row'}}>
                   {this._renderSelectedFlag(this.state.selectedFlag)}
                   <Text style={{fontFamily: fonts.esp_light, marginLeft: 5}}>{this.state.text}</Text>
                 </View>
-                <FontAwesomeIcon icon={faCaretDown}  color='grey' size={20} />
+                <FontAwesomeIcon icon={faCaretDown}  color={this.state.showList ? 'green' : 'grey'} size={20} />
               </View>
             </TouchableHighlight>
           </View>

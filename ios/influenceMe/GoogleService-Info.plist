@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>936558734737-tuubbl0ls8jld53husd8ht345ss72bgn.apps.googleusercontent.com</string>
+	<string>460396177087-derj1913qmchbprpg96sf9qb2go5ujd0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.936558734737-tuubbl0ls8jld53husd8ht345ss72bgn</string>
+	<string>com.googleusercontent.apps.460396177087-derj1913qmchbprpg96sf9qb2go5ujd0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>460396177087-2c3hah68295ct2tbt5hmogmib3kcinu1.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBhAwIQ-Sad4DrqxsmwwhhDhoFaxOrsEzc</string>
+	<string>AIzaSyDRE-D-kCnYi5rUBjKr_Xd6zxRGHYE8UEs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>936558734737</string>
+	<string>460396177087</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.influenceMe</string>
+	<string>com.influenceme</string>
 	<key>PROJECT_ID</key>
-	<string>influence-me-84671</string>
+	<string>influenceme-bca7d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>influence-me-84671.appspot.com</string>
+	<string>influenceme-bca7d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:936558734737:ios:cedb490347e642ea</string>
+	<string>1:460396177087:ios:1c03da405bcde78c</string>
 	<key>DATABASE_URL</key>
-	<string>https://influence-me-84671.firebaseio.com</string>
+	<string>https://influenceme-bca7d.firebaseio.com</string>
 </dict>
 </plist>

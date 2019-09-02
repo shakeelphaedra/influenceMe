@@ -1,31 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View, Text } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
+import { fonts } from '../styles';
 
 
-export default function InputField (props) {
-    const {
-        meta,
-        input,
-        value,
-        editable,
-        maxLength,
-        placeholder,
-        onChangeText,
-        keyboardType,
-        blurOnSubmit,
-        returnKeyType,
-        errorTextColor,
-        onSubmitEditing,
-        secureTextEntry,
-        customInputStyle,
-        selectTextOnFocus,
-        placeholderTextColor,
-        customContainerStyle,
-        ...inputProps
-    } = props;
+export default class InputField extends Component {
+    
+    handleFocus = () => this.setState({isFocused: true})
 
-    const renderErrors = (meta, errorTextColor) => {
+    handleBlur = () => this.setState({isFocused: false})
+
+    renderErrors = (meta, errorTextColor) => {
         const { errorTextStyle } = styles;
         if (meta.touched && meta.error) {
             return (
@@ -33,56 +18,78 @@ export default function InputField (props) {
             );
         }
     };
-
-    return (
-        <View style={{}}>
-            <View style={[styles.containerStyle, customContainerStyle]}>
-            <TextField
-                    // placeholderTextColor={placeholderTextColor ? placeholderTextColor : '#000'}
-                    style={[styles.inputStyle, customInputStyle]}
-                    selectTextOnFocus={selectTextOnFocus}
-                    underlineColorAndroid={'transparent'}
-                    onSubmitEditing={onSubmitEditing}
-                    secureTextEntry={secureTextEntry}
-                    returnKeyType={returnKeyType}
-                    keyboardType={keyboardType}
-                    blurOnSubmit={blurOnSubmit}
-                    onChangeText={onChangeText}
-                    // placeholder={placeholder}
-                    maxLength={maxLength}
-                    editable={editable}
-                    value={value}
-                    baseColor={'white'}
-                    tintColor={'white'}
-                    label={
-                        "notRequired" ?
-                            <Text>{placeholder}< Text style={{ color: '#00a0ff', position: 'absolute', top: 0 }}></Text></Text>
-                            :
-                            <Text>{placeholder}< Text style={{ color: '#00a0ff', position: 'absolute', top: 0 }}> *</Text></Text>
-
-                    }
-                    {...input}
-                />
-                <View style={styles.errorContainerStyle}>{
-                    renderErrors(meta, errorTextColor)}
+    render () {
+        const {
+            meta,
+            input,
+            value,
+            editable,
+            maxLength,
+            placeholder,
+            onChangeText,
+            keyboardType,
+            blurOnSubmit,
+            returnKeyType,
+            errorTextColor,
+            onSubmitEditing,
+            secureTextEntry,
+            customInputStyle,
+            selectTextOnFocus,
+            placeholderTextColor,
+            customContainerStyle,
+            ...inputProps
+        } = this.props;
+        return (
+            <View style={{}}>
+                <View style={[styles.containerStyle, customContainerStyle]}>
+                <TextField
+                        // placeholderTextColor={placeholderTextColor ? placeholderTextColor : '#000'}
+                        style={[styles.inputStyle, customInputStyle]}
+                        selectTextOnFocus={selectTextOnFocus}
+                        onFocus={this.handleFocus}
+                        onBlur={this.handleBlur}
+                        underlineColorAndroid={'transparent'}
+                        onSubmitEditing={onSubmitEditing}
+                        secureTextEntry={secureTextEntry}
+                        returnKeyType={returnKeyType}
+                        keyboardType={keyboardType}
+                        blurOnSubmit={blurOnSubmit}
+                        onChangeText={onChangeText}
+                        // placeholder={placeholder}
+                        maxLength={maxLength}
+                        editable={editable}
+                        value={"why"}
+                        baseColor={'white'}
+                        tintColor={'white'}
+                        label={
+                            "notRequired" ?
+                                <Text style={{fontFamily: fonts.esp, fontSize: 12}}>{placeholder}< Text style={{ fontFamily: fonts.esp,color: '#00a0ff', position: 'absolute', top: 0 , fontSize: 12}}></Text></Text>
+                                :
+                                <Text style={{fontFamily: fonts.esp, fontSize: 12}}>{placeholder}< Text style={{fontFamily: fonts.esp, color: '#00a0ff', position: 'absolute', top: 0 , fontSize: 12}}> *</Text></Text>
+    
+                        }
+                        {...input}
+                    />
+                    <View style={styles.errorContainerStyle}>{
+                        this.renderErrors(meta, errorTextColor)}
+                    </View>
                 </View>
             </View>
-        </View>
-    );
+        );
+    }
+    
 }
 
 const styles = {
     containerStyle: {
-        paddingVertical: 0,
         paddingHorizontal: 5,
-        marginBottom: 18,
-        height: 50,
+        height: 30,
         borderRadius: 0,
     },
     inputStyle: {
-        fontSize: 14,
-        paddingHorizontal: 15,
+        fontSize: 12,
         flex: 1,
+        fontFamily: fonts.esp,
         position: 'relative',
         top: 0,
         textAlign: "left",

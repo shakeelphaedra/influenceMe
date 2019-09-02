@@ -7,6 +7,8 @@ export const NAMED_COLORS = {
     black: "rgba(3, 3, 3, 1)",
     darkGray: "#4C4C4C",
     backgroundDarkGray: "#1A1A1A",
+    faqheaderColor: '#161616',
+    e6e6e6: '#e6e6e6',
     orangeColor: "#FE4300",
   
     // blues (light to dark)

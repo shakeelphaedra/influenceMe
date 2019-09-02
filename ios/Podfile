@@ -31,7 +31,20 @@ target 'influenceMe' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
 
+  pod 'Firebase/Database'
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.13.2'
+  
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+
+
+
+  pod 'RNColorMatrixImageFilters', :path => '../node_modules/react-native-color-matrix-image-filters'
+
+  pod 'ReactNativeExceptionHandler', :path => '../node_modules/react-native-exception-handler'
 
   target 'influenceMeTests' do
     inherit! :search_paths

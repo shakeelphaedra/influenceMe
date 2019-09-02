@@ -5,8 +5,9 @@ import {
     Image,
     ImageBackground, 
     Animated,
+    TouchableWithoutFeedback,
     Platform,
-    PanResponder, TouchableOpacity,
+    PanResponder,
     Dimensions} from 'react-native'; 
 import {connect} from  'react-redux';
 import * as actions from '../actions';
@@ -16,6 +17,8 @@ import AfterWelcome from './AfterWelcomScreen'
 import Navigation from 'react-native';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
+
+
 class WelcomeScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -27,59 +30,70 @@ class WelcomeScreen extends Component {
     nextIndex: 1,
     action: 'next',
     showAfter: false,
-    currentIndex: 0
+    currentIndex: 0,
+    clicked: false
   }
   constructor(props) {
     super(props)
-    // this._panResponder = PanResponder.create({
-    //   onStartShouldSetPanResponder: (evt, gestureState) => true,
-    //   onMoveShouldSetPanResponder:(evt, gestureState) => true,
-    //     onPanResponderMove: (evt, gestureState) => {
-    //         // DO JUNK HERE
-    //         Animated.timing(this.state.fadeIn, {
-    //           toValue: 1-gestureState.dx/screenWidth*2,
-    //           duration: 300
-    //         }).start()
-    //         Animated.timing(this.state.fadeOut, {
-    //           toValue: gestureState.dx/screenWidth*2,
-    //           duration: 300
-    //         }).start()
-    //     },
+    this._panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: (evt, gestureState) => true,
+      onMoveShouldSetPanResponder:(evt, gestureState) => {
+        console.log(gestureState.dy/ gestureState.dx)
+
+        if((gestureState.dy/ gestureState.dx) != 0){
+          return false
+        }
+        return true
+      },
+        onPanResponderMove: (evt, gestureState) => {
+            // DO JUNK HERE
+            this.setState({clicked: true})
+            Animated.timing(this.state.fadeIn, {
+              toValue: 1-gestureState.dx/screenWidth*4,
+              duration: 300
+            }).start()
+            Animated.timing(this.state.fadeOut, {
+              toValue: gestureState.dx/screenWidth*8,
+              duration: 300
+            }).start()
+        },
     
-    //   onPanResponderStart: (evt, gestureState) => {
-    //     console.log(gestureState.dx)
-    //   },
-    //   onPanResponderTerminationRequest: (evt, gestureState) => true,
-    //   onPanResponderRelease: (evt, {vx, dx}) => {
-    //     if(dx/screenWidth < -0.3){
-    //       return this._nextSlide()
-    //     }else{
-    //       if(dx/screenWidth > 0.3){
-    //         console.log("back")
-    //         return this._prevSlide()
-    //       }else{
-    //         Animated.timing(this.state.fadeIn, {
-    //           toValue: 1,
-    //           duration: 300
-    //         }).start()
-    //         Animated.timing(this.state.fadeOut, {
-    //           toValue: 0,
-    //           duration: 300
-    //         }).start()
-    //       }
-    //     }
-    //   },
-    //   onShouldBlockNativeResponder: (evt, gestureState) => {
-    //     // Returns whether this component should block native components from becoming the JS
-    //     // responder. Returns true by default. Is currently only supported on android.
-    //     return true;
-    //   },
-    // });
+      onPanResponderStart: (evt, gestureState) => {
+        console.log(gestureState.dx)
+      },
+      onPanResponderTerminationRequest: (evt, gestureState) => true,
+      onPanResponderRelease: (evt, {vx, dx}) => {
+        this.setState({clicked: false})
+        if(dx/screenWidth < -0.3){
+          return this._nextSlide()
+        }else{
+          if(dx/screenWidth > 0.3){
+            console.log("back")
+            return this._prevSlide()
+          }else{
+            Animated.timing(this.state.fadeIn, {
+              toValue: 1,
+              duration: 300
+            }).start()
+            Animated.timing(this.state.fadeOut, {
+              toValue: 0,
+              duration: 300
+            }).start()
+          }
+        }
+      },
+      onShouldBlockNativeResponder: (evt, gestureState) => {
+        // Returns whether this component should block native components from becoming the JS
+        // responder. Returns true by default. Is currently only supported on android.
+        return true;
+      },
+    });
   }
   componentDidMount() {
     this._interval = setInterval(() => {
-      this._nextSlide()
-    }, 8000);
+      if(!this.state.clicked)
+        this._nextSlide()
+    }, 9000);
   }
   _nextSlideIndexStateChange() {
     if (this.state.currentIndex == this.props.slides.length -1){
@@ -95,21 +109,21 @@ class WelcomeScreen extends Component {
   _nextSlide( ){ 
     Animated.timing(this.state.fadeIn, {
       toValue: 0,
-      duration: 1000
+      duration: 300
     }).start()
     Animated.timing(this.state.fadeOut, {
       toValue: 1,
-      duration: 1000
+      duration: 300
     }).start()
     setTimeout(()=> {
       this._nextSlideIndexStateChange()
       Animated.timing(this.state.fadeIn, {
         toValue: 1,
-        duration: 1000
+        duration: 0
       }).start()
       Animated.timing(this.state.fadeOut, {
         toValue: 0,
-        duration: 1000
+        duration: 0
       }).start()
       setTimeout(() => {
       }, 600);
@@ -120,11 +134,11 @@ class WelcomeScreen extends Component {
   _prevSlide( ){ 
     Animated.timing(this.state.fadeIn, {
       toValue: 0,
-      duration: 1000
+      duration: 300
     }).start()
     Animated.timing(this.state.fadeOut, {
       toValue: 1,
-      duration: 1000
+      duration: 300
     }).start()
     setTimeout(()=> {
       this._prevSlideSetStates()
@@ -164,7 +178,6 @@ class WelcomeScreen extends Component {
   }
 
   _navigateNext(){
-    console.log('sss')
     this.props.navigation.push("AfterWelcomeScreen")
   }
   _setZindex(index) {
@@ -201,7 +214,6 @@ class WelcomeScreen extends Component {
 
   _renderItem (item, index) {
     return (
-        <View>
           <Animated.View 
             key={index} 
             style={{
@@ -218,9 +230,11 @@ class WelcomeScreen extends Component {
                 {this._renderLogo2(item.logo2)}
                 <Text style={styles.descriptionStyle}>{item.text}</Text>
                 <View style={{marginTop: 30}}>
-                    <BlackButton onPress={this._navigateNext.bind(this)} color={item.color} backgroundColor={item.buttonColor} styleC={{position: 'relative', zIndex: 555}}>EMPREZAR</BlackButton>
+                    <BlackButton onPress={this._navigateNext.bind(this)} color={item.color} backgroundColor={item.buttonColor}>EMPREZAR</BlackButton>
                 </View>
-                <Text style={{color: 'white', fontFamily: 'Esphimere'}}>Ingresa a ty cuenta</Text>
+                <TouchableWithoutFeedback onPress={this._navigateNext.bind(this)} >
+                  <Text style={{color: 'white', fontFamily: 'Esphimere'}}>Ingresa a tu cuenta</Text>
+                </TouchableWithoutFeedback>
               </View>
               <View style={{flex: 1, flexDirection: 'row', position: 'absolute', zIndex: 444, bottom: 135, justifyContent:'center', alignItems: 'center',left: 0,right: 0}}>
                 {this._renderDot()}
@@ -228,7 +242,6 @@ class WelcomeScreen extends Component {
             </ImageBackground>
           </Animated.View>
           
-        </View>
     );
   }
   renderItems () {
@@ -237,13 +250,17 @@ class WelcomeScreen extends Component {
     })
   }
   _welcomeScreen () {
-    return (<View  style={{flex: 1, backgroundColor: '#000000'}}>
+    return (<View {...this._panResponder.panHandlers} style={{flex: 1, backgroundColor: '#000000'}}>
       {this.renderItems()}
     </View>)
   }
 
   render () {
+    if(this.state.showAfter){
+      return <AfterWelcome navigation={this.props.navigation}/>
+    }else{
       return this._welcomeScreen()
+    }
   }
 }
 
