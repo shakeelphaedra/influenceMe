@@ -7,7 +7,7 @@ class Profile extends Component {
     navigate('SettingsScreen');
   }
   render() {
-    return <ProfileScreen settingsClick={this.handleSettingsClick} />
+    return <ProfileScreen settingsClick={this.handleSettingsClick}  navigation={this.props.navigation}/>
   }
 }
 

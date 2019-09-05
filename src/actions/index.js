@@ -1,4 +1,4 @@
-import { SHOW_REAL_APP, PHONE_CHANGE, COUNTRYCODE_CHANGE, INFLUENCER_CHANGE, CONFIRM_RESULT_CHANGE, CONFIRM_CODE_CHANGE, SET_LOADING_TRUE, SET_LOADING_FALSE } from './types';
+import { SHOW_REAL_APP, PHONE_CHANGE, COUNTRYCODE_CHANGE, INFLUENCER_CHANGE, CONFIRM_RESULT_CHANGE, CONFIRM_CODE_CHANGE, SET_LOADING_TRUE, SET_LOADING_FALSE, SET_SUBSCRIPTION } from './types';
 
 import firebase from 'react-native-firebase';
 import { AsyncStorage } from 'react-native';
@@ -131,3 +131,19 @@ _signInAsync = async (navigation, user) => {
   await AsyncStorage.setItem('userType', "free");
   navigation.navigate('AfterLoginNavigator');
 };
+export const Subscribe = () => {
+  return (dispatch) =>{
+    dispatch({
+      type: SET_SUBSCRIPTION,
+      payload: true
+    })
+  }
+}
+export const CancelSubscription = () => {
+  return (dispatch) =>{
+    dispatch({
+      type: SET_SUBSCRIPTION,
+      payload: false
+    })
+  }
+}

@@ -4,6 +4,7 @@ import UpdateEmailScreen from '../../../components/AfterLoginScreen/UpdateEmailS
 import firebase from 'react-native-firebase';
 import { Spinner } from '../../../components/common';
 import { _signOutAsync } from '../../../actions';
+import { showError } from '../../../../API';
 
 class UpdateEmail extends Component {
   state = {
@@ -12,13 +13,13 @@ class UpdateEmail extends Component {
   }
 
   componentDidMount() {
-    user = firebase.auth().currentUser;
-    if (user != null) {
-      this.setState({
-        username: user.displayName,
-        email: user.email,
-      })
-    }
+    // user = firebase.auth().currentUser;
+    // if (user != null) {
+    //   this.setState({
+    //     username: user.displayName,
+    //     email: user.email,
+    //   })
+    // }
   }
   submit = values => {
     this.setState({ loading: true })
@@ -40,12 +41,13 @@ class UpdateEmail extends Component {
           }).then(e => {
             this.props.navigation.goBack()
           }).catch(e => {
-            console.log("Error", e)
+            showError(e)
           })
           navigate('SettingsScreen');
           this.setState({ loading: false })
         }).catch((error) => {
           this.setState({ loading: false })
+          showError(error)
         });
       }
     }

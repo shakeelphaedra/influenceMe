@@ -1,6 +1,9 @@
 import axios from 'axios';
 import {AsyncStorage} from 'react-native';
+import { showMessage } from 'react-native-flash-message';
+import { NAMED_COLORS } from './src/common/AppColors';
 const BASE_URL = "https://influenceme.herokuapp.com"
+// const BASE_URL = "http://localhost:3000/"
 const API_URL = BASE_URL + '/api/v1';
 
 axios.defaults.baseURL = API_URL;
@@ -22,20 +25,18 @@ async function getInfluencers() {
     var influencers = data.influencers
     return influencers;
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 
 async function getInfluencerDetails(id) {
   try {
-    const response = await axios.get(getInfluencerURL + id);
+    const userToken = await AsyncStorage.getItem('userId');
+    const response = await axios.get(getInfluencerURL + id+"?user_id="+userToken);
     var data = response.data
-    var influencers = data.influencers
-    return influencers;
+    return data;
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 async function getPlans() {
@@ -45,8 +46,7 @@ async function getPlans() {
     var plans = data.plans
     return plans;
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 
@@ -55,10 +55,9 @@ async function getPlanDetails(id) {
     const userToken = await AsyncStorage.getItem('userId');
     const response = await axios.get(getPlansURL+"/user_id/"+ id+"?user_id="+userToken);
     var data = response.data
-    return {plan: data.plans, plan_days: data.day_status};
+    return {plan: data.plans, plan_days: data.plan_days, currentPlan: data.current_plan};
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 
@@ -69,18 +68,16 @@ async function getDayDetails(id) {
     var data = response.data
     return data.days;
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 async function getExerciseDetails(id) {
   try {
     const response = await axios.get(getExercisesURL +"/"+ id);
     var data = response.data
-    return data.exercises;
+    return data;
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 
@@ -90,8 +87,7 @@ async function searchInfluencers(text) {
     var data = response.data
     return data.influencers;
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 
@@ -102,20 +98,18 @@ async function searchPlans(text) {
     var data = response.data
     return data.plans;
   } catch (error) {
-    console.error(error);
-    return error;
+    showError(error);
   }
 }
 
 async function createUser(params) {
   try {
     let data = {user_id: params.uid, phone_number: params.phoneNumber, email: params.email}
-    console.log('request Data: ', data);
     const response = await axios.post("/users", data);
     let data1 = response.data
     return data1
   } catch (error) {
-    console.log(error);
+    showError(error);
   }
 }
 
@@ -126,7 +120,7 @@ async function startDay(dayId) {
     let data1 = response.data
     return data1
   } catch (error) {
-    console.log(error);
+    showError(error);
   }
 }
 
@@ -137,18 +131,29 @@ async function completeDay(dayId) {
     let data1 = response.data
     return data1
   } catch (error) {
-    console.log(error);
+    showError(error);
   }
 }
 
 async function getProgressDetails(planId) {
   try {
     const userToken = await AsyncStorage.getItem('userId');
-    const response = await axios.get("/plans/progress/"+ planId+"/"+ userToken);
+    const response = await axios.get("/plans/progress/"+ userToken);
     let data = response.data
     return data
   } catch (error) {
-    console.log(error);
+    showError(error);
+  }
+}
+
+async function changeCurrentPlan(planId) {
+  try {
+    const userToken = await AsyncStorage.getItem('userId');
+    const response = await axios.get("/plans/change_current_plan/"+ planId+"/"+ userToken);
+    let data = response.data
+    return data
+  } catch (error) {
+    showError(error);
   }
 }
 
@@ -158,10 +163,28 @@ async function getFAQs() {
     let data = response.data
     return data.faqs
   } catch (error) {
-    console.log(error);
+    showError(error);
   }
 }
 
+async function getProfileDetails() {
+  try {
+    const userToken = await AsyncStorage.getItem('userId');
+    const response = await axios.get("/users/profile/"+userToken);
+    let data = response.data
+    return data
+  } catch (error) {
+    showError(error);
+  }
+}
+
+export const showError = (error) => {
+  showMessage({
+    message: error.message,
+    type: 'danger',
+    backgroundColor: NAMED_COLORS.orangeColor
+  })
+}
 
 export {
     getInfluencers,
@@ -172,8 +195,10 @@ export {
     getPlans, 
     getPlanDetails, 
     getDayDetails, 
+    getProfileDetails,
     getExerciseDetails, 
     searchInfluencers,
+    changeCurrentPlan,
     searchPlans, 
     createUser,
     startDay, 

@@ -1,0 +1,1 @@
+export const cannotStart = "No puedo empezar Solo puedes comenzar esto mañana";

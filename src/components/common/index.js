@@ -14,3 +14,5 @@ export * from './PickerSelect';
 export * from './Popup';
 export * from './MyList';
 export * from './NoItem';
+export * from './TermsAndConditions';
+export * from './GreyHeaderWithBackButton';

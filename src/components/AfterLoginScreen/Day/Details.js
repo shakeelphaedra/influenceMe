@@ -4,6 +4,9 @@ import { Spinner, BackButton, BlackButton, NoItem } from '../../common';
 import { BG_COLOR, fonts, commonStyle } from '../../../styles';
 import { BASE_URL, startDay, completeDay } from '../../../../API';
 import InfoPopup from '../../common/InfoPopup';
+import {showMessage} from 'react-native-flash-message';
+import { cannotStart } from '../../../utils/messages';
+import { NAMED_COLORS } from '../../../common/AppColors';
 screenWidth = Dimensions.get("window").width;
 screenHeight = Dimensions.get("window").height;
 
@@ -35,9 +38,17 @@ class Details extends Component {
   noHandler = () => {
     this.setState({ dialogVisible: false, dialogCheckVisiable: false });
   }
-  _startDay() {
+  _startDay = () => {
     startDay(this.day.id).then(res => {
-      this.setState({ start: true })
+      if(res.return == true){
+        this.setState({ start: true })
+      }else{
+        showMessage({
+          message: cannotStart,
+          type: "danger",
+          backgroundColor: NAMED_COLORS.orangeColor,
+        });
+      }
     })
   }
   _endDay = () => {
@@ -50,7 +61,7 @@ class Details extends Component {
       if (this.state.start) {
         return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this.showDialog}>FINALIZAR RUTINA</BlackButton>
       } else {
-        return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this._startDay.bind(this)}>EMPREZAR</BlackButton>
+        return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this._startDay}>EMPREZAR</BlackButton>
       }
     }
     return null
@@ -93,7 +104,7 @@ class Details extends Component {
           </View>
           {this.renderExercises(day.exercises)}
         </ScrollView>
-        <View style={{ marginTop: 30, position: 'absolute', bottom: 85, zIndex: 333, alignSelf: 'center' }}>
+        <View style={{ marginTop: 30, position: 'absolute', bottom: 85, zIndex: 333, alignSelf: 'center' ,height: screenHeight *0.2, justifyContent: 'flex-end'}}>
           {this._renderButton()}
         </View>
         <View>

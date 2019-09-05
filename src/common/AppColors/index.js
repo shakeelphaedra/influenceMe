@@ -1,6 +1,7 @@
 export const NAMED_COLORS = {
     // grayscale (light to dark)
     white: "rgba(255, 255, 255, 1)",
+    blackish: "#5c5c5c",
     bianca: "rgba(251, 249, 240, 1)",
     timberwolf: "rgba(218, 216, 210, 1)",
     magnesium: "rgba(178, 178, 178, 1)",

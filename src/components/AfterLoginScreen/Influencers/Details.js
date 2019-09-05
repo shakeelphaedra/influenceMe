@@ -6,6 +6,7 @@ import Plan from '../common/Card';
 import ViewMoreText from 'react-native-view-more-text';
 import { FONT_FAMILY, FONT_SIZE, BG_COLOR, RED_TEXT, fonts } from '../../../styles';
 import { WebView } from 'react-native-webview';
+import { showMessage } from 'react-native-flash-message';
 
 screenWidth = Dimensions.get("window").width;
 screenHeight = Dimensions.get("window").height;
@@ -23,9 +24,15 @@ class Details extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     const influencerId = navigation.getParam('influencerId', '1');
-    getInfluencerDetails(influencerId).then(influencer => {
-      this.setState({ loading: false, influencer: influencer });
-      console.log("got it")
+    getInfluencerDetails(influencerId).then(({influencers,message}) => {
+      this.setState({ loading: false, influencer: influencers });
+      if(message){
+        showMessage({
+          message: message,
+          type: 'warning'
+        })
+      }
+      
     }).catch(error => {
     })
   };

@@ -6,3 +6,4 @@ export const CONFIRM_RESULT_CHANGE = "confirm_result_change";
 export const SET_LOADING_FALSE = "set_loading_false";
 export const SET_LOADING_TRUE = "set_loading_true";
 export const CONFIRM_CODE_CHANGE = "confirm_code_change";
+export const SET_SUBSCRIPTION = "set_subscription";

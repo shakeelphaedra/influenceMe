@@ -9,23 +9,21 @@ import { WebView } from 'react-native-webview';
 screenWidth = Dimensions.get("window").width;
 screenHeight = Dimensions.get("window").height;
 class Exercise extends Component {
-  _renderSeries(series, exercise) {
+  _renderSeries(series, plan_level) {
     return series.map((serie, index) => {
       return (
-        <TouchableHighlight onPress={() => console.log('pressed')}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingVertical: 30, borderBottomColor: 'black', borderBottomWidth: 1 }}>
-            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12, }, commonStyle.shadowText]}>{index + 1}</Text>
-            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12 }, commonStyle.shadowText]}>{serie.repetition} Reps</Text>
-            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12 }, commonStyle.shadowText]}>{exercise.plan_level}</Text>
-            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12 }, commonStyle.shadowText]}>{serie.time}"</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 30, flex: 1, borderBottomColor: 'black', borderBottomWidth: 1 }}>
+            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12, textAlign: 'center', flex: 0.25}, commonStyle.shadowText]}>{index + 1}</Text>
+            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12, textAlign: 'center', flex: 0.25 }, commonStyle.shadowText]}>{serie.repetition} Reps</Text>
+            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12, textAlign: 'center', flex: 0.25 }, commonStyle.shadowText]}>{plan_level}</Text>
+            <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12, textAlign: 'center', flex: 0.25 }, commonStyle.shadowText]}>{serie.time}"</Text>
           </View>
-        </TouchableHighlight>
       )
     })
 
   }
   render() {
-    const { exercise } = this.props;
+    const { exercise, plan_level } = this.props;
     return (
       <View style={{ backgroundColor: 'black', flex: 1 }}>
         <ScrollView>
@@ -51,13 +49,13 @@ class Exercise extends Component {
             <View style={{ backgroundColor: BG_COLOR }} >
               <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15, padding: 15, marginTop: 10 }, commonStyle.shadowText]}>Funcional Core</Text>
               <View style={{}}>
-                <View style={{ paddingHorizontal: 15, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
-                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15 }, commonStyle.shadowText]}>Serie</Text>
-                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15 }, commonStyle.shadowText]}>Reps</Text>
-                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15 }, commonStyle.shadowText]}>Nivel</Text>
-                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15 }, commonStyle.shadowText]}>Tiempo</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flex: 1}}>
+                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15, textAlign: 'center', flex: 0.25 }, commonStyle.shadowText]}>Serie</Text>
+                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15, textAlign: 'center', flex: 0.25 }, commonStyle.shadowText]}>Reps</Text>
+                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15, textAlign: 'center', flex: 0.25 }, commonStyle.shadowText]}>Nivel</Text>
+                  <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 15, textAlign: 'center', flex: 0.25 }, commonStyle.shadowText]}>Tiempo</Text>
                 </View>
-                {this._renderSeries(exercise.series, exercise)}
+                {this._renderSeries(exercise.series, plan_level)}
               </View>
             </View>
             : <NoItem/>

@@ -8,7 +8,8 @@ let Screenheight = Dimensions.get('window').height;
 import Icon from '../common/Icon';
 import { fonts } from '../../styles';
 import firebase from 'react-native-firebase';
-import { Spinner } from '../common';
+import { Spinner, GreyHeaderWithBackButton } from '../common';
+import { connect } from 'react-redux';
 
 class SettingsScreen extends Component {
   state = { loading: false , subscribed:  false}
@@ -39,7 +40,7 @@ class SettingsScreen extends Component {
   };
 
   _renderSubscription() {
-    if(this.state.subscribed){
+    if(this.props.subscription){
       return(
         <Animated.View style={[styles.row, { width: this._opacityAnimationValue7, transform: this._moveAnimationValue.getTranslateTransform() }]}>
           <AppText style={{ flex: 0.6, alignSelf: 'center' }}>Cancelar Suscription</AppText>
@@ -89,16 +90,7 @@ class SettingsScreen extends Component {
       return <Spinner size="large" />
     return (
       <Animated.View style={styles.container}>
-
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => { this.props.navigation.goBack() }} style={styles.touchableOpacityStyle}>
-            <Icon name='uniF1F9' color='white' size={28} />
-          </TouchableOpacity>
-          <Text style={{ alignSelf: 'center', color: NAMED_COLORS.white, fontFamily: fonts.esp_light, fontSize: 12 }}>Perfil</Text>
-          <TouchableOpacity onPress={() => { }} style={styles.touchableOpacityStyle}>
-          </TouchableOpacity>
-        </View>
-
+        <GreyHeaderWithBackButton text="Perfil" navigation={this.props.navigation}/>
 
         <ScrollView style={{ flex: 0.65, backgroundColor: NAMED_COLORS.backgroundDarkGray }}>
           <Animated.View style={[styles.userPic, { opacity: this.opacityProfilePic }]}>
@@ -190,7 +182,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    height: Screenheight * 0.06,
+    height: Screenheight * 0.08,
     backgroundColor: NAMED_COLORS.darkGray,
     marginBottom: 2,
     marginTop: 2,
@@ -198,7 +190,7 @@ const styles = StyleSheet.create({
   },
   headingRow: {
     flexDirection: 'row',
-    height: Screenheight * 0.06,
+    height: Screenheight * 0.08,
     marginBottom: 2,
     marginTop: 2,
     padding: 15
@@ -223,5 +215,9 @@ const styles = StyleSheet.create({
     flex: 0.2,
   }
 });
-
-export default SettingsScreen
+const mapsStateToProps = (state) => {
+  return ({
+    subscription: state.subscription.subscription
+  })
+}
+export default connect(mapsStateToProps)(SettingsScreen)

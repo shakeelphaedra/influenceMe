@@ -7,9 +7,9 @@ class MyList extends  Component {
   render (){
     const {icon, text} = this.props;
     return (
-      <View style={{flexDirection: 'row'}}>
-        <Icon name={icon} size={20} color="black"/>
-        <Text style={[ {marginLeft: 4, fontFamily: fonts.esp, fontSize: 24, opacity: 0.5}]}>{text}</Text>
+      <View style={{flexDirection: 'row', marginTop: 20}}>
+        <Icon name={icon} size={14} color="white"/>
+        <Text style={[ {marginLeft: 4, fontFamily: fonts.esp, fontSize: 14,color: 'white'}]}>{text}</Text>
       </View>
     )
   }

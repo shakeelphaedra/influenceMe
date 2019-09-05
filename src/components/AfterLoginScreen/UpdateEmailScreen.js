@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet,ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import InputField from '../../common/Input';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, change } from 'redux-form'
 import { NAMED_COLORS } from '../../common/AppColors';
 import { BlackButton } from '../common';
 import Icon from '../common/Icon';
 import firebase from 'react-native-firebase';
 import { fonts } from '../../styles';
+import { connect } from 'react-redux';
 let Screenheight = Dimensions.get('window').height;
 
 class UpdateEmailScreen extends Component {
 
+  state = {
+    email: '',
+    username: ''
+  }
+  constructor(props){
+    super(props)
+  }
+
+  componentDidMount () {
+    // this.props.change('email','aa@nv.vv');
+    this.props.changeFieldValue('email', 'aa@nv.vv');
+  }
+
   render() {
     const { _handleSubmit, handleSubmit } = this.props;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}
+      keyboardShouldPersistTaps='handled'
+      >
         {/*  =======   header container  ======*/}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => { this.props.navigation.goBack() }} style={styles.touchableOpacityStyle}>
@@ -29,12 +45,13 @@ class UpdateEmailScreen extends Component {
         <View style={styles.userPic}>
           <Icon name='uniF25E' color={'white'} size={60} />
         </View>
-        <View style={{ height: 200 }}>
+        
+        <View style={{ height: 600 }}>
           <Field
             name='name'
             errorTextColor="red"
             component={InputField}
-            value={this.props.username}
+            defaultValue={this.state.username}
             keyboardType='default'
             placeholder="Usuarie"
             customContainerStyle={styles.input}
@@ -42,12 +59,10 @@ class UpdateEmailScreen extends Component {
           />
           <Field
             name='email'
-            value={this.props.email}
             errorTextColor="red"
             component={InputField}
             keyboardType='email-address'
             placeholder="E-Mail"
-
             customContainerStyle={styles.input}
             customInputStyle={{ color: NAMED_COLORS.orangeColor }}
           />
@@ -63,17 +78,13 @@ class UpdateEmailScreen extends Component {
 
 
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
 
 const validate = values => {
   const errors = {};
-
-  if (!values.name) {
-    errors.name = '*Required';
-  }
 
   if (!values.email) {
 
@@ -158,8 +169,28 @@ const styles = StyleSheet.create({
   },
 });
 
-export default (reduxForm({
+
+// Form = reduxForm({ 
+//   form: 'UpdateEmail',
+//   validate,
+// })(UpdateEmailScreen);
+
+const Form = reduxForm({
   form: 'UpdateEmail',
-  enableReinitialize: true,
-  validate,
-})(UpdateEmailScreen))
+  validate
+},
+mapStateToProps = undefined,
+mapDispatchToProps = function(dispatch) {
+  return {
+      // This will be passed as a property to the presentational component
+      changeFieldValue: function(field, value) {
+          dispatch(change(form, field, value))
+      }
+  }
+})(Form)
+
+export default connect(state => ({ 
+  initialValues: {
+    email: 'some value here'
+  } 
+}))(Form);

@@ -12,20 +12,7 @@ class Details extends Component {
   currHeight = 0;
   prevHeight = 0;
   scrollHeight = 400;
-  state = {
-    dialogVisible: true
-  }
-  _endDay = () =>{ 
-
-  }
-  noHandler = () => {
-    this.setState({dialogVisible: false})
-    console.log('no')
-  }
-  yesHandler = () => {
-    console.log('yes')
-    this.setState({dialogVisible: false})
-  }
+  
   _scrollToBottom() {
     this.scrollHeight = screenHeight;
     this.refs.scrollView.getScrollResponder().scrollResponderScrollTo({
@@ -43,17 +30,15 @@ class Details extends Component {
     if (days.length == 0)
       return <NoItem />
     return days.map((obj) => {
-      const imageUrl =  obj.day ? obj.day.image_url : null;
-      const dayOrder =  obj.day ? obj.day.day : null;
-      const dayId =  obj.day ? obj.day.id : null;
+      const imageUrl =  obj ? obj.image_url : null;
+      const dayOrder =  obj ? obj.day : null;
+      const dayId =  obj ? obj.id : null;
       return (
         <View style={{ height: 170 }} key={obj.id}>
-          <Day id={obj.id} name={'Dia ' + dayOrder} locked={obj.locked} onPress={() => this._goToDayDetails(dayId)} titleStyle={{ fontSize: 13, marginBottom: 0, textShadowRadius: 0, alignSelf: 'center', marginBottom: 10, fontFamily: fonts.esp_light }} typeStyle={{ fontSize: 14, textShadowRadius: 0, alignSelf: 'center', marginBottom: 4, fontFamily: fonts.esp_bold }} subTitle={name} image_url={imageUrl} />
+          <Day id={obj.id} name={'Dia ' + dayOrder} locked={obj.status.locked} onPress={() => this._goToDayDetails(dayId)} titleStyle={{ fontSize: 13, marginBottom: 0, textShadowRadius: 0, alignSelf: 'center', marginBottom: 10, fontFamily: fonts.esp_light }} typeStyle={{ fontSize: 14, textShadowRadius: 0, alignSelf: 'center', marginBottom: 4, fontFamily: fonts.esp_bold }} subTitle={name} image_url={imageUrl} />
         </View>
       )
-    }
-
-    )
+    })
   }
   render() {
     const { loading, plan, navigation } = this.props;
@@ -93,26 +78,26 @@ class Details extends Component {
               <Text style={[styles.textStyle, { marginBottom: 3 }]}>{plan_times} | {plan_days} | {plan_minutes}</Text>
               <Text style={[styles.textStyle, { lineHeight: 14, textAlign: 'justify', fontFamily: fonts.esp_extraLight }]}>{description}</Text>
             </View>
-            <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', borderColor: 'white', borderWidth: 1, borderBottomWidth: 0 }}>
-              <View style={{ justifyContent: 'center', marginHorizontal: 25, marginVertical: 10 }}>
+            <View style={{flex: 1, flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', borderColor: 'white', borderWidth: 1, borderBottomWidth: 0 }}>
+              <View style={{ flex: 0.33,justifyContent: 'center', paddingVertical: 10, alignItems: 'center'}}>
                 <Text style={[styles.textStyle, { fontSize: 12, fontWeight: '400' }]}>NIVEL</Text>
               </View>
-              <View style={{ justifyContent: 'center', marginHorizontal: 25, marginVertical: 10 }}>
+              <View style={{ flex: 0.33, justifyContent: 'center', paddingVertical: 10, alignItems: 'center'  }}>
                 <Text style={[styles.textStyle, { fontSize: 12, fontWeight: '400' }]}>TIPO</Text>
               </View>
-              <View style={{ justifyContent: 'center', marginHorizontal: 25, marginVertical: 10 }}>
+              <View style={{ flex: 0.33, justifyContent: 'center', paddingVertical: 10 , alignItems: 'center' }}>
                 <Text style={[styles.textStyle, { fontSize: 12, fontWeight: '400' }]}>UBICACION</Text>
               </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderColor: 'white', borderWidth: 1 }}>
-              <View style={{ justifyContent: 'center', alignSelf: 'center', marginVertical: 10, marginLeft: 10 }}>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', borderColor: 'white', borderWidth: 1 }}>
+              <View style={{flex: 0.33, justifyContent: 'center', alignSelf: 'center', paddingVertical: 10, alignItems: 'center'  }}>
                 <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight }]}>{level}</Text>
               </View>
-              <View style={{ justifyContent: 'center', alignSelf: 'center', marginVertical: 10 }}>
+              <View style={{ flex: 0.33,justifyContent: 'center', alignSelf: 'center', paddingVertical: 10 ,  alignItems: 'center'}}>
                 <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight }]}>{plan_type}</Text>
               </View>
-              <View style={{ justifyContent: 'center', alignSelf: 'center', marginVertical: 10 }}>
-                <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight, marginRight: 10 }]}>{location}</Text>
+              <View style={{ flex: 0.33,justifyContent: 'center', alignSelf: 'center', paddingVertical: 10,  alignItems: 'center' }}>
+                <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight}]}>{location}</Text>
               </View>
             </View>
             <View>
@@ -127,7 +112,7 @@ class Details extends Component {
               {this._renderDays(this.props.plan_days, title)}
             </View>
           </View>
-          <InfoPopup visible={this.state.dialogVisible} tick={false} endDay={this._endDay} yesHandler={this.yesHandler} noHandler={this.noHandler} yesButtonText="Si" noButtonText="no" heading="¿Desea cambiar de plan?" description={`Al aceptar su plan actual pasa a${'\n'}estado inactivo, solo se puede${'\n'}realizar una vez al día.`}/>
+          <InfoPopup visible={this.props.currentPlan} tick={false}  yesHandler={this.props.changePlan} noHandler={this.props.reverseBack} yesButtonText="Si" noButtonText="no" heading="¿Desea cambiar de plan?" description={`Al aceptar su plan actual pasa a${'\n'}estado inactivo, solo se puede${'\n'}realizar una vez al día.`}/>
         </ScrollView>
       </View>
     )
@@ -141,7 +126,7 @@ var styles = StyleSheet.create({
     width: '100%',
   },
   textStyle: {
-    textAlign: 'justify',
+    textAlign: 'center',
     textShadowColor: 'black',
     color: 'white',
     textShadowOffset: { width: 2, height: 2 },

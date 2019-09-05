@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Picker, StyleSheet, Item, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import { View, Text, Image, Picker, StyleSheet, ScrollView,Item, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import InputField from '../../common/Input';
 import { Field, reduxForm } from 'redux-form'
 import { NAMED_COLORS } from '../../common/AppColors';
@@ -18,7 +18,9 @@ class UpdateHeightScreen extends Component {
   render() {
     const { _handleSubmit, handleSubmit, heightVal, heightScale } = this.props;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}
+      keyboardShouldPersistTaps='handled'
+      >
         {/*  =======   header container  ======*/}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => { this.props.navigation.goBack() }} style={styles.touchableOpacityStyle}>
@@ -30,7 +32,7 @@ class UpdateHeightScreen extends Component {
         </View>
         {/* ============= header end ============= */}
 
-        <View style={{ height: 200, padding: 40 }}>
+        <View style={{ height: 600, padding: 40 }}>
           <Text style={{ fontFamily: fonts.esp, fontSize: 10, color: 'white' }}>Altura</Text>
           <Text style={{ fontFamily: fonts.esp, fontSize: 12, color: 'red', marginVertical: 15 }}>{heightVal} {heightScale}</Text>
           <Field
@@ -58,13 +60,14 @@ class UpdateHeightScreen extends Component {
             onPress={handleSubmit(_handleSubmit)}
             color={'white'}
             backgroundColor={NAMED_COLORS.orangeColor}
-            style={{ marginTop: 40 }}
+            style={{ marginTop: 40, zIndex: 99999 }}
             textSize={14}
           >
             ACTUALIZAR
           </BlackButton>
+          
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }

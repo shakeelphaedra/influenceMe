@@ -19,10 +19,13 @@ export default class InputField extends Component {
         }
     };
     render () {
+        that=this
+        this.props.input.value = this.props.defaultValue;
         const {
             meta,
             input,
             value,
+            defaultValue,
             editable,
             maxLength,
             placeholder,
@@ -56,9 +59,9 @@ export default class InputField extends Component {
                         blurOnSubmit={blurOnSubmit}
                         onChangeText={onChangeText}
                         // placeholder={placeholder}
+                        value={input.value}
                         maxLength={maxLength}
                         editable={editable}
-                        value={"why"}
                         baseColor={'white'}
                         tintColor={'white'}
                         label={

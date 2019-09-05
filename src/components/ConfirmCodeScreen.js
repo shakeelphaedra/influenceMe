@@ -52,7 +52,8 @@ class ConfirmCodeScreen extends Component {
 
   render() {
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}
+      keyboardShouldPersistTaps='handled'>
         <View style={{ height: screenHeight }}><WhiteHeader onPress={() => this.props.navigation.goBack()} />
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#EFF0F1' }}>
             <View style={{ marginLeft: 50, marginRight: 50, flexDirection: 'column', alignItems: 'center', }}>

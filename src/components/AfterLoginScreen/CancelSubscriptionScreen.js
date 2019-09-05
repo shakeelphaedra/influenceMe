@@ -5,14 +5,15 @@ import { Field, reduxForm } from 'redux-form'
 import { NAMED_COLORS } from '../../common/AppColors';
 import { BlackButton, Popup } from '../common';
 import AppText from '../../common/AppText';
-
+import {connect} from 'react-redux';
 import Icon from '../common/Icon';
 import { fonts } from '../../styles';
+import * as actions from '../../actions';
+
 let Screenheight = Dimensions.get('window').height;
 class CancelSubscriptionScreen extends Component {
-
-
   render() {
+    props = this.props;
     return (
       <View style={styles.container}>
         {/*  =======   header container  ======*/}
@@ -40,7 +41,7 @@ class CancelSubscriptionScreen extends Component {
           }}
         />
         <View style={{ marginTop: 50 }}>
-          <Popup />
+          <Popup {...props} />
 
         </View>
       </View>
@@ -123,8 +124,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
 });
-
-export default (reduxForm({
+const mapsStateToProps = (state) => {
+  return ( {
+    subscription: true
+  })
+}
+export default connect(mapsStateToProps, actions)(reduxForm({
   form: 'CancelSubscription',
   enableReinitialize: true,
   validate,

@@ -46,6 +46,8 @@ target 'influenceMe' do
 
   pod 'ReactNativeExceptionHandler', :path => '../node_modules/react-native-exception-handler'
 
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
   target 'influenceMeTests' do
     inherit! :search_paths
     # Pods for testing

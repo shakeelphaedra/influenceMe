@@ -5,7 +5,7 @@ class NoItem extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, alignItems: 'center'}}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text style={styles.textStyle}>{ this.props.text || 'aún no tienes contenido'}</Text>
       </View>
     )
@@ -15,10 +15,8 @@ class NoItem extends Component {
 const styles = {
   textStyle: {
     color: 'white', 
-    alignSelf: 'center', 
     opacity: 0.5,
     textAlign: 'center', 
-    flex: 1
   }
 }  
 export {NoItem}

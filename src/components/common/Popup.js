@@ -36,7 +36,9 @@ class Popup extends Component {
 
  handleDelete = () => {
   if (this.state.text == 'Eliminar') {
-   this.setState({ dialogVisible: false });
+    this.setState({ dialogVisible: false});
+    this.props.CancelSubscription()        
+    this.props.navigation.goBack()
   }
  };
 

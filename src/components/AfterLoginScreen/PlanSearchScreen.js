@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, ScrollView, TouchableHighlight } from 'react-native';
+import { View, ScrollView, TouchableHighlight, Dimensions } from 'react-native';
 import { SearchCard } from '../common/SearchCard';
 import { NavigationActions } from 'react-navigation';
 import { NoItem } from '../common';
 import { BASE_URL } from '../../../API';
-
+const screenHeight = Dimensions.get("window").height
 class PlaneSearchScreen extends Component {
   navigateToPlan(id) {
     return NavigationActions.navigate({
@@ -16,7 +16,11 @@ class PlaneSearchScreen extends Component {
   _renderPlans() {
     plans = this.props.screenProps.plans
     if (plans.length == 0)
-      return <NoItem />
+      return (
+        <View style={{flex: 1 , alignItems: 'center', height: screenHeight*0.8}}>
+          <NoItem/>
+        </View>
+        )
     return plans.map(plan => {
       return (
         <TouchableHighlight onPress={() => this.props.navigation.dispatch(this.navigateToPlan(plan.id))}>
@@ -30,7 +34,8 @@ class PlaneSearchScreen extends Component {
 
   render() {
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: 'black' }}>
+      <ScrollView style={{ flex: 1, backgroundColor: 'black' }}
+      keyboardShouldPersistTaps='handled'>
         {this._renderPlans()}
       </ScrollView>
     )

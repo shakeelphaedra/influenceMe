@@ -1,11 +1,57 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity,ScrollView, ImageBackground} from 'react-native';
 import {NAMED_COLORS} from '../../common/AppColors';
 import settingImage from '../../assets/www/dist/img/settings-outline.png'
 import Icon from '../common/Icon';
-import { fonts, commonStyle } from '../../styles';
+import { fonts, commonStyle, BG_COLOR } from '../../styles';
+import { getProfileDetails, BASE_URL } from '../../../API';
+import { showMessage } from 'react-native-flash-message';
+
+import { withNavigationFocus } from 'react-navigation';
 
 class ProfileScreen extends Component {
+    state = {
+        actualPlan: {},
+        previousPlans: []
+    }
+    componentWillMount(){
+      this.setStates()
+    }
+    setStates () {
+      getProfileDetails().then(res => {
+        if(res.return){
+          return this.setState({actualPlan: res.current_plan, previousPlans: res.previous_plans})
+        }else{
+          showMessage({
+            message: res.message,
+            type: 'danger'
+          })
+        }
+      })
+    }
+    _renderActualPlan (plan) {
+      if(plan && plan.title){
+        return(
+          <View style={{height: 200, borderTopColor: BG_COLOR, borderTopWidth: 1}}>
+            <View  style={styles.backgroundImageContainerStyle} >
+              <ImageBackground 
+                  style={{width: '100%', height: '100%', }}
+                  source={{uri:  BASE_URL + plan.image_url}}
+              >
+                  <View style={styles.boxShadow}>
+                      <Text style={{fontFamily: fonts.esp, fontSize: 70,color: 'white', opacity: 0.5}}>{Math.round(plan.percentage)} %</Text>
+                      <View style={{position: 'relative', flexDirection: 'column', flex: 1, alignItems: 'center', justifyContent: 'flex-end'}}>
+                          <Text style={[styles.titleStyle]}>{plan.title}</Text>
+                          <Text style={[styles.descriptionStyle]}>{plan.description}</Text>
+                      </View>
+                  </View>
+              </ImageBackground>
+            </View>
+          </View>
+        )
+      }
+      
+    }
     render () {
         const {settingsClick} = this.props;
         return (
@@ -17,7 +63,7 @@ class ProfileScreen extends Component {
                     </TouchableOpacity>
                     <Text style={{color:NAMED_COLORS.white, fontFamily:  fonts.esp, fontSize: 15}}>Perfil</Text>
                     <TouchableOpacity
-                        onPress={() => {}}
+                        onPress={() => this.props.navigation.navigate("FAQ")}
                         underlayColor={'#444444'}
                         >
                         <Icon name='uniF19E'  color='white' size={30}  />
@@ -37,29 +83,20 @@ class ProfileScreen extends Component {
                         </View>
                     </View>
                 </View>
-                <View style={{}}>
+                <ScrollView style={{}}>
                     <View style={{height: 40, alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={{fontFamily:  fonts.esp, color: 'white'}}>Plan Actual</Text>
                     </View>
-                    <View style={{height: 200}}>
-                        <TouchableOpacity >
-                            <View  style={styles.backgroundImageContainerStyle} >
-                                <ImageBackground 
-                                    style={{width: '100%', height: '100%', }}
-                                    source={require('../../assets/www/dist/img/bg001.jpg')}
-                                >
-                                    <View style={styles.boxShadow}>
-                                        <Text style={{fontFamily: fonts.esp, fontSize: 70,color: 'white', opacity: 0.5}}>10 %</Text>
-                                        <View style={{position: 'relative', flexDirection: 'column', flex: 1, alignItems: 'center', justifyContent: 'flex-end'}}>
-                                            <Text style={[styles.titleStyle]}>askoaskoaks</Text>
-                                            <Text style={[styles.descriptionStyle]}>assjaosj</Text>
-                                        </View>
-                                    </View>
-                                </ImageBackground>
-                            </View>
-                        </TouchableOpacity>
+                    {this._renderActualPlan(this.state.actualPlan)}
+
+                    <View style={{height: 40, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={{fontFamily:  fonts.esp, color: 'white'}}>Plan Anterior</Text>
                     </View>
-                </View>
+                    {this.state.previousPlans.map(plan =>{
+                       return this._renderActualPlan(plan)
+                    })}
+                    {this.setStates()}
+                </ScrollView>
             </View>
         )
     }
@@ -130,4 +167,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default ProfileScreen
+export default  withNavigationFocus(ProfileScreen)

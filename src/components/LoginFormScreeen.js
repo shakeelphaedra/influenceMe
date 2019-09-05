@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Dimensions, Platform, ScrollView, ActivityIndicator, } from 'react-native';
-import { Spinner, SelectTag, Input, BlackButton, WhiteHeader } from './common'
+import { Spinner, SelectTag, Input, BlackButton, WhiteHeader, TermsAndConditions } from './common'
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import { influencerList, countryCodeList } from '../reducers';
@@ -20,7 +20,8 @@ class LoginFormScreen extends Component {
       showCodeOptions: false,
       showInfluencerOptions: false,
       checked: false,
-      loading: false
+      loading: false,
+      showDialog: false
     };
   }
   static navigationOptions = ({ navigation }) => {
@@ -50,6 +51,17 @@ class LoginFormScreen extends Component {
       });
     }
   }
+  showTerms = () => {
+    this.setState({
+      showDialog:  true
+    })
+  }
+  acceptTerms = () => {
+    this.setState( {
+      showDialog: false,
+      checked: true
+    })
+  }
   _oPhoneChange(text) {
     this.props.phoneChange(text)
   }
@@ -62,7 +74,9 @@ class LoginFormScreen extends Component {
   render() {
     const dropdownStyle = Platform.OS === 'ios' ? { flexDirection: 'row', position: 'relative', zIndex: 9999 } : { flexDirection: 'row' };
     return (
-      <ScrollView style={{ flex: 1, }}>
+      <ScrollView style={{ flex: 1, }}
+      keyboardShouldPersistTaps='handled'
+      >
         <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'column', backgroundColor: '#f2f2f2', height: screenHeight }}>
           <WhiteHeader onPress={() => this.props.navigation.push("AfterWelcomeScreen")} />
           <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-start', marginTop: 20 }}>
@@ -102,7 +116,7 @@ class LoginFormScreen extends Component {
             </View>
             <View style={{ flexDirection: 'column' }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 30 }}>
-                <Text style={{ fontSize: 15, fontFamily: fonts.esp }}> Acepto los terminos y condiciones</Text>
+                <TermsAndConditions showDialog={this.state.showDialog} showTerms={this.showTerms} acceptTerms={this.acceptTerms}/>
                 <CheckBox
                   checkedColor="#308b82"
                   uncheckedColor="#585858"

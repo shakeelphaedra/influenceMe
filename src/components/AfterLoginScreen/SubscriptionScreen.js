@@ -2,72 +2,68 @@ import React, {Component} from  'react';
 import {View, Image, Dimensions, Text, ImageBackground, TouchableOpacity, FlatList} from 'react-native';
 import { fonts } from '../../styles';
 import { CheckBox } from 'react-native-elements';
-import { BlackButton, MyList } from '../common';
+import { BlackButton, MyList, GreyHeaderWithBackButton,  } from '../common';
 import Icon from '../common/Icon';
 import { NAMED_COLORS } from '../../common/AppColors';
-import { subscriptionFeatureList } from '../../utils';
+import { subscriptionFeatureList, priceOfLifeTime } from '../../utils';
+import { connect } from 'react-redux';
+import InfoPopup from '../common/InfoPopup';
+import * as actions from '../../actions';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-
 class SubscriptionScreen extends Component {
   state = {
-    checked: false
+    checked: false, dialogVisible: false
   }
-  renderItem () {
+  renderItems () {
     return subscriptionFeatureList.map(item =>{
       return <MyList icon={item.icon}  text={item.text}/>
     })
   }
+  noHandler = () => {
+    this.props.Subscribe()
+    this.setState({dialogVisible: false})
+    this.props.navigation.navigate("SettingsScreen")
+  }
+  subscribePlan(){
+    this.setState({dialogVisible: true})
+  }
   render() {
-    console.log(screenHeight)
     return (
-      // <View style={{flex: 14, backgroundColor: 'black'}}>
-      //   <ImageBackground style={{flex: 14}}>
-      //     {/* header */}
-      //     <View style={{flexDirection: 'row', alignItems: 'center',justifyContent: 'flex-end', marginRight: screenWidth*0.01, flex: 1 }}>
-      //       <TouchableOpacity onPress={() =>  this.props.navigation.goBack()}>
-      //         <Icon name='uniF15D' color='white' size={30} />
-      //       </TouchableOpacity>
-      //     </View>
-      //     <View style={{flex: 13}}>
-      //       {/* title */}
-      //       <View style={{flex: 4, alignItems: 'center', justifyContent: 'center'}}>
-      //         <Text style={{fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8}}>GO</Text>
-      //         <Text style={{fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8, marginTop: 10}}>PREMIUM</Text>
-      //       </View>
-      //       {/* title */}
+      <View style={{flex: 14, backgroundColor: 'black'}}>
+        <ImageBackground style={{flex: 14}}>
+          {/* header */}
+          <GreyHeaderWithBackButton text="Subscription" navigation={this.props.navigation}/>
 
-      //       {/* features */}
-      //       <View style={{flex: 4, backgroundColor: 'yellow'}}>
-      //       <FlatList
-      //         data={[subscriptionFeatureList]}
-      //         renderItem={({item}) => {<MyList icon={item.icon} text={item.text}/>}}
-      //       />
+          <View style={{flex: 13}}>
+            {/* title */}
+            <View style={{flex: 4, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={{fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8}}>GO</Text>
+              <Text style={{fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8, marginTop: 10}}>PREMIUM</Text>
+            </View>
+            {/* title */}
 
-      //       </View>
-      //       {/* features */}
+            {/* features */}
+            <View style={{flex: 5, alignItems: 'center'}}>
+              <View>
+                {this.renderItems()}
+              </View>
+            </View>
+            {/* features */}
 
-      //       {/* subscriptions list */}
-      //       <View style={{flex: 5}}>
-
-      //       </View>
-      //       {/* subscriptions list */}            
-      //     </View>
-      //   </ImageBackground>
-      // </View>
-
-      <View style={{flex: 1}}>
-        <Image source={require('../../assets/www/dist/img/suscriber.png')} style={styles.imageBackgroundStyle} 
-        >
-        </Image>
-        <View style={[styles.containerStyle,{justifyContent: 'flex-start',paddingHorizontal: 40, height: screenHeight}]}>
-          <Text style={[styles.textStyle,{marginTop: screenHeight/5, fontSize: 40}]}>SUSCRIBETE</Text>
-          {this.renderItem()}
-          <View style={{ marginTop:  48}}>
-             <BlackButton style={{width: screenWidth*0.8, height: 65, justifyContent: 'center'}} color={'white'} backgroundColor={'#fd451e'} textStyle={{fontSize: 24, fontFamily: fonts.esp_light}} >SUSCRIBIRME</BlackButton>
+            {/* subscriptions list */}
+            <View style={{flex: 4,zIndex: 6, alignItems: 'center' }}>
+              <TouchableOpacity onPress={this.subscribePlan.bind(this)}>
+                <View style={{marginHorizontal: 10,flexDirection: 'row', justifyContent: 'space-between', backgroundColor: NAMED_COLORS.orangeColor, width: screenWidth* 0.89 , padding: 13, borderColor:  NAMED_COLORS.orangeColor, borderWidth: 1}}>
+                  <Text style={[styles.textStyle]}>Lifetime</Text>
+                  <Text style={styles.textStyle}>${priceOfLifeTime}</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <InfoPopup visible={this.state.dialogVisible} tick={true} yesHandler={this.noHandler} yesButtonText="OK" heading="" description="Gracias por tu suscripción. A partir de ah ora puedes comenzar a entrenar duro!" />
           </View>
-        </View>
+        </ImageBackground>
       </View>
     )
   }
@@ -83,7 +79,8 @@ const styles = {
   },
   textStyle: {
     textAlign: 'center',
-    color: 'black',
+    fontSize: 16,
+    color: 'white',
     fontFamily: fonts.esp
   },
   containerStyle: {
@@ -96,4 +93,10 @@ const styles = {
   }
 }
 
-export default SubscriptionScreen;
+const mapStatsToProps = (state) => {
+  return {
+    subscription: state.subscription.subscription,
+  }
+}
+
+export default connect(mapStatsToProps, actions)(SubscriptionScreen);
