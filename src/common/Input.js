@@ -10,6 +10,7 @@ export default class InputField extends Component {
 
     handleBlur = () => this.setState({isFocused: false})
 
+    
     renderErrors = (meta, errorTextColor) => {
         const { errorTextStyle } = styles;
         if (meta.touched && meta.error) {
@@ -18,9 +19,11 @@ export default class InputField extends Component {
             );
         }
     };
+    componentDidMount () {
+        this.props.input.value = this.props.defaultValue
+    }
     render () {
         that=this
-        this.props.input.value = this.props.defaultValue;
         const {
             meta,
             input,
@@ -47,6 +50,7 @@ export default class InputField extends Component {
                 <View style={[styles.containerStyle, customContainerStyle]}>
                 <TextField
                         // placeholderTextColor={placeholderTextColor ? placeholderTextColor : '#000'}
+                        ref="inputField"
                         style={[styles.inputStyle, customInputStyle]}
                         selectTextOnFocus={selectTextOnFocus}
                         onFocus={this.handleFocus}
@@ -59,7 +63,6 @@ export default class InputField extends Component {
                         blurOnSubmit={blurOnSubmit}
                         onChangeText={onChangeText}
                         // placeholder={placeholder}
-                        value={input.value}
                         maxLength={maxLength}
                         editable={editable}
                         baseColor={'white'}

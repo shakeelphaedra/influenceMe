@@ -25,7 +25,7 @@ class PlaneSearchScreen extends Component {
       return (
         <TouchableHighlight onPress={() => this.props.navigation.dispatch(this.navigateToPlan(plan.id))}>
           <View style={{ height: 70 }}>
-            <SearchCard title={plan.title} description={plan.plan_days} imgUrl={BASE_URL + plan.image_url} />
+            <SearchCard title={plan.title} description={plan.plan_days} imgUrl={plan.image_url ? plan.image_url.replace("http","https") : null} />
           </View>
         </TouchableHighlight>
       )

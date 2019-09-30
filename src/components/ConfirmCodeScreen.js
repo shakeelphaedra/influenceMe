@@ -108,7 +108,7 @@ class ConfirmCodeScreen extends Component {
         </View>
         {
           this.props.loading ? (
-            <View style={{ position: 'absolute', top: screenHeight / 2, right: screenWidth / 2, zIndex: 222222 }}>
+            <View style={{ position: 'absolute',alignItems: 'center' ,justifyContent: 'center' , alignSelf: 'center', zIndex: 222222, height: screenHeight }}>
               <ActivityIndicator color={"red"} size={"large"} />
             </View>) :
             null

@@ -41,7 +41,7 @@ class PlanesScreen extends Component {
     return this.state.plansList.map((plan)=>{
       return (
         <View style={{height: 140}}>
-          <Plan id={plan.id} onPress={() => this._goToPlanDetails(plan.id)}  typeStyle={styles.descriptionStyle} titleStyle={styles.titleStyle} image_url={plan.image_url} name={plan.influencer.name} subTitle={plan.title}/>
+          <Plan id={plan.id} onPress={() => this._goToPlanDetails(plan.id)}  typeStyle={styles.descriptionStyle} titleStyle={styles.titleStyle} image_url={plan.image_url ? plan.image_url.replace("http","https") : null} name={plan.influencer.name} subTitle={plan.title}/>
         </View>
       )
     }) 

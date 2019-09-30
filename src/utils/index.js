@@ -1,3 +1,5 @@
+import { AsyncStorage } from 'react-native';
+
 export const authState = { flag: 'do', countryCode: '+1', influencer: 'Altice', phone: '', confirmResult: {}, message: "", confirmCode: '', loading: false }
 export const sliderState = [
   {
@@ -35,7 +37,17 @@ export const subscriptionFeatureList = [
   {icon: "uniF239", text: "PREMIUM TRAININ ADVICES"},
   {icon: "uniF239", text: "REACH YOUR GOAL FASTER"},
 ]
-export const subscription = {subscription: false};
+
+export const subscription = {subscription: getValue()};
 export const confirmResult = {};
 export const influencerList = [{ value: 'Altice' }, { value: 'Claro' }, { value: 'Viva' }];
 export const countryCodeList = [{ value: '+92' }, { value: '+1', flag: 'do' }, { value: '+57', flag: 'co' }, { value: '+58', flag: 've' }]
+async function getValue() {
+  try {
+    const userToken = await AsyncStorage.getItem('subscription');
+    return userToken;
+  } catch (error) {
+    showError(error);
+  }
+}
+console.log('vggggggooioio',getValue())

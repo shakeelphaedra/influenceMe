@@ -8,6 +8,8 @@ import InfluencerDetails  from '../components/AfterLoginScreen/Influencers/Detai
 import PlanDetails  from '../containers/Plans/Details';
 import DayDetails  from '../containers/Days/Details';
 import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
+
 import Icon from '../components/common/Icon';
 import { fonts } from '../styles';
 import { NAMED_COLORS } from '../common/AppColors';
@@ -24,6 +26,7 @@ const ExplorerStack = createStackNavigator(
     defaultNavigationOptions: {
       header: null
     }
+    
 
   }
   
@@ -37,7 +40,14 @@ const AfterLoginNavigator = createBottomTabNavigator(
         tabBarLabel:"Explorer",
         tabBarIcon: ({ tintColor }) => (
           <Icon name='uniF278'  color={tintColor}  size={20}  />
-        )
+        ),
+        tabBarOnPress: (scene) => {
+          const resetAction = StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'AfterLoginNavigator' })],
+          });
+          scene.navigation.dispatch(resetAction);
+        },
       }
     },
     ProgressScreen: {

@@ -33,7 +33,7 @@ const AfterLoginNavigation = createStackNavigator(
     SubscriptionScreen:  Subscription
   },
   {
-    initialRouteName: "UpdateEmailScreen",
+    initialRouteName: "AfterLoginNavigator",
     defaultNavigationOptions: {
       header: null
     },
@@ -65,7 +65,7 @@ export default createAppContainer(
       AfterLoginNavigation,
     },
     {
-      initialRouteName: 'BeforeLoginNavigation'
+      initialRouteName: 'AppLoading'
     }
   )
 )

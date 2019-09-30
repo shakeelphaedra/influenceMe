@@ -7,13 +7,15 @@ class Details extends Component {
   state = {
     day: {},
     exercises: [],
-    loading: true
+    loading: true,
+    canStart: false
   }
 
   componentDidMount() {
     const dayId = this.props.navigation.getParam('dayId', '1');
-    getDayDetails(dayId).then((day) => {
-      this.setState({ day: day, exercises: day.exercises, loading: false })
+    getDayDetails(dayId).then(({days, can_start}) => {
+      debugger
+      this.setState({ day: days, exercises: days.exercises, loading: false, canStart: can_start })
     });
   };
 
@@ -21,7 +23,7 @@ class Details extends Component {
     if (this.state.loading)
       return <Spinner />
     return (
-      <DayDetails navigation={this.props.navigation} day={this.state.day} exercises={this.state.exercises} />
+      <DayDetails navigation={this.props.navigation} day={this.state.day} canStart={this.state.canStart} exercises={this.state.exercises} />
     )
   }
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Image, TouchableOpacity, ImageBackground, Text, StyleSheet, Dimensions } from 'react-native';
 import { Spinner, BackButton, NoItem } from '../../common';
-import { BASE_URL, getInfluencerDetails } from '../../../../API';
+import {  getInfluencerDetails } from '../../../../API';
 import Plan from '../common/Card';
 import ViewMoreText from 'react-native-view-more-text';
 import { FONT_FAMILY, FONT_SIZE, BG_COLOR, RED_TEXT, fonts } from '../../../styles';
@@ -59,7 +59,7 @@ class Details extends Component {
       return <NoItem/>
     return plans.map((plan) => (
       <View style={{ marginTop: 35, height: 150 }}>
-        <Plan id={plan.id} onPress={() => this._goToPlanDetails(plan.id)} name={name} titleStyle={{ fontSize: 16, marginBottom: 0, marginLeft: 22 }} typeStyle={{ fontSize: 24, marginLeft: 22, marginBottom: 4 }} subTitle={plan.title} image_url={plan.image_url} />
+        <Plan id={plan.id} onPress={() => this._goToPlanDetails(plan.id)} name={name} titleStyle={{ fontSize: 16, marginBottom: 0, marginLeft: 22 }} typeStyle={{ fontSize: 24, marginLeft: 22, marginBottom: 4 }} subTitle={plan.title} image_url={plan.image_url ? plan.image_url.replace("http","https") : null} />
       </View>
     ))
   }
@@ -88,7 +88,7 @@ class Details extends Component {
     if (loading)
       return <Spinner />
     return (
-      <ImageBackground style={{ flex: 1, backgroundColor: BG_COLOR, position: 'relative' }} source={{ uri: background_image_url ? BASE_URL + background_image_url : null }}
+      <ImageBackground style={{ flex: 1, backgroundColor: BG_COLOR, position: 'relative' }} source={{ uri: background_image_url ? background_image_url.replace("http","https") : null }}
         onLoad={this.removePlaceHolder.bind(this)}
         onError={this.showPlaceHolder.bind(this)}
       >

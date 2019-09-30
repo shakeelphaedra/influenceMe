@@ -10,7 +10,7 @@
 		00E356F31AD99517003FC87E /* influenceMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* influenceMeTests.m */; };
 		03A94213627B4ACF8A96C3AF /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A587E206027C4C3DB81D3CAD /* FontAwesome5_Regular.ttf */; };
 		042B7601231689DB008C55A4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042B7600231689DB008C55A4 /* Default-568h@2x.png */; };
-		042D385823168EC300F4974A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042D385723168EC200F4974A /* GoogleService-Info.plist */; };
+		043ED9D323322757002CF17D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043ED9D223322757002CF17D /* GoogleService-Info.plist */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -83,7 +83,7 @@
 		01F4B663A6387BBF05C9FAD9 /* Pods-influenceMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-influenceMeTests.debug.xcconfig"; path = "Target Support Files/Pods-influenceMeTests/Pods-influenceMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		03CE134BD331441093AEC916 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		042B7600231689DB008C55A4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		042D385723168EC200F4974A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		043ED9D223322757002CF17D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07D76BBB937D4A0389565820 /* Esphimere-SemiBoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Esphimere-SemiBoldItalic.otf"; path = "../src/assets/fonts/Esphimere-SemiBoldItalic.otf"; sourceTree = "<group>"; };
 		0C85CEDC41D8D636171D8CBB /* libPods-influenceMe-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-influenceMe-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DB57DE7C60466B925786C5 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		13B07FAE1A68108700A75B9A /* influenceMe */ = {
 			isa = PBXGroup;
 			children = (
-				042D385723168EC200F4974A /* GoogleService-Info.plist */,
+				043ED9D223322757002CF17D /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -485,7 +485,7 @@
 				7B8C886D2B32470CAAB10894 /* Esphimere-LightItalic.otf in Resources */,
 				28C6979DDD4B4334ADC77955 /* Esphimere-SemiBold.otf in Resources */,
 				82240547AF3746AAADE15737 /* Esphimere-SemiBoldItalic.otf in Resources */,
-				042D385823168EC300F4974A /* GoogleService-Info.plist in Resources */,
+				043ED9D323322757002CF17D /* GoogleService-Info.plist in Resources */,
 				B4B48616196A4FA3ABFD897F /* Esphimere-Thin.otf in Resources */,
 				8D384E8A02BF4ACD8010FE1F /* Esphimere-ThinItalic.otf in Resources */,
 				C5C598C47DDE412A8D9A67ED /* Flaticon.ttf in Resources */,

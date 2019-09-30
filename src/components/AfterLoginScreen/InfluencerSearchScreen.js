@@ -28,7 +28,7 @@ class InfluencerSearchScreen extends Component {
       return (
         <TouchableHighlight onPress={() => this.props.navigation.dispatch(this.navigateToInfluencer(inf.id))} >
           <View style={{ height: 120 }}>
-            <SearchCard title={inf.name} description={inf.plans_count} imgUrl={ BASE_URL + inf.image_url} />
+            <SearchCard title={inf.name} description={inf.plans_count} imgUrl={inf.image_url ? inf.image_url.replace("http","https") : null} />
           </View>
         </TouchableHighlight>
 

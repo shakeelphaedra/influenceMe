@@ -40,7 +40,7 @@ class SettingsScreen extends Component {
   };
 
   _renderSubscription() {
-    if(this.props.subscription){
+    if((this.props.subscription == "paid") || (this.props.subscription._55 == "paid")){
       return(
         <Animated.View style={[styles.row, { width: this._opacityAnimationValue7, transform: this._moveAnimationValue.getTranslateTransform() }]}>
           <AppText style={{ flex: 0.6, alignSelf: 'center' }}>Cancelar Suscription</AppText>

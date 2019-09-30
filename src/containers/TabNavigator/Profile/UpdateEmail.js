@@ -9,17 +9,22 @@ import { showError } from '../../../../API';
 class UpdateEmail extends Component {
   state = {
     loading: false,
-    username: '', email: ''
+    name: '', email: ''
   }
 
   componentDidMount() {
-    // user = firebase.auth().currentUser;
-    // if (user != null) {
-    //   this.setState({
-    //     username: user.displayName,
-    //     email: user.email,
-    //   })
-    // }
+    user = firebase.auth().currentUser;
+    reactThis = this;
+    if (user != null) {
+      // this.setState({
+      //   email: user.email,
+      // })
+      ref = firebase.database().ref('/profiles/' + user.uid)
+      ref.on('value', function (data) {
+        reactThis.setState({ name: data.val().displayName, email: user.email})
+      })
+    }
+    
   }
   submit = values => {
     this.setState({ loading: true })
@@ -55,7 +60,7 @@ class UpdateEmail extends Component {
   render() {
     if (this.state.loading)
       return <Spinner />
-    return <UpdateEmailScreen username={this.state.username} email={this.state.email} _handleSubmit={this.submit} navigation={this.props.navigation} />
+    return <UpdateEmailScreen name={this.state.name} emailChange={(val) => this.setState({email: val})} nameChange={val => this.setState({name: val})} initialValues={{email: this.state.email, name: this.state.name }} email={this.state.email} _handleSubmit={this.submit} navigation={this.props.navigation} />
   }
 }
 

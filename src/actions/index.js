@@ -2,7 +2,7 @@ import { SHOW_REAL_APP, PHONE_CHANGE, COUNTRYCODE_CHANGE, INFLUENCER_CHANGE, CON
 
 import firebase from 'react-native-firebase';
 import { AsyncStorage } from 'react-native';
-import { createUser } from '../../API';
+import { createUser , subscribe, unsubscribe} from '../../API';
 
 
 import { showMessage, hideMessage } from "react-native-flash-message";
@@ -107,7 +107,12 @@ export const CodeConfirm = ({ val, navigation, confirmResult, confirmForm }) => 
         console.log("Error", e)
       })
       const params = { email: user.email, uid: user.uid, phoneNumber: user.phoneNumber }
-      createUser(params)
+      createUser(params).then( data => {
+        dispatch({
+          type:  SET_SUBSCRIPTION,
+          payload: data.users.user_type
+        })
+      })
       _signInAsync(navigation, user)
       dispatch({
         type: SET_CURRENT_USER,
@@ -128,22 +133,28 @@ export const CodeConfirm = ({ val, navigation, confirmResult, confirmForm }) => 
 }
 _signInAsync = async (navigation, user) => {
   await AsyncStorage.setItem('userId', user.uid);
-  await AsyncStorage.setItem('userType', "free");
   navigation.navigate('AfterLoginNavigator');
 };
 export const Subscribe = () => {
   return (dispatch) =>{
-    dispatch({
-      type: SET_SUBSCRIPTION,
-      payload: true
+    subscribe().then(res => {
+      dispatch({
+        type: SET_SUBSCRIPTION,
+        payload: 'paid'
+      })
+      AsyncStorage.setItem('subscription', "paid");
     })
+
   }
 }
 export const CancelSubscription = () => {
   return (dispatch) =>{
-    dispatch({
-      type: SET_SUBSCRIPTION,
-      payload: false
+    unsubscribe().then(res => {
+      dispatch({
+        type: SET_SUBSCRIPTION,
+        payload: 'free'
+      })
+      AsyncStorage.setItem('subscription', "free");
     })
   }
 }

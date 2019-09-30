@@ -9,39 +9,51 @@ class Details extends Component {
         loading: true,
         plan: {},
         plan_days: [], 
-        currentPlan: false
+        currentPlan: false,
+        any_plan: false,
+        okRes:  false
     };
 
     reverseBack = () => {
-      this.setState({currentPlan: false})
+      this.setState({currentPlan: false, any_plan: false})
+      this.props.navigation.goBack()
     }
 
     changePlan = () => {
       changeCurrentPlan(this.state.plan.id).then(res => {
         if(res.return == false){
+          this.props.navigation.goBack()
           showMessage({
             message: res.message,
             type: 'danger',
             backgroundColor: NAMED_COLORS.orangeColor
           })
+        }else{
+          setTimeout(() => {
+            this.setState({okRes: true})
+          }, 100);
         }
       })
-      this.setState({currentPlan: false})
+      this.setState({currentPlan: false, any_plan: false})
     }
 
+    okResHandler = () => {
+      this.setState({okRes: false})
+    }
 
     componentDidMount () {
+      console.log(this.state)
         const { navigation } = this.props;
         const planId = navigation.getParam('planId', '1');
-        getPlanDetails(planId).then(({plan, plan_days, currentPlan}) => {
-            this.setState({loading: false, plan: plan, plan_days: plan_days, currentPlan: currentPlan});
+        getPlanDetails(planId).then(({plan, plan_days, currentPlan, any_plan}) => {
+            this.setState({loading: false, plan: plan, plan_days: plan_days, currentPlan: currentPlan, any_plan: any_plan});
         }).catch(error => {
         })
     };
 
     render () {
-        const {plan, plan_days, loading, currentPlan} =  this.state;
-        return <PlanDetails plan={plan} plan_days={plan_days} loading={loading} navigation={this.props.navigation} currentPlan={currentPlan} reverseBack={this.reverseBack} changePlan={this.changePlan}/>
+        const {plan, plan_days,okRes, loading, currentPlan,any_plan} =  this.state;
+        return <PlanDetails okRes={okRes} plan={plan} plan_days={plan_days} any_plan={any_plan} loading={loading} navigation={this.props.navigation} currentPlan={currentPlan} reverseBack={this.reverseBack} changePlan={this.changePlan} okResHandler={this.okResHandler}/>
     }
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet,ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import InputField from '../../common/Input';
-import { Field, reduxForm, change } from 'redux-form'
+import { Field, reduxForm, initialize } from 'redux-form'
 import { NAMED_COLORS } from '../../common/AppColors';
 import { BlackButton } from '../common';
 import Icon from '../common/Icon';
@@ -18,11 +18,6 @@ class UpdateEmailScreen extends Component {
   }
   constructor(props){
     super(props)
-  }
-
-  componentDidMount () {
-    // this.props.change('email','aa@nv.vv');
-    this.props.changeFieldValue('email', 'aa@nv.vv');
   }
 
   render() {
@@ -51,8 +46,8 @@ class UpdateEmailScreen extends Component {
             name='name'
             errorTextColor="red"
             component={InputField}
-            defaultValue={this.state.username}
             keyboardType='default'
+            onChangeText={(val) => this.props.nameChange(val)}
             placeholder="Usuarie"
             customContainerStyle={styles.input}
             customInputStyle={{ color: NAMED_COLORS.orangeColor }}
@@ -60,6 +55,7 @@ class UpdateEmailScreen extends Component {
           <Field
             name='email'
             errorTextColor="red"
+            onChangeText={(val) => this.props.emailChange(val)}
             component={InputField}
             keyboardType='email-address'
             placeholder="E-Mail"
@@ -79,13 +75,13 @@ class UpdateEmailScreen extends Component {
 
         </View>
       </ScrollView>
+
     )
   }
 }
 
 const validate = values => {
   const errors = {};
-
   if (!values.email) {
 
     errors.email = '*Required';
@@ -175,22 +171,37 @@ const styles = StyleSheet.create({
 //   validate,
 // })(UpdateEmailScreen);
 
-const Form = reduxForm({
-  form: 'UpdateEmail',
-  validate
-},
-mapStateToProps = undefined,
-mapDispatchToProps = function(dispatch) {
-  return {
-      // This will be passed as a property to the presentational component
-      changeFieldValue: function(field, value) {
-          dispatch(change(form, field, value))
-      }
-  }
-})(Form)
+// const Form = reduxForm({
+//   form: 'UpdateEmail',
+//   validate
+// },
+// mapStateToProps = undefined,
+// mapDispatchToProps = function(dispatch) {
+//   return {
+//       // This will be passed as a property to the presentational component
+//       changeFieldValue: function(field, value) {
+//           dispatch(change(form, field, value))
+//       }
+//   }
+// })(Form)
 
-export default connect(state => ({ 
-  initialValues: {
-    email: 'some value here'
-  } 
-}))(Form);
+// export default connect(state => ({ 
+//   initialValues: {
+//     email: 'some value here'
+//   } 
+// }))(Form);
+
+
+const mapStateToProps = (state, props) => {
+  return {
+    initialValues: props.initialValues, // retrieve name from redux store 
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(reduxForm({
+  form: 'UpdateEmail', // a unique identifier for this form
+  validate,
+  enableReinitialize: true
+})(UpdateEmailScreen))

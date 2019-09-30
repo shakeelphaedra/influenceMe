@@ -20,10 +20,12 @@ const getExercisesURL = "/exercises";
 
 async function getInfluencers() {
   try {
-    const response = await axios.get(getInfluencersURL);
+    const userToken = await AsyncStorage.getItem('userId');
+    const response = await axios.get(getInfluencersURL+ "?user_id="+userToken);
     var data = response.data
     var influencers = data.influencers
-    return influencers;
+    var user = data.user;
+    return {influencer: influencers, user:  user};
   } catch (error) {
     showError(error);
   }
@@ -55,7 +57,7 @@ async function getPlanDetails(id) {
     const userToken = await AsyncStorage.getItem('userId');
     const response = await axios.get(getPlansURL+"/user_id/"+ id+"?user_id="+userToken);
     var data = response.data
-    return {plan: data.plans, plan_days: data.plan_days, currentPlan: data.current_plan};
+    return {plan: data.plans, plan_days: data.plan_days, currentPlan: data.current_plan, any_plan: data.any_plan};
   } catch (error) {
     showError(error);
   }
@@ -66,7 +68,7 @@ async function getDayDetails(id) {
     const userToken = await AsyncStorage.getItem('userId');
     const response = await axios.get(getDaysURL +"/"+ id+ "?user_id="+userToken);
     var data = response.data
-    return data.days;
+    return data;
   } catch (error) {
     showError(error);
   }
@@ -178,6 +180,29 @@ async function getProfileDetails() {
   }
 }
 
+async function subscribe() {
+  try {
+    const userToken = await AsyncStorage.getItem('userId');
+    const response = await axios.get("/subscriptions/subscribe?user_id="+userToken);
+    let data = response.data
+    return data
+  } catch (error) {
+    showError(error);
+  }
+}
+
+
+async function unsubscribe() {
+  try {
+    const userToken = await AsyncStorage.getItem('userId');
+    const response = await axios.get("/subscriptions/unsubscribe?user_id="+userToken);
+    let data = response.data
+    return data
+  } catch (error) {
+    showError(error);
+  }
+}
+
 export const showError = (error) => {
   showMessage({
     message: error.message,
@@ -191,6 +216,8 @@ export {
     BASE_URL, 
     getFAQs,
     API_URL, 
+    subscribe,
+    unsubscribe,
     getInfluencerDetails,
     getPlans, 
     getPlanDetails, 

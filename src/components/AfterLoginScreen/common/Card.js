@@ -49,7 +49,7 @@ class Card extends Component {
           <View style={styles.backgroundImageContainerStyle} >
             <ImageBackground
               style={{ width: '100%', height: '100%', alignItems: 'center' }}
-              source={{ uri: BASE_URL + image_url }}
+              source={{ uri:  image_url }}
               onLoad={this.removePlaceHolder.bind(this)}
             >
               <View ref="imagePlaceHolder" style={{ paddingLeft: 14,position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', opacity: this.state.placeHolderRemove ? 0 : 1, }}>

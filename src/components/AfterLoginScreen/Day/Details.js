@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, Text, StyleSheet, Dimensions, TouchableHighlight } from 'react-native';
-import { Spinner, BackButton, BlackButton, NoItem } from '../../common';
+import { View, ScrollView, Image, Text, StyleSheet, Dimensions, TouchableHighlight , Platform} from 'react-native';
+import { Spinner, BackButton, BlackButton, NoItem, ImageWithPlaceHolder } from '../../common';
 import { BG_COLOR, fonts, commonStyle } from '../../../styles';
 import { BASE_URL, startDay, completeDay } from '../../../../API';
 import InfoPopup from '../../common/InfoPopup';
@@ -15,6 +15,7 @@ class Details extends Component {
     super(props);
     this.day = props.day.day;
     this.status = props.day;
+    debugger
     this.state = {
       start: props.day.start,
       complete: props.day.complete,
@@ -44,7 +45,7 @@ class Details extends Component {
         this.setState({ start: true })
       }else{
         showMessage({
-          message: cannotStart,
+          message: res.error,
           type: "danger",
           backgroundColor: NAMED_COLORS.orangeColor,
         });
@@ -57,11 +58,13 @@ class Details extends Component {
     })
   }
   _renderButton() {
-    if(!this.state.complete){
-      if (this.state.start) {
-        return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this.showDialog}>FINALIZAR RUTINA</BlackButton>
-      } else {
-        return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this._startDay}>EMPREZAR</BlackButton>
+    if(this.props.canStart && this.day && this.day.exercises.length > 0){
+      if(!this.state.complete){
+        if (this.state.start) {
+          return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this.showDialog}>FINALIZAR RUTINA</BlackButton>
+        } else {
+          return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this._startDay}>EMPREZAR</BlackButton>
+        }
       }
     }
     return null
@@ -70,12 +73,18 @@ class Details extends Component {
     day = this.day
     count = exercises.length
     if(count == 0)
-      return <NoItem/>
+      return(
+        <View style={{flex: 1 , alignItems: 'center', height: screenHeight * 0.5}}>
+          <NoItem/>
+        </View>
+      )
     return exercises.map((exercise, index) => {
       return (
         <TouchableHighlight onPress={() => this.props.navigation.push("DayExercise", { exerciseId: exercise.id, count: count, index: index + 1 })}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', backgroundColor: '#1A1A1A', paddingTop: 25, paddingBottom: 20, borderBottomColor: BG_COLOR, borderBottomWidth: 1 }}>
-            <View style={{ height: 55, width: 110 }}><Image source={{ uri: exercise.thumbnail }} style={{ height: '100%', width: '100%', marginRight: 10 }} /></View>
+            <View style={{ height: 55, width: 110, marginRight: 10 }}>
+              <ImageWithPlaceHolder uri={exercise.thumbnail} />
+            </View>
             <View style={{ alignContent: 'center', justifyContent: 'center', paddingHorizontal: 10 }}>
               <Text style={[{ color: 'white', overflow: 'visible', fontFamily: fonts.esp, fontSize: 16, width: screenWidth * 2 / 3, paddingRight: 20 }, commonStyle.shadowText]} >{exercise.title}</Text>
               <Text style={[{ color: 'white', fontFamily: fonts.esp_light, fontSize: 16 }, commonStyle.shadowText]}>{exercise.series_count}</Text>
@@ -88,23 +97,25 @@ class Details extends Component {
   }
   render() {
     const day = this.day;
+    debugger
     return (
-      <View style={{ height: screenHeight, backgroundColor: 'black' }}>
+      <View style={{ height: screenHeight, backgroundColor: 'black', }}>
         <ScrollView>
           <View style={{ backgroundColor: BG_COLOR, height: 55 }}>
             <BackButton buttonStyle={{ marginTop: 10 }} onPress={() => this.props.navigation.goBack()}>
               <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12, marginTop: 20, marginRight: 10 }, commonStyle.shadowText]}>Resumen del Entrenameinto</Text>
             </BackButton>
           </View>
-          <View style={{ height: 180 }}>
-            <Image source={{ uri: BASE_URL + day.image_url }} style={{ width: '100%', height: '100%' }} />
+          <View style={{ height: 260 }}>
+            <ImageWithPlaceHolder uri={day.image_url ? day.image_url.replace("http:","https:"):  null} />
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: BG_COLOR, height: 40 }}>
             <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12 }, commonStyle.shadowText]}> Ejecicios</Text>
           </View>
           {this.renderExercises(day.exercises)}
+          <View style={{height: screenHeight * 0.3, backgroundColor: BG_COLOR}}></View>
         </ScrollView>
-        <View style={{ marginTop: 30, position: 'absolute', bottom: 85, zIndex: 333, alignSelf: 'center' ,height: screenHeight *0.2, justifyContent: 'flex-end'}}>
+        <View style={{ position: 'absolute', bottom: Platform.OS=="android"?screenHeight*0.1:screenHeight*0.15, zIndex: 3399999999993, alignSelf: 'center' ,marginBottom: 50}}>
           {this._renderButton()}
         </View>
         <View>

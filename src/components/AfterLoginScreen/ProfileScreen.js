@@ -36,13 +36,13 @@ class ProfileScreen extends Component {
             <View  style={styles.backgroundImageContainerStyle} >
               <ImageBackground 
                   style={{width: '100%', height: '100%', }}
-                  source={{uri:  BASE_URL + plan.image_url}}
+                  source={{uri: plan.image_url ? plan.image_url.replace("http","https") : null }}
               >
                   <View style={styles.boxShadow}>
                       <Text style={{fontFamily: fonts.esp, fontSize: 70,color: 'white', opacity: 0.5}}>{Math.round(plan.percentage)} %</Text>
                       <View style={{position: 'relative', flexDirection: 'column', flex: 1, alignItems: 'center', justifyContent: 'flex-end'}}>
                           <Text style={[styles.titleStyle]}>{plan.title}</Text>
-                          <Text style={[styles.descriptionStyle]}>{plan.description}</Text>
+                          <Text style={[styles.descriptionStyle]} numberOfLines={1}>{plan.description}</Text>
                       </View>
                   </View>
               </ImageBackground>
@@ -95,7 +95,7 @@ class ProfileScreen extends Component {
                     {this.state.previousPlans.map(plan =>{
                        return this._renderActualPlan(plan)
                     })}
-                    {this.setStates()}
+                    {/* {this.setStates()} */}
                 </ScrollView>
             </View>
         )

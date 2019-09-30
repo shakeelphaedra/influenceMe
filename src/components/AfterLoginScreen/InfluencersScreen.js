@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,  ScrollView, RefreshControl} from 'react-native';
+import {View,  ScrollView, RefreshControl, AsyncStorage} from 'react-native';
 import {getInfluencers, req,BASE_URL} from '../../../API';
 import {Spinner, NoItem} from '../common';
 import Influencer from './common/Card';
@@ -10,25 +10,28 @@ class InfluencersScreen extends Component {
     refreshing: false,
   }
   componentDidMount(){
-    getInfluencers().then(data => {
-      data.map(e => {
+    getInfluencers().then(({influencer, user}) => {
+      influencer.map(e => {
         splittedArray = e.video_url.split("v=");
         e['video_id'] =  splittedArray[splittedArray.length - 1]
         return e;
       })
-      this.setState({influencersList: data})
+      AsyncStorage.setItem("subsciption",user.user_type )
+      that =  this;
+      this.setState({influencersList: influencer})
       console.log(this.state.influencersList)
     })
   }
   _onRefresh  = () => {
     that = this;
-    getInfluencers().then(data => {
-      data.map(e => {
+    getInfluencers().then(({influencer, user}) => {
+      influencer.map(e => {
         splittedArray = e.video_url.split("v=");
         e['video_id'] =  splittedArray[splittedArray.length - 1]
         return e;
       })
-      that.setState({influencersList: data, refreshing: false})
+      AsyncStorage.setItem("subsciption",user.user_type )
+      that.setState({influencersList: influencer, refreshing: false})
     })
   }
   
@@ -51,7 +54,7 @@ class InfluencersScreen extends Component {
       return (
         <View style={{height: 140}}>
           <Influencer id={influencer.id} onPress={() => this._goToInfluencerDetails(influencer.id)} 
-            image_url={influencer.image_url} 
+            image_url={influencer.image_url ? influencer.image_url.replace("http","https") : null} 
             name={influencer.name} 
             subTitle={influencer.title}
             titleStyle={styles.titleStyle}
