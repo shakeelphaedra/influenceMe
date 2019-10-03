@@ -34,7 +34,7 @@ class SubscriptionPaymentScreen extends Component {
       var message = params.why ? "There's was some issue with your payment request. Please try again." : "Successfully Subscribed"
       const { callBack } = this.props.navigation.state.params;
       this.props.navigation.goBack();
-      callBack(message);
+      callBack(message, !params.why);
     }
   }
   render() {

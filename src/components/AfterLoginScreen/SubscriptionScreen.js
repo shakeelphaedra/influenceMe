@@ -16,7 +16,7 @@ import { checkSubscription } from '../../../API';
 
 class SubscriptionScreen extends Component {
   state = {
-    checked: false, dialogVisible: false, message: "", subscribed: false
+    checked: false, dialogVisible: false, message: "", subscribed: false, alertMessage: ""
   }
 
   componentDidMount() {
@@ -41,14 +41,14 @@ class SubscriptionScreen extends Component {
     // this.props.navigation.navigate("SettingsScreen")
   }
 
-  _onSubscription(message) {
-    this.setState({ message: message, dialogVisible: true })
+  _onSubscription(message, subscribed) {
+    this.setState({ subscribed: subscribed, message: subscribed ? "subscribed" : "new", alertMessage: message, dialogVisible: true })
   }
 
   subscribePlan() {
     // this.setState({ dialogVisible: true })
     this.props.navigation.navigate("SubscriptionPaymentScreen", {
-      callBack: ref => this._onSubscription(ref)
+      callBack: (ref, subscribed) => this._onSubscription(ref, subscribed)
     })
   }
 
@@ -93,7 +93,7 @@ class SubscriptionScreen extends Component {
                   </TouchableOpacity>
               }
             </View>
-            <InfoPopup visible={this.state.dialogVisible} tick={true} yesHandler={this.noHandler} yesButtonText="OK" heading="" description={this.state.message} />
+            <InfoPopup visible={this.state.dialogVisible} tick={true} yesHandler={this.noHandler} yesButtonText="OK" heading="" description={this.state.alertMessage} />
           </View>
         </ImageBackground>
       </View>
