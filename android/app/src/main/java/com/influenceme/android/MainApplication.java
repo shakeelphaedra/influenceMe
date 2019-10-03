@@ -18,6 +18,8 @@ import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage; //
 
 import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
+import com.appsflyer.reactnative.RNAppsFlyerPackage;
+
 
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
       packages.add(new RNFirebaseAuthPackage());
       packages.add(new RNFirebaseDatabasePackage());
       packages.add(new RNFirebaseCrashlyticsPackage());
+      packages.add(new RNAppsFlyerPackage());
       return packages;
     }
 

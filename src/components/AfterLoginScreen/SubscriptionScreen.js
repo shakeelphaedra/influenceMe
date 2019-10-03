@@ -1,8 +1,8 @@
-import React, {Component} from  'react';
-import {View, Image, Dimensions, Text, ImageBackground, TouchableOpacity, FlatList} from 'react-native';
+import React, { Component } from 'react';
+import { View, Image, Dimensions, Text, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
 import { fonts } from '../../styles';
 import { CheckBox } from 'react-native-elements';
-import { BlackButton, MyList, GreyHeaderWithBackButton,  } from '../common';
+import { BlackButton, MyList, GreyHeaderWithBackButton, } from '../common';
 import Icon from '../common/Icon';
 import { NAMED_COLORS } from '../../common/AppColors';
 import { subscriptionFeatureList, priceOfLifeTime } from '../../utils';
@@ -11,41 +11,65 @@ import InfoPopup from '../common/InfoPopup';
 import * as actions from '../../actions';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
+import { checkSubscription } from '../../../API';
+
 
 class SubscriptionScreen extends Component {
   state = {
-    checked: false, dialogVisible: false
+    checked: false, dialogVisible: false, message: "", subscribed: false
   }
-  renderItems () {
-    return subscriptionFeatureList.map(item =>{
-      return <MyList icon={item.icon}  text={item.text}/>
+
+  componentDidMount() {
+    this.setStates()
+  }
+
+  setStates = () => {
+    checkSubscription().then(res => {
+      if (res.return) {
+        console.log(res)
+        return this.setState({ subscribed: res.subscribed, message: res.message })
+      }
+    })
+  }
+  renderItems() {
+    return subscriptionFeatureList.map(item => {
+      return <MyList icon={item.icon} text={item.text} />
     })
   }
   noHandler = () => {
-    this.props.Subscribe()
-    this.setState({dialogVisible: false})
-    this.props.navigation.navigate("SettingsScreen")
+    this.setState({ dialogVisible: false })
+    // this.props.navigation.navigate("SettingsScreen")
   }
-  subscribePlan(){
-    this.setState({dialogVisible: true})
+
+  _onSubscription(message) {
+    this.setState({ message: message, dialogVisible: true })
   }
+
+  subscribePlan() {
+    // this.setState({ dialogVisible: true })
+    this.props.navigation.navigate("SubscriptionPaymentScreen", {
+      callBack: ref => this._onSubscription(ref)
+    })
+  }
+
   render() {
     return (
-      <View style={{flex: 14, backgroundColor: 'black'}}>
-        <ImageBackground style={{flex: 14}}>
+      <View style={{ flex: 14, backgroundColor: 'black' }}>
+        <ImageBackground style={{ flex: 14 }}>
           {/* header */}
-          <GreyHeaderWithBackButton text="Subscription" navigation={this.props.navigation}/>
+          <GreyHeaderWithBackButton text="Subscription" navigation={this.props.navigation} />
 
-          <View style={{flex: 13}}>
+          <View style={{ flex: 13 }}>
             {/* title */}
-            <View style={{flex: 4, alignItems: 'center', justifyContent: 'center'}}>
-              <Text style={{fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8}}>GO</Text>
-              <Text style={{fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8, marginTop: 10}}>PREMIUM</Text>
+            <View style={{ flex: 4, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ fontSize: 12, marginBottom: 5, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8 }}>{this.state.message === "expired" ? "Subscription has expired" : (this.state.message === "new" ? "You haven't subscribed yet!" : "You are already subscribed")}</Text>
+              <Text style={{ fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8 }}>GO</Text>
+              <Text style={{ fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8, marginTop: 10 }}>PREMIUM</Text>
             </View>
             {/* title */}
 
             {/* features */}
-            <View style={{flex: 5, alignItems: 'center'}}>
+            <View style={{ flex: 5, alignItems: 'center' }}>
               <View>
                 {this.renderItems()}
               </View>
@@ -53,15 +77,23 @@ class SubscriptionScreen extends Component {
             {/* features */}
 
             {/* subscriptions list */}
-            <View style={{flex: 4,zIndex: 6, alignItems: 'center' }}>
-              <TouchableOpacity onPress={this.subscribePlan.bind(this)}>
-                <View style={{marginHorizontal: 10,flexDirection: 'row', justifyContent: 'space-between', backgroundColor: NAMED_COLORS.orangeColor, width: screenWidth* 0.89 , padding: 13, borderColor:  NAMED_COLORS.orangeColor, borderWidth: 1}}>
-                  <Text style={[styles.textStyle]}>Lifetime</Text>
-                  <Text style={styles.textStyle}>${priceOfLifeTime}</Text>
-                </View>
-              </TouchableOpacity>
+            <View style={{ flex: 4, zIndex: 6, alignItems: 'center' }}>
+              {
+                !this.state.subscribed ?
+                  <TouchableOpacity onPress={this.subscribePlan.bind(this)}>
+                    <View style={{ marginHorizontal: 10, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: NAMED_COLORS.orangeColor, width: screenWidth * 0.89, padding: 13, borderColor: NAMED_COLORS.orangeColor, borderWidth: 1 }}>
+                      <Text style={[styles.textStyle]}>Lifetime</Text>
+                      <Text style={styles.textStyle}>${priceOfLifeTime}</Text>
+                    </View>
+                  </TouchableOpacity>
+                  : <TouchableOpacity>
+                    <View style={{ marginHorizontal: 10, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: NAMED_COLORS.orangeColor, width: screenWidth * 0.89, padding: 13, borderColor: NAMED_COLORS.orangeColor, borderWidth: 1 }}>
+                      <Text style={[styles.textStyle]}>Subscribed</Text>
+                    </View>
+                  </TouchableOpacity>
+              }
             </View>
-            <InfoPopup visible={this.state.dialogVisible} tick={true} yesHandler={this.noHandler} yesButtonText="OK" heading="" description="Gracias por tu suscripción. A partir de ah ora puedes comenzar a entrenar duro!" />
+            <InfoPopup visible={this.state.dialogVisible} tick={true} yesHandler={this.noHandler} yesButtonText="OK" heading="" description={this.state.message} />
           </View>
         </ImageBackground>
       </View>
@@ -70,12 +102,12 @@ class SubscriptionScreen extends Component {
 }
 
 const styles = {
-  imageBackgroundStyle: { 
+  imageBackgroundStyle: {
     width: '100%',
     height: '100%',
     flex: 1,
     zIndex: 1,
-    marginTop: -screenHeight/5
+    marginTop: -screenHeight / 5
   },
   textStyle: {
     textAlign: 'center',

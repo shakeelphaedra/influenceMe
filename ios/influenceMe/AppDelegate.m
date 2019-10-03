@@ -11,6 +11,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <AppsFlyerLib/AppsFlyerTracker.h>
 
 @implementation AppDelegate
 
@@ -38,8 +39,61 @@
     }
     NSLog(@"-------------");
   }
+   /** APPSFLYER INIT **/
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"hvXJ8HBe9HJhw8Ag28YhcY";
+    [AppsFlyerTracker sharedTracker].appleAppID = @"1345432520";
+    
+    [AppsFlyerTracker sharedTracker].delegate = self;
+    
+    /* Set isDebug to true to see AppsFlyer debug logs */
+    [AppsFlyerTracker sharedTracker].isDebug = true;
+
+    return YES;
   return YES;
 }
+
+// rest of your code, methods such as applicationWillResignActive, applicationDidEnterBackground etc.
+
+//get conversion data and deep linking
+
+-(void)onConversionDataReceived:(NSDictionary*) installData {
+  //Handle Conversion Data (Deferred Deep Link)
+  
+}
+
+-(void)onConversionDataRequestFailure:(NSError *) error {
+  
+  NSLog(@"%@",error);
+}
+
+
+- (void) onAppOpenAttribution:(NSDictionary*) attributionData {
+  
+  //Handle Deep Link
+}
+
+- (void) onAppOpenAttributionFailure:(NSError *)error {
+  NSLog(@"%@",error);
+}
+
+// Reports app open from a Universal Link for iOS 9 or above
+- (BOOL) application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id> *restorableObjects))restorationHandler {
+    [[AppsFlyerTracker sharedTracker] continueUserActivity:userActivity restorationHandler:restorationHandler];
+    return YES;
+  }
+
+  // Reports app open from deep link from apps which do not support Universal Links (Twitter) and for iOS8 and below
+  - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation {
+    [[AppsFlyerTracker sharedTracker] handleOpenURL:url sourceApplication:sourceApplication withAnnotation:annotation];
+    return YES;
+  }
+  // Reports app open from deep link for iOS 10
+  - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  options:(NSDictionary *) options {
+    [[AppsFlyerTracker sharedTracker] handleOpenUrl:url options:options];
+    return YES;
+  }
+
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
