@@ -62,7 +62,7 @@ class SubscriptionScreen extends Component {
           <View style={{ flex: 13 }}>
             {/* title */}
             <View style={{ flex: 4, alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 12, marginBottom: 5, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8 }}>{this.state.message === "expired" ? "Subscription has expired" : (this.state.message === "new" ? "You haven't subscribed yet!" : "You are already subscribed")}</Text>
+              <Text style={{ fontSize: 12, marginBottom: 5, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8 }}>{this.state.subscribed ? "You are already subscribed" : "Please subscribe!"}</Text>
               <Text style={{ fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8 }}>GO</Text>
               <Text style={{ fontSize: 35, fontFamily: fonts.esp_bold, backgroundColor: NAMED_COLORS.orangeColor, padding: 5, color: NAMED_COLORS.white, textAlign: 'center', opacity: 0.8, marginTop: 10 }}>PREMIUM</Text>
             </View>
