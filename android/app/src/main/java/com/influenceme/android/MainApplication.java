@@ -40,7 +40,6 @@ public class MainApplication extends Application implements ReactApplication {
       packages.add(new RNFirebaseAuthPackage());
       packages.add(new RNFirebaseDatabasePackage());
       packages.add(new RNFirebaseCrashlyticsPackage());
-      packages.add(new RNAppsFlyerPackage());
       return packages;
     }
 
