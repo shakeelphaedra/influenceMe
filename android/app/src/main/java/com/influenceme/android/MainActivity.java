@@ -1,4 +1,4 @@
-package com.influenceme.android;
+package com.influenceme;
 
 import com.facebook.react.ReactActivity;
 

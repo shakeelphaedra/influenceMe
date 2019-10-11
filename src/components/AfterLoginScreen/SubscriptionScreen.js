@@ -93,7 +93,7 @@ class SubscriptionScreen extends Component {
                   </TouchableOpacity>
               }
             </View>
-            <InfoPopup visible={this.state.dialogVisible} tick={true} yesHandler={this.noHandler} yesButtonText="OK" heading="" description={this.state.alertMessage} />
+            <InfoPopup visible={this.state.dialogVisible} tick={false} yesHandler={this.noHandler} yesButtonText="OK" heading="" description={this.state.alertMessage} />
           </View>
         </ImageBackground>
       </View>

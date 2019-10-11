@@ -1,4 +1,4 @@
-package com.influenceme.android;
+package com.influenceme;
 
 import android.app.Application;
 import android.util.Log;
@@ -13,7 +13,7 @@ import iyegoroff.RNColorMatrixImageFilters.ColorMatrixImageFiltersPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.influenceme.android.BuildConfig;
+import com.influenceme.BuildConfig;
 import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage; // <-- Add this line
 
 import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
