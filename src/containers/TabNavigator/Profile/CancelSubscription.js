@@ -8,7 +8,6 @@ class CancelSubscription extends Component {
 
   submit = values => {
     this.setState({ loading: true })
-    debugger
   }
 
   render() {
