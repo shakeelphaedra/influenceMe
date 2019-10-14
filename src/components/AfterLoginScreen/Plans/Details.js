@@ -41,8 +41,8 @@ class Details extends Component {
     })
   }
   render() {
-    const { loading, plan, navigation } = this.props;
-    const { title, description, level, plan_video, plan_type, location, influencer, plan_times, plan_days, plan_minutes } = plan;
+    const { loading, plan, navigation } = this.props; 
+    const { title, description,week_digit,days_count, level, plan_video, plan_type, location, influencer, plan_times, plan_days, plan_minutes } = plan;
     if (loading)
       return <Spinner />
     return (
@@ -75,7 +75,7 @@ class Details extends Component {
               </View>
               <Text style={[styles.textStyle, { marginTop: 8 }]}>{influencer.name}</Text>
               <Text style={[styles.textStyle, { marginVertical: 12, fontSize: 15, fontFamily: fonts.esp }]}>{title}</Text>
-              <Text style={[styles.textStyle, { marginBottom: 3 }]}>{plan_times} | {plan_days} | {plan_minutes} Mins</Text>
+              <Text style={[styles.textStyle, { marginBottom: 3 }]}>{week_digit} Semanas | {days_count} Dias </Text>
               <Text style={[styles.textStyle, { lineHeight: 14, textAlign: 'justify', fontFamily: fonts.esp_extraLight }]}>{description}</Text>
             </View>
             <View style={{flex: 1, flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', borderColor: 'white', borderWidth: 1, borderBottomWidth: 0 }}>
