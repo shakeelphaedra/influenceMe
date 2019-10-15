@@ -14,11 +14,14 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.influenceme.BuildConfig;
+
 import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage; // <-- Add this line
 
 import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import com.appsflyer.reactnative.RNAppsFlyerPackage;
+import com.brentvatne.react.ReactVideoPackage;
+
 
 
 import java.util.List;
@@ -40,6 +43,7 @@ public class MainApplication extends Application implements ReactApplication {
       packages.add(new RNFirebaseAuthPackage());
       packages.add(new RNFirebaseDatabasePackage());
       packages.add(new RNFirebaseCrashlyticsPackage());
+      packages.add(new ReactVideoPackage());
       return packages;
     }
 

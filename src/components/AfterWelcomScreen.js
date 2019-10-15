@@ -20,7 +20,7 @@ class AfterWelcome extends Component {
     return <TouchableHighlight style={{ fontSize: 20, width: '80%', borderRadius: 60, backgroundColor: 'black', alignItems: 'center', alignSelf: 'center', padding: 20, }} onPress={() => { this.props.navigation.push("LoginFormScreen") }} underlayColor="black">
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
         <Image source={require('../assets/www/dist/img/smartphone-call.png')} style={{ height: 30, width: 30, marginRight: 15 }} />
-        <Text style={{ color: '#d75019', fontFamily: 'Esphimere', fontSize: 16 }}>TU TELÉFONE </Text>
+        <Text style={{ color: '#d75019', fontFamily: 'Esphimere', fontSize: 16 }}>Tú Teléfono</Text>
       </View>
     </TouchableHighlight>
     // }

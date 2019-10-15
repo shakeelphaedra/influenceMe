@@ -12,7 +12,7 @@ class Details extends Component {
   currHeight = 0;
   prevHeight = 0;
   scrollHeight = 400;
-  
+
   _scrollToBottom() {
     this.scrollHeight = screenHeight;
     this.refs.scrollView.getScrollResponder().scrollResponderScrollTo({
@@ -30,19 +30,20 @@ class Details extends Component {
     if (days.length == 0)
       return <NoItem />
     return days.map((obj) => {
-      const imageUrl =  obj ? obj.image_url : null;
-      const dayOrder =  obj ? obj.day : null;
-      const dayId =  obj ? obj.id : null;
+      const imageUrl = obj ? obj.image_url : null;
+      const dayOrder = obj ? obj.day : null;
+      const dayId = obj ? obj.id : null;
       return (
         <View style={{ height: 230 }} key={obj.id}>
-          <Day id={obj.id} name={'Dia ' + dayOrder} locked={obj.status.locked} onPress={() => this._goToDayDetails(dayId)} titleStyle={{ fontSize: 13, marginBottom: 0, textShadowRadius: 0, alignSelf: 'center', marginBottom: 10, fontFamily: fonts.esp_light }} typeStyle={{ fontSize: 14, textShadowRadius: 0, alignSelf: 'center', marginBottom: 4, fontFamily: fonts.esp_bold }} subTitle={name} image_url={imageUrl ? imageUrl.replace("http","https") :  null} />
+          <Day id={obj.id} name={'Dia ' + dayOrder} locked={obj.status.locked} onPress={() => this._goToDayDetails(dayId)} titleStyle={{ fontSize: 13, marginBottom: 0, textShadowRadius: 0, alignSelf: 'center', marginBottom: 10, fontFamily: fonts.esp_light }} typeStyle={{ fontSize: 14, textShadowRadius: 0, alignSelf: 'center', marginBottom: 4, fontFamily: fonts.esp_bold }} subTitle={name} image_url={imageUrl ? imageUrl.replace("http", "https") : null} />
         </View>
       )
     })
   }
   render() {
-    const { loading, plan, navigation } = this.props; 
-    const { title, description,week_digit,days_count, level, plan_video, plan_type, location, influencer, plan_times, plan_days, plan_minutes } = plan;
+    const { loading, plan, navigation } = this.props;
+    const { title, description, week_digit, days_count, level, plan_video, plan_type, location, influencer, plan_times, plan_days, plan_minutes } = plan;
+    console.log(plan_video)
     if (loading)
       return <Spinner />
     return (
@@ -60,44 +61,56 @@ class Details extends Component {
             <View style={{ alignItems: 'center', marginTop: 40 }}>
               <Text style={styles.textStyle}>Resumen del plan</Text>
               <View style={styles.backgroundVideo}>
-                {/* <Video source={require('../../../assets/a.mp4')}   // Can be a URL or a local file.
-                                    ref={(ref) => {
-                                        this.player = ref
-                                    }}                                      // Store reference
-                                    onBuffer={this.onBuffer}                // Callback when remote video is buffering
-                                    onError={this.videoError}  
-                                    style={styles.backgroundVideo} />
-                                 */}
+                {/* <WebView
+                  style={{}}
+                  mediaPlaybackRequiresUserAction={false}
+                  source={{
+                    html: `
+                      <!DOCTYPE html>
+                      <html>
+                        <head></head>
+                        <body>
+                          <div id="baseDiv">
+                            <iframe id="vzvd-12777130" name="vzvd-12777130" title="video player" type="text/html" width="640" height="360" frameborder="0" allowfullscreen allowTransparency="true" src="https://view.vzaar.com/12777130/player" allow="autoplay" class="video-player"></iframe>
+                          </div>
+                        </body>
+                      </html>`
+                  }}
+                /> */}
                 <WebView
                   mediaPlaybackRequiresUserAction={true}
                   source={{ uri: plan_video }}
                 />
+
+
+
+
               </View>
               <Text style={[styles.textStyle, { marginTop: 8 }]}>{influencer.name}</Text>
               <Text style={[styles.textStyle, { marginVertical: 12, fontSize: 15, fontFamily: fonts.esp }]}>{title}</Text>
               <Text style={[styles.textStyle, { marginBottom: 3 }]}>{week_digit} Semanas | {days_count} Dias </Text>
               <Text style={[styles.textStyle, { lineHeight: 14, textAlign: 'justify', fontFamily: fonts.esp_extraLight }]}>{description}</Text>
             </View>
-            <View style={{flex: 1, flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', borderColor: 'white', borderWidth: 1, borderBottomWidth: 0 }}>
-              <View style={{ flex: 0.33,justifyContent: 'center', paddingVertical: 10, alignItems: 'center'}}>
+            <View style={{ flex: 1, flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', borderColor: 'white', borderWidth: 1, borderBottomWidth: 0 }}>
+              <View style={{ flex: 0.33, justifyContent: 'center', paddingVertical: 10, alignItems: 'center' }}>
                 <Text style={[styles.textStyle, { fontSize: 12, fontWeight: '400' }]}>NIVEL</Text>
               </View>
-              <View style={{ flex: 0.33, justifyContent: 'center', paddingVertical: 10, alignItems: 'center'  }}>
+              <View style={{ flex: 0.33, justifyContent: 'center', paddingVertical: 10, alignItems: 'center' }}>
                 <Text style={[styles.textStyle, { fontSize: 12, fontWeight: '400' }]}>TIPO</Text>
               </View>
-              <View style={{ flex: 0.33, justifyContent: 'center', paddingVertical: 10 , alignItems: 'center' }}>
+              <View style={{ flex: 0.33, justifyContent: 'center', paddingVertical: 10, alignItems: 'center' }}>
                 <Text style={[styles.textStyle, { fontSize: 12, fontWeight: '400' }]}>UBICACION</Text>
               </View>
             </View>
-            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', borderColor: 'white', borderWidth: 1 }}>
-              <View style={{flex: 0.33, justifyContent: 'center', alignSelf: 'center', paddingVertical: 10, alignItems: 'center'  }}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', borderColor: 'white', borderWidth: 1 }}>
+              <View style={{ flex: 0.33, justifyContent: 'center', alignSelf: 'center', paddingVertical: 10, alignItems: 'center' }}>
                 <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight }]}>{level}</Text>
               </View>
-              <View style={{ flex: 0.33,justifyContent: 'center', alignSelf: 'center', paddingVertical: 10 ,  alignItems: 'center'}}>
+              <View style={{ flex: 0.33, justifyContent: 'center', alignSelf: 'center', paddingVertical: 10, alignItems: 'center' }}>
                 <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight }]}>{plan_type}</Text>
               </View>
-              <View style={{ flex: 0.33,justifyContent: 'center', alignSelf: 'center', paddingVertical: 10,  alignItems: 'center' }}>
-                <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight}]}>{location}</Text>
+              <View style={{ flex: 0.33, justifyContent: 'center', alignSelf: 'center', paddingVertical: 10, alignItems: 'center' }}>
+                <Text style={[styles.textStyle, { fontSize: 12, alignSelf: 'center', fontFamily: fonts.esp_extraLight }]}>{location}</Text>
               </View>
             </View>
             <View>
@@ -112,8 +125,8 @@ class Details extends Component {
               {this._renderDays(this.props.plan_days, title)}
             </View>
           </View>
-          <InfoPopup visible={!this.props.any_plan && this.props.currentPlan} tick={false}  yesHandler={this.props.changePlan} noHandler={this.props.reverseBack} yesButtonText="Si" noButtonText="no" heading="¿Desea cambiar de plan?" description={`Al aceptar su plan actual pasa a${'\n'}estado inactivo, solo se puede${'\n'}realizar una vez al día.`}/>
-          <InfoPopup visible={this.props.okRes} tick={true}  yesHandler={this.props.okResHandler}  yesButtonText="OK" heading="Listo!" description={`!Cambio de plan exitoso!`} yesButtonStyle={{backgroundColor: '#3471eb'}}/>
+          <InfoPopup visible={!this.props.any_plan && this.props.currentPlan} tick={false} yesHandler={this.props.changePlan} noHandler={this.props.reverseBack} yesButtonText="Si" noButtonText="no" heading="¿Desea cambiar de plan?" description={`Al aceptar su plan actual pasa a${'\n'}estado inactivo, solo se puede${'\n'}realizar una vez al día.`} />
+          <InfoPopup visible={this.props.okRes} tick={true} yesHandler={this.props.okResHandler} yesButtonText="OK" heading="Listo!" description={`!Cambio de plan exitoso!`} yesButtonStyle={{ backgroundColor: '#3471eb' }} />
         </ScrollView>
       </View>
     )
@@ -125,6 +138,14 @@ var styles = StyleSheet.create({
     height: 178,
     marginTop: 10,
     width: '100%',
+    backgroundColor: "#fff"
+  },
+  backgroundVideoReact: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
   textStyle: {
     textAlign: 'center',

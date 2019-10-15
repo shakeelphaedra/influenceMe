@@ -45,7 +45,7 @@ class LoginFormScreen extends Component {
       this.props.loginUser({ number: countryCode + phone, navigation: navigation }, that)
     } else {
       showMessage({
-        message: "Acepto los termino y condiciones",
+        message: "Acepto los términos y condiciones",
         type: "danger",
         backgroundColor: NAMED_COLORS.orange,
       });
@@ -53,11 +53,11 @@ class LoginFormScreen extends Component {
   }
   showTerms = () => {
     this.setState({
-      showDialog:  true
+      showDialog: true
     })
   }
   acceptTerms = () => {
-    this.setState( {
+    this.setState({
       showDialog: false,
       checked: true
     })
@@ -75,7 +75,7 @@ class LoginFormScreen extends Component {
     const dropdownStyle = Platform.OS === 'ios' ? { flexDirection: 'row', position: 'relative', zIndex: 9999 } : { flexDirection: 'row' };
     return (
       <ScrollView style={{ flex: 1, }}
-      keyboardShouldPersistTaps='handled'
+        keyboardShouldPersistTaps='handled'
       >
         <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'column', backgroundColor: '#f2f2f2', height: screenHeight }}>
           <WhiteHeader onPress={() => this.props.navigation.push("AfterWelcomeScreen")} />
@@ -111,12 +111,12 @@ class LoginFormScreen extends Component {
             />
             <View style={{ padding: 20, marginTop: 30 }}>
               <Text style={{ fontSize: 16, textAlign: 'center', fontFamily: fonts.esp_extraLight, fontWeight: '300', lineHeight: 26 }}>
-                Te  enviaremos  un  mensaje  de  texto  con  tu código  de  validacaión  recuerda  verificar  que  tu  número  de  celular  fue  ingresado  correctamente
+                Te  enviaremos  un  mensaje  de  texto  con  tu código  de  validación  recuerda  verificar  que  tu  número  de  celular  fue  ingresado  correctamente
                             </Text>
             </View>
             <View style={{ flexDirection: 'column' }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 30 }}>
-                <TermsAndConditions showDialog={this.state.showDialog} showTerms={this.showTerms} acceptTerms={this.acceptTerms}/>
+                <TermsAndConditions showDialog={this.state.showDialog} showTerms={this.showTerms} acceptTerms={this.acceptTerms} />
                 <CheckBox
                   checkedColor="#308b82"
                   uncheckedColor="#585858"
@@ -140,7 +140,7 @@ class LoginFormScreen extends Component {
         </View>
         {
           this.props.loading ? (
-            <View style={{ position: 'absolute',alignItems: 'center' ,justifyContent: 'center' , alignSelf: 'center', zIndex: 222222, height: screenHeight }}>
+            <View style={{ position: 'absolute', alignItems: 'center', justifyContent: 'center', alignSelf: 'center', zIndex: 222222, height: screenHeight }}>
               <ActivityIndicator color={"red"} size={"large"} />
             </View>) :
             null

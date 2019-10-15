@@ -12,6 +12,25 @@ import * as actions from '../../actions';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 import { checkSubscription } from '../../../API';
+import appsFlyer from 'react-native-appsflyer';
+
+const options = {
+  devKey: "hvXJ8HBe9HJhw8Ag28YhcY",
+  isDebug: true
+};
+
+if (Platform.OS === 'ios') {
+  options.appId = "123456789";
+}
+
+appsFlyer.initSdk(options,
+  (result) => {
+    console.log(result);
+  },
+  (error) => {
+    console.error(error);
+  }
+)
 
 
 class SubscriptionScreen extends Component {
@@ -38,7 +57,6 @@ class SubscriptionScreen extends Component {
   }
   noHandler = () => {
     this.setState({ dialogVisible: false })
-    // this.props.navigation.navigate("SettingsScreen")
   }
 
   _onSubscription(message, subscribed) {
@@ -46,10 +64,27 @@ class SubscriptionScreen extends Component {
   }
 
   subscribePlan() {
-    // this.setState({ dialogVisible: true })
+    this.TrackSubscriptionEvent();
     this.props.navigation.navigate("SubscriptionPaymentScreen", {
       callBack: (ref, subscribed) => this._onSubscription(ref, subscribed)
     })
+  }
+
+  TrackSubscriptionEvent() {
+    const eventName = "af_subscription";
+    const eventValues = {
+      "af_event_param2": "bizbuz"
+    };
+    appsFlyer.trackEvent(eventName, eventValues,
+      (result) => {
+        console.log(eventName);
+        console.log(eventValues);
+        console.log(result);
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
 
   render() {

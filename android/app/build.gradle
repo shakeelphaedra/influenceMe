@@ -193,11 +193,14 @@ android {
 }
 
 dependencies {
+    implementation project(':rn-fetch-blob')
     implementation project(':react-native-share')
     implementation project(':react-native-exception-handler')
     implementation project(':react-native-color-matrix-image-filters')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-webview')
+    implementation project(':react-native-video')
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'com.google.firebase:firebase-core:17.0.1'

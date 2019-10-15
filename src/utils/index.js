@@ -15,7 +15,7 @@ export const sliderState = [
   {
     key: 'somethun1',
     title: 'ENTRENA',
-    text: 'Elige tu nivel de resistencia y professionaliza tu rutina.',
+    text: 'Elige tu nivel de resistencia y profesionaliza tu rutina.',
     image: require('../assets/www/dist/img/influencer_yarishna.jpg'),
     buttonColor: '#1a1a1a',
     color: '#d75019'
