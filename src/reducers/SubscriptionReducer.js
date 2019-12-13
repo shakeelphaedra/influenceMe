@@ -1,6 +1,6 @@
 import { SET_SUBSCRIPTION} from '../actions/types'
 import { subscription } from '../utils'
-export default (state = subscription, action) => {
+const LocationSelectorReducer = (state = subscription, action) => {
     console.log("heloo", state)
   switch (action.type) {
     case SET_SUBSCRIPTION:
@@ -9,3 +9,5 @@ export default (state = subscription, action) => {
       return state;
   }
 }
+
+export default LocationSelectorReducer;

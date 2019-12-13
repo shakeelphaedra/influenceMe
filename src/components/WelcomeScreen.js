@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
-    View,
-    Text, 
-    Image,
-    ImageBackground, 
-    Animated,
-    TouchableWithoutFeedback,
-    Platform,
-    PanResponder,
-    Dimensions} from 'react-native'; 
-import {connect} from  'react-redux';
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  Animated,
+  TouchableWithoutFeedback,
+  Platform,
+  PanResponder,
+  Dimensions
+} from 'react-native';
+import { connect } from 'react-redux';
 import * as actions from '../actions';
-import {styles} from  '../styles';
-import  {BlackButton} from './common';
+import { styles } from '../styles';
+import { BlackButton } from './common';
 import AfterWelcome from './AfterWelcomScreen'
 import Navigation from 'react-native';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
-
 
 class WelcomeScreen extends Component {
   static navigationOptions = {
@@ -37,40 +37,40 @@ class WelcomeScreen extends Component {
     super(props)
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponder:(evt, gestureState) => {
-        console.log(gestureState.dy/ gestureState.dx)
+      onMoveShouldSetPanResponder: (evt, gestureState) => {
+        console.log(gestureState.dy / gestureState.dx)
 
-        if((gestureState.dy/ gestureState.dx) != 0){
+        if ((gestureState.dy / gestureState.dx) != 0) {
           return false
         }
         return true
       },
-        onPanResponderMove: (evt, gestureState) => {
-            // DO JUNK HERE
-            this.setState({clicked: true})
-            Animated.timing(this.state.fadeIn, {
-              toValue: 1-gestureState.dx/screenWidth*4,
-              duration: 300
-            }).start()
-            Animated.timing(this.state.fadeOut, {
-              toValue: gestureState.dx/screenWidth*8,
-              duration: 300
-            }).start()
-        },
-    
+      onPanResponderMove: (evt, gestureState) => {
+        // DO JUNK HERE
+        this.setState({ clicked: true })
+        Animated.timing(this.state.fadeIn, {
+          toValue: 1 - gestureState.dx / screenWidth * 4,
+          duration: 300
+        }).start()
+        Animated.timing(this.state.fadeOut, {
+          toValue: gestureState.dx / screenWidth * 8,
+          duration: 300
+        }).start()
+      },
+
       onPanResponderStart: (evt, gestureState) => {
         console.log(gestureState.dx)
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
-      onPanResponderRelease: (evt, {vx, dx}) => {
-        this.setState({clicked: false})
-        if(dx/screenWidth < -0.3){
+      onPanResponderRelease: (evt, { vx, dx }) => {
+        this.setState({ clicked: false })
+        if (dx / screenWidth < -0.3) {
           return this._nextSlide()
-        }else{
-          if(dx/screenWidth > 0.3){
+        } else {
+          if (dx / screenWidth > 0.3) {
             console.log("back")
             return this._prevSlide()
-          }else{
+          } else {
             Animated.timing(this.state.fadeIn, {
               toValue: 1,
               duration: 300
@@ -91,22 +91,22 @@ class WelcomeScreen extends Component {
   }
   componentDidMount() {
     this._interval = setInterval(() => {
-      if(!this.state.clicked)
+      if (!this.state.clicked)
         this._nextSlide()
     }, 9000);
   }
   _nextSlideIndexStateChange() {
-    if (this.state.currentIndex == this.props.slides.length -1){
-      this.setState({prevIndex: this.state.currentIndex ,currentIndex: 0, nextIndex: 1, action: 'next'})
-    }else{
-      this.setState({action: 'next', nextIndex:  (this.state.currentIndex == this.props.slides.length -2 ? 0 : this.state.currentIndex+2) ,currentIndex:  this.state.currentIndex+1, prevIndex: this.state.currentIndex})
+    if (this.state.currentIndex == this.props.slides.length - 1) {
+      this.setState({ prevIndex: this.state.currentIndex, currentIndex: 0, nextIndex: 1, action: 'next' })
+    } else {
+      this.setState({ action: 'next', nextIndex: (this.state.currentIndex == this.props.slides.length - 2 ? 0 : this.state.currentIndex + 2), currentIndex: this.state.currentIndex + 1, prevIndex: this.state.currentIndex })
     }
   }
-  
+
   componentWillUnmount() {
     clearInterval(this._interval);
   }
-  _nextSlide( ){ 
+  _nextSlide() {
     Animated.timing(this.state.fadeIn, {
       toValue: 0,
       duration: 300
@@ -115,7 +115,7 @@ class WelcomeScreen extends Component {
       toValue: 1,
       duration: 300
     }).start()
-    setTimeout(()=> {
+    setTimeout(() => {
       this._nextSlideIndexStateChange()
       Animated.timing(this.state.fadeIn, {
         toValue: 1,
@@ -127,11 +127,11 @@ class WelcomeScreen extends Component {
       }).start()
       setTimeout(() => {
       }, 600);
-    },600)
+    }, 600)
     // this[`slide-${this.state.currentIndex}`].setNativeProps({style: {opacity: this.state.fadeOut} })
     // this[`slide-${this.state.nextIndex}`].setNativeProps({style: {opacity: this.state.fadeIn} })
   }
-  _prevSlide( ){ 
+  _prevSlide() {
     Animated.timing(this.state.fadeIn, {
       toValue: 0,
       duration: 300
@@ -140,7 +140,7 @@ class WelcomeScreen extends Component {
       toValue: 1,
       duration: 300
     }).start()
-    setTimeout(()=> {
+    setTimeout(() => {
       this._prevSlideSetStates()
       Animated.timing(this.state.fadeIn, {
         toValue: 1,
@@ -152,119 +152,119 @@ class WelcomeScreen extends Component {
       }).start()
       setTimeout(() => {
       }, 600);
-    },600)
+    }, 600)
     // this[`slide-${this.state.currentIndex}`].setNativeProps({style: {opacity: this.state.fadeOut} })
     // this[`slide-${this.state.nextIndex}`].setNativeProps({style: {opacity: this.state.fadeIn} })
   }
 
-  _prevSlideSetStates () {
+  _prevSlideSetStates() {
     if (this.state.currentIndex == 0)
-      return this.setState({action: 'previous',currentIndex:  this.props.slides.length -1, prevIndex: this.props.slides.length -2, nextIndex: 0})
-    return this.setState({action: 'previous',currentIndex:  this.state.currentIndex-1, prevIndex: (this.state.currentIndex == 1 ? this.props.slides.length - 1 : this.state.currentIndex-2), nextIndex: this.state.currentIndex })
+      return this.setState({ action: 'previous', currentIndex: this.props.slides.length - 1, prevIndex: this.props.slides.length - 2, nextIndex: 0 })
+    return this.setState({ action: 'previous', currentIndex: this.state.currentIndex - 1, prevIndex: (this.state.currentIndex == 1 ? this.props.slides.length - 1 : this.state.currentIndex - 2), nextIndex: this.state.currentIndex })
   }
- 
-  _renderLogo(item){
-    if(item.logo != undefined){
-      return <Image source={item.logo} style={{width: 110, height: 110, marginBottom: -10}} resizeMode='stretch'  /> 
-    }else{
+
+  _renderLogo(item) {
+    if (item.logo != undefined) {
+      return <Image source={`item.logo`} style={{ width: 110, height: 110, marginBottom: -10 }} resizeMode='stretch' />
+    } else {
       return <Text style={styles.titleStyle}>{item.title}</Text>
     }
   }
 
-  _renderLogo2(logo){
-    if(logo != undefined){
-      return <Image source={logo} style={{ height: 50, width: 320}} resizeMode='stretch' /> 
+  _renderLogo2(logo) {
+    if (logo != undefined) {
+      return <Image source={`logo`} style={{ height: 50, width: 320 }} resizeMode='stretch' />
     }
   }
 
-  _navigateNext(){
+  _navigateNext() {
     this.props.navigation.push("AfterWelcomeScreen")
   }
   _setZindex(index) {
-    if(index== this.state.currentIndex)
+    if (index == this.state.currentIndex)
       return 9999
     return 1
   }
 
-  _setOpacity (index) {
-    if(index == this.state.currentIndex)
+  _setOpacity(index) {
+    if (index == this.state.currentIndex)
       return this.state.fadeIn
-    if((this.state.action == "next") && (index==this.state.nextIndex))
-      return this.state.fadeOut 
-    if((this.state.action == "previous") && index==this.state.prevIndex )
-      return this.state.fadeOut 
+    if ((this.state.action == "next") && (index == this.state.nextIndex))
+      return this.state.fadeOut
+    if ((this.state.action == "previous") && index == this.state.prevIndex)
+      return this.state.fadeOut
     return 0
   }
-  _renderDot(){
+  _renderDot() {
     array = []
-    for(i = 0; i < this.props.slides.length; i++) { 
-        array.push(
-          <View style={{
-            width: 10,
-            height: 10,
-            borderRadius: 10,
-            backgroundColor: 'white',
-            margin: 2,
-            opacity: i==this.state.currentIndex ? 1 : 0.5
-          }}></View>
-        )
-      }
-      return array
+    for (i = 0; i < this.props.slides.length; i++) {
+      array.push(
+        <View style={{
+          width: 10,
+          height: 10,
+          borderRadius: 10,
+          backgroundColor: 'white',
+          margin: 2,
+          opacity: i == this.state.currentIndex ? 1 : 0.5
+        }}></View>
+      )
+    }
+    return array
   }
 
-  _renderItem (item, index) {
+  _renderItem(item, index) {
     return (
-          <Animated.View 
-            key={index} 
-            style={{
-                height: Platform.OS =="ios" ? screenHeight*0.88 : screenHeight,
-                width: screenWidth,position: 'absolute',
-                opacity: this._setOpacity(index),
-                zIndex: this._setZindex(index),
-                alignItems: 'center' ,alignSelf: 'center', 
-                flexDirection: 'column', justifyContend: 'center'
-            }}>
-            <ImageBackground source={item.image}  style={{ flex: 1, height: '110%',width: Platform.OS=='ios'? '100%' : '105%' }} >
-              <View style={styles.introContainerStyle}>
-                {this._renderLogo(item)}
-                {this._renderLogo2(item.logo2)}
-                <Text style={styles.descriptionStyle}>{item.text}</Text>
-                <View style={{marginTop: 30}}>
-                    <BlackButton onPress={this._navigateNext.bind(this)} color={item.color} backgroundColor={item.buttonColor}>EMPREZAR</BlackButton>
-                </View>
-                <TouchableWithoutFeedback onPress={this._navigateNext.bind(this)} >
-                  <Text style={{color: 'white', fontFamily: 'Esphimere'}}>Ingresa a tu cuenta</Text>
-                </TouchableWithoutFeedback>
-              </View>
-              <View style={{flex: 1, flexDirection: 'row', position: 'absolute', zIndex: 444, bottom: 135, justifyContent:'center', alignItems: 'center',left: 0,right: 0}}>
-                {this._renderDot()}
-              </View>
-            </ImageBackground>
-          </Animated.View>
-          
+      <Animated.View
+        key={index}
+        style={{
+          height: Platform.OS == "ios" ? screenHeight * 0.88 : screenHeight,
+          width: screenWidth, position: 'absolute',
+          opacity: this._setOpacity(index),
+          zIndex: this._setZindex(index),
+          alignItems: 'center', alignSelf: 'center',
+          flexDirection: 'column', justifyContend: 'center'
+        }}>
+        <ImageBackground source={item.image} style={{ flex: 1, height: '110%', width: Platform.OS == 'ios' ? '100%' : '105%' }} >
+          <View style={styles.introContainerStyle}>
+            {this._renderLogo(item)}
+            {this._renderLogo2(item.logo2)}
+            <Text style={styles.descriptionStyle}>{item.text}</Text>
+            <View style={{ marginTop: 30 }}>
+              <BlackButton onPress={this._navigateNext.bind(this)} color={item.color} backgroundColor={"black"}>EMPEZAR</BlackButton>
+            </View>
+            <TouchableWithoutFeedback onPress={this._navigateNext.bind(this)} >
+              <Text style={{ color: 'white', fontFamily: 'Esphimere' }}>Ingresa a tu cuenta</Text>
+            </TouchableWithoutFeedback>
+          </View>
+          <View style={{ flex: 1, flexDirection: 'row', position: 'absolute', zIndex: 444, bottom: 135, justifyContent: 'center', alignItems: 'center', left: 0, right: 0 }}>
+            {this._renderDot()}
+          </View>
+        </ImageBackground>
+      </Animated.View>
+
     );
   }
-  renderItems () {
-    return this.props.slides.map( (item,index) => {
+  renderItems() {
+    return this.props.slides.map((item, index) => {
       return this._renderItem(item, index)
     })
   }
-  _welcomeScreen () {
-    return (<View {...this._panResponder.panHandlers} style={{flex: 1, backgroundColor: '#000000'}}>
+  _welcomeScreen() {
+    return (<View {...this._panResponder.panHandlers} style={{ flex: 1, backgroundColor: '#000000' }}>
       {this.renderItems()}
     </View>)
   }
 
-  render () {
-    if(this.state.showAfter){
-      return <AfterWelcome navigation={this.props.navigation}/>
-    }else{
+  render() {
+    if (this.state.showAfter) {
+      return <AfterWelcome navigation={this.props.navigation} />
+    } else {
       return this._welcomeScreen()
     }
   }
 }
 
-const mapStatsToProps = (state,ownProps) =>{
+const mapStatsToProps = (state, ownProps) => {
   console.log(state)
   return {
     slides: state.entries,
@@ -272,4 +272,4 @@ const mapStatsToProps = (state,ownProps) =>{
   }
 }
 
-export default connect(mapStatsToProps,actions )(WelcomeScreen);
+export default connect(mapStatsToProps, actions)(WelcomeScreen);

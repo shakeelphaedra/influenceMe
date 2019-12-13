@@ -1,9 +1,8 @@
-import { SHOW_REAL_APP, PHONE_CHANGE, COUNTRYCODE_CHANGE, INFLUENCER_CHANGE, CONFIRM_RESULT_CHANGE, CONFIRM_CODE_CHANGE, SET_LOADING_TRUE, SET_LOADING_FALSE, SET_SUBSCRIPTION } from './types';
+import { SET_CURRENT_USER, SET_LOADING_TRUE, SHOW_REAL_APP, PHONE_CHANGE, COUNTRYCODE_CHANGE, INFLUENCER_CHANGE, CONFIRM_RESULT_CHANGE, CONFIRM_CODE_CHANGE, SET_LOADING_FALSE, SET_SUBSCRIPTION } from './types';
 
 import firebase from 'react-native-firebase';
 import { AsyncStorage } from 'react-native';
-import { createUser , subscribe, unsubscribe} from '../../API';
-
+import { createUser, subscribe, unsubscribe } from '../../API';
 
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { NAMED_COLORS } from '../common/AppColors';
@@ -72,7 +71,7 @@ export const loginUser = ({ number, navigation }, that) => {
           payload: true
         })
         showMessage({
-          message: "Teléfono Inválido",
+          message: error.message,
           backgroundColor: NAMED_COLORS.orange,
           type: "danger",
         });
@@ -90,45 +89,71 @@ export const confirmCodeChange = (val) => {
   }
 }
 
+export const verificationSuccess = (user, navigation, dispatch) => {
+  return (dispatch) => {
+    console.log('success')
+    firebase.database().ref('profiles/' + user.uid).update({
+      email: user.email,
+      phoneNumber: user.phoneNumber
+    }).then(e => {
+      console.log("success", e)
+    }).catch(e => {
+      console.log("Error", e)
+    })
+    const params = { email: user.email, uid: user.uid, phoneNumber: user.phoneNumber }
+    createUser(params).then(data => {
+      dispatch({
+        type: SET_SUBSCRIPTION,
+        payload: data.users.user_type
+      })
+    })
+    _signInAsync(navigation, user)
+    dispatch({
+      type: SET_CURRENT_USER,
+      payload: user
+    })
+    dispatch({
+      type: SET_LOADING_FALSE,
+      payload: true
+    })
+  }
+}
+
 export const CodeConfirm = ({ val, navigation, confirmResult, confirmForm }) => {
+  console.log("Confirm result", confirmResult)
   return (dispatch) => {
     dispatch({
       type: SET_LOADING_TRUE,
       payload: true
     })
-    confirmResult.confirm(val).then((user) => {
-      console.log('success')
-      firebase.database().ref('profiles/' + user.uid).update({
-        email: user.email,
-        phoneNumber: user.phoneNumber
-      }).then(e => {
-        console.log("success", e)
-      }).catch(e => {
-        console.log("Error", e)
-      })
-      const params = { email: user.email, uid: user.uid, phoneNumber: user.phoneNumber }
-      createUser(params).then( data => {
-        dispatch({
-          type:  SET_SUBSCRIPTION,
-          payload: data.users.user_type
+    if (confirmResult && confirmResult._verificationId && val.length > 0) {
+      try {
+        confirmResult.confirm(val).then((user) => {
+          verificationSuccess(user, navigation, dispatch);
+        }).catch(error => {
+          console.log("erooooooeee", error)
+          dispatch({
+            type: SET_LOADING_FALSE,
+            payload: true
+          })
+          confirmForm.setState({ dialogCheckVisiable: true })
         })
-      })
-      _signInAsync(navigation, user)
-      dispatch({
-        type: SET_CURRENT_USER,
-        payload: user
-      })
-      dispatch({
-        type: SET_LOADING_FALSE,
-        payload: true
-      })
-    }).catch(error => {
+      } catch (error) {
+        console.log("errorssss", error)
+        dispatch({
+          type: SET_LOADING_FALSE,
+          payload: true
+        })
+        confirmForm.setState({ dialogCheckVisiable: true })
+      }
+    } else {
+      console.log("errorssss else block")
       dispatch({
         type: SET_LOADING_FALSE,
         payload: true
       })
       confirmForm.setState({ dialogCheckVisiable: true })
-    })
+    }
   }
 }
 _signInAsync = async (navigation, user) => {
@@ -136,7 +161,7 @@ _signInAsync = async (navigation, user) => {
   navigation.navigate('AfterLoginNavigator');
 };
 export const Subscribe = () => {
-  return (dispatch) =>{
+  return (dispatch) => {
     subscribe().then(res => {
       dispatch({
         type: SET_SUBSCRIPTION,
@@ -148,7 +173,7 @@ export const Subscribe = () => {
   }
 }
 export const CancelSubscription = () => {
-  return (dispatch) =>{
+  return (dispatch) => {
     unsubscribe().then(res => {
       dispatch({
         type: SET_SUBSCRIPTION,

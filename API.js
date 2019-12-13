@@ -117,6 +117,18 @@ async function createUser(params) {
   }
 }
 
+async function subscribeGooglePlay(params) {
+  try {
+    const userToken = await AsyncStorage.getItem('userId');
+    let data = { details: params, receipt: params, user_id: userToken }
+    const response = await axios.post("/subscriptions/subscribe_google_play", data);
+    let data1 = response.data
+    return data1
+  } catch (error) {
+    showError(error);
+  }
+}
+
 async function startDay(dayId) {
   try {
     const userToken = await AsyncStorage.getItem('userId');
@@ -245,5 +257,6 @@ export {
   startDay,
   completeDay,
   getProgressDetails,
-  checkSubscription
+  checkSubscription,
+  subscribeGooglePlay
 }

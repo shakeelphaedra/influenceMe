@@ -5,6 +5,9 @@ import Day from '../common/Card';
 import { WebView } from 'react-native-webview';
 import { FONT_FAMILY, FONT_SIZE, SCREEN_BG_COLOR, RED_TEXT, fonts } from '../../../styles';
 import InfoPopup from '../../common/InfoPopup';
+import { checkSubscription } from '../../../../API';
+import { showMessage, hideMessage } from "react-native-flash-message";
+
 screenWidth = Dimensions.get("window").width;
 screenHeight = Dimensions.get("window").height;
 
@@ -12,7 +15,38 @@ class Details extends Component {
   currHeight = 0;
   prevHeight = 0;
   scrollHeight = 400;
+  state = {
+    dialogVisible: false
+  }
 
+  navigateToSubscription = () => {
+    this.setState({ dialogVisible: false });
+    this.props.navigation.navigate("SubscriptionScreen");
+  }
+  noHandler = () => {
+    this.setState({ dialogVisible: false });
+  }
+
+  handleLocked = () => {
+    checkSubscription().then(res => {
+      if (res.return) {
+        console.log(res.message)
+        if (!res.subscribed && !res.is_new) {
+          this.setState({ dialogVisible: true })
+        } else {
+          showMessage({
+            message: "¡no tiene saldo!",
+            type: "warning",
+          })
+        }
+      } else {
+        showMessage({
+          message: "¡no tiene saldo!",
+          type: "warning",
+        })
+      }
+    })
+  }
   _scrollToBottom() {
     this.scrollHeight = screenHeight;
     this.refs.scrollView.getScrollResponder().scrollResponderScrollTo({
@@ -35,11 +69,13 @@ class Details extends Component {
       const dayId = obj ? obj.id : null;
       return (
         <View style={{ height: 230 }} key={obj.id}>
-          <Day id={obj.id} name={'Dia ' + dayOrder} locked={obj.status.locked} onPress={() => this._goToDayDetails(dayId)} titleStyle={{ fontSize: 13, marginBottom: 0, textShadowRadius: 0, alignSelf: 'center', marginBottom: 10, fontFamily: fonts.esp_light }} typeStyle={{ fontSize: 14, textShadowRadius: 0, alignSelf: 'center', marginBottom: 4, fontFamily: fonts.esp_bold }} subTitle={name} image_url={imageUrl ? imageUrl.replace("http", "https") : null} />
+          <Day id={obj.id} name={'Dia ' + dayOrder} locked={obj.status.locked} handleLocked={() => this.handleLocked()} onPress={() => this._goToDayDetails(dayId)} titleStyle={{ fontSize: 13, marginBottom: 0, textShadowRadius: 0, alignSelf: 'center', marginBottom: 10, fontFamily: fonts.esp_light }} typeStyle={{ fontSize: 14, textShadowRadius: 0, alignSelf: 'center', marginBottom: 4, fontFamily: fonts.esp_bold }} subTitle={name} image_url={imageUrl ? imageUrl.replace("http", "https") : null} />
         </View>
       )
     })
   }
+
+
   render() {
     const { loading, plan, navigation } = this.props;
     const { title, description, week_digit, days_count, level, plan_video, plan_type, location, influencer, plan_times, plan_days, plan_minutes } = plan;
@@ -61,29 +97,10 @@ class Details extends Component {
             <View style={{ alignItems: 'center', marginTop: 40 }}>
               <Text style={styles.textStyle}>Resumen del plan</Text>
               <View style={styles.backgroundVideo}>
-                {/* <WebView
-                  style={{}}
-                  mediaPlaybackRequiresUserAction={false}
-                  source={{
-                    html: `
-                      <!DOCTYPE html>
-                      <html>
-                        <head></head>
-                        <body>
-                          <div id="baseDiv">
-                            <iframe id="vzvd-12777130" name="vzvd-12777130" title="video player" type="text/html" width="640" height="360" frameborder="0" allowfullscreen allowTransparency="true" src="https://view.vzaar.com/12777130/player" allow="autoplay" class="video-player"></iframe>
-                          </div>
-                        </body>
-                      </html>`
-                  }}
-                /> */}
                 <WebView
                   mediaPlaybackRequiresUserAction={true}
                   source={{ uri: plan_video }}
                 />
-
-
-
 
               </View>
               <Text style={[styles.textStyle, { marginTop: 8 }]}>{influencer.name}</Text>
@@ -127,6 +144,7 @@ class Details extends Component {
           </View>
           <InfoPopup visible={!this.props.any_plan && this.props.currentPlan} tick={false} yesHandler={this.props.changePlan} noHandler={this.props.reverseBack} yesButtonText="Si" noButtonText="no" heading="¿Desea cambiar de plan?" description={`Al aceptar su plan actual pasa a${'\n'}estado inactivo, solo se puede${'\n'}realizar una vez al día.`} />
           <InfoPopup visible={this.props.okRes} tick={true} yesHandler={this.props.okResHandler} yesButtonText="OK" heading="Listo!" description={`!Cambio de plan exitoso!`} yesButtonStyle={{ backgroundColor: '#3471eb' }} />
+          <InfoPopup visible={this.state.dialogVisible} tick={false} yesHandler={this.navigateToSubscription} noHandler={this.noHandler} yesButtonText="Si" noButtonText="no" heading="" description={`Su plan actual está a punto de finalizar. ¿Te gustaría seguir usando Influence Me?`} />
         </ScrollView>
       </View>
     )

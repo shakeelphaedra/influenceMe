@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, TouchableOpacity,Dimensions, ScrollView,RefreshControl } from 'react-native';
+import { View, Text, ImageBackground, TouchableOpacity, Dimensions, ScrollView, RefreshControl } from 'react-native';
 import { BlackButton, Spinner } from '../common';
 import { fonts, commonStyle, BG_COLOR } from '../../styles';
 import { getProgressDetails } from '../../../API';
@@ -26,9 +26,9 @@ class ProgressScreen extends Component {
     total: ''
   }
   goToPlan = () => {
-    this.props.navigation.push("PlanDetails",{planId: this.state.id})
+    this.props.navigation.push("PlanDetails", { planId: this.state.id })
   }
-  shareScreen = () =>{ 
+  shareScreen = () => {
     message = `Estoy en influenceMe. Revisa mis puntajes.${'\n'}Plan ${this.state.plan}${'\n'}Dias Completados: ${this.state.days}${'\n'}Total Time: ${this.state.time}${'\n'}Timepo Ejecicios: ${this.state.exercise}${'\n'}${this.state.total}
     `
     const shareOptions = {
@@ -36,13 +36,13 @@ class ProgressScreen extends Component {
       message: message,
       url: 'http//influenceme.herokuapp.com',
     };
-    Share.open(shareOptions).then(()=>console.log('success')).catch(e=> console.log('eeerrr',e))
-  
+    Share.open(shareOptions).then(() => console.log('success')).catch(e => console.log('eeerrr', e))
+
   }
   componentDidMount() {
     this.setState({ loading: true })
     getProgressDetails(1).then((res) => {
-      if(res.return){
+      if (res.return) {
         this.setState({
           background_image: res.background_image.replace("http:", "https:"),
           current_plan: res.current_plan,
@@ -55,22 +55,22 @@ class ProgressScreen extends Component {
           id: res.id,
           loading: false
         })
-      }else{
+      } else {
         showMessage({
           message: res.message,
           type: 'danger',
           backgroundColor: NAMED_COLORS.orangeColor,
         })
-        this.setState({loading: false, data_found: false} )
+        this.setState({ loading: false, data_found: false })
       }
     })
   }
 
-  _onRefresh  = () => {
+  _onRefresh = () => {
     that = this;
-    this.setState({loading: true})
+    this.setState({ loading: true })
     getProgressDetails(1).then((res) => {
-      if(res.return){
+      if (res.return) {
         this.setState({
           background_image: res.background_image,
           current_plan: res.current_plan,
@@ -85,18 +85,18 @@ class ProgressScreen extends Component {
           data_found: true,
           refreshing: false
         })
-      }else{
+      } else {
         showMessage({
           message: res.message,
           type: 'danger',
           backgroundColor: NAMED_COLORS.orangeColor,
         })
-        this.setState({loading: false, data_found: false} )
+        this.setState({ loading: false, data_found: false })
       }
     })
   }
 
-  navigateToPlans () {
+  navigateToPlans() {
     this.props.navigation.navigate("PlanesScreen")
   }
   inviteUser() {
@@ -105,7 +105,7 @@ class ProgressScreen extends Component {
       message: 'Hola, esta aplicación es increíble, vamos a pagar juntos por desafíos',
       url: 'http//influenceme.herokuapp.com',
     };
-    Share.open(shareOptions).then(()=>console.log('success')).catch(e=> console.log('eeerrr',e))
+    Share.open(shareOptions).then(() => console.log('success')).catch(e => console.log('eeerrr', e))
   }
 
   render() {
@@ -128,14 +128,14 @@ class ProgressScreen extends Component {
     if (data_found)
       return (
         <ImageBackground style={{ flex: 1, backgroundColor: BG_COLOR, position: 'relative' }} source={{ uri: background_image }}>
-          <ScrollView 
-          
-          refreshControl={
-            <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-            />
-          }
+          <ScrollView
+
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />
+            }
           >
             <View style={{ height: screenHeight / 3, alignItems: 'center', justifyContent: 'center', marginTop: screenHeight * 0.1 }}>
               <Text style={[commonStyle.shadowText, { color: 'white', fontFamily: fonts.esp_light, fontSize: 18 }]}>{influencer}</Text>
@@ -171,36 +171,36 @@ class ProgressScreen extends Component {
               <BlackButton onPress={this.inviteUser.bind(this)} color="#d75019" textSize={12} fontFamily={fonts.esp_light} backgroundColor="#1a1a1a" style={{ width: screenWidth / 3 + 30, paddingVertical: 15, paddingHorizantal: 15 }}>INVITAR</BlackButton>
             </View>
             <View style={{ marginTop: 20 }}>
-              <BlackButton color="#d75019" textSize={14} fontFamily={fonts.esp_light} backgroundColor="white" style={{ width: screenWidth*0.7, paddingVertical: 15, paddingHorizantal: 15, paddingHorizantal: 4 }} onPress={this.goToPlan}>RUTINAS DEL PLAN</BlackButton>
+              <BlackButton color="#d75019" textSize={14} fontFamily={fonts.esp_light} backgroundColor="white" style={{ width: screenWidth * 0.7, paddingVertical: 15, paddingHorizantal: 15, paddingHorizantal: 4 }} onPress={this.goToPlan}>RUTINAS DEL PLAN</BlackButton>
             </View>
           </ScrollView>
         </ImageBackground>
       )
-      return (
-        <ImageBackground style={{flex: 1, width: screenWidth,height: '100%', backgroundColor: 'black' }} source={require("../../assets/www/dist/img/bg001.jpg")}>
-          <ScrollView style={{width: screenWidth,height: '100%',flex: 1}}
+    return (
+      <ImageBackground style={{ flex: 1, width: screenWidth, height: '100%', backgroundColor: 'black' }} source={require("../../assets/www/dist/img/bg001.jpg")}>
+        <ScrollView style={{ width: screenWidth, height: '100%', flex: 1 }}
           refreshControl={
             <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
             />
           }
-          >
-            <View style={{ height: screenHeight, justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={[commonStyle.shadowText,{fontSize: 30, color: 'white', fontFamily: fonts.esp, textAlign: 'center', paddingHorizontal: 50}]}>
-                NO ESTAS SUSCRITO A NIGUN PLAN
+        >
+          <View style={{ height: screenHeight, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={[commonStyle.shadowText, { fontSize: 30, color: 'white', fontFamily: fonts.esp, textAlign: 'center', paddingHorizontal: 50 }]}>
+              NO ESTAS SUSCRITO A NIGUN PLAN
               </Text>
-              <Text style={[commonStyle.shadowText,{fontSize: 18, marginVertical: '10%', color: 'white', fontFamily: fonts.esp, textAlign: 'center', paddingHorizontal: 50}]}>
-                Elige el plan de entrenamiento
-                que se adapte a tus objetivos y
-                comienza a entrenar para evaluar
-                tu progreso
+            <Text style={[commonStyle.shadowText, { fontSize: 18, marginVertical: '10%', color: 'white', fontFamily: fonts.esp, textAlign: 'center', paddingHorizontal: 50 }]}>
+              Elige el plan de entrenamiento
+              que se adapte a tus objetivos y
+              comienza a entrenar para evaluar
+              tu progreso
               </Text>
-              <BlackButton  color="#d75019" textSize={18} fontFamily={fonts.esp_light} backgroundColor="#1a1a1a" style={{marginTop: screenHeight*0.05,addingVertical: 20, paddingHorizantal: 20, width: screenWidth*0.7}} onPress={ this.navigateToPlans.bind(this)}>DESCUBRE LOS PLANES</BlackButton>
-            </View>
-          </ScrollView>
-        </ImageBackground>
-      )
+            <BlackButton color="#d75019" textSize={18} fontFamily={fonts.esp_light} backgroundColor="#1a1a1a" style={{ marginTop: screenHeight * 0.05, addingVertical: 20, paddingHorizantal: 20, width: screenWidth * 0.7 }} onPress={this.navigateToPlans.bind(this)}>DESCUBRE LOS PLANES</BlackButton>
+          </View>
+        </ScrollView>
+      </ImageBackground>
+    )
   }
 }
 

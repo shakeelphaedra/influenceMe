@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 import { NAMED_COLORS } from '../../common/AppColors';
-import settingImage from '../../assets/www/dist/img/settings-outline.png'
 import Icon from '../common/Icon';
-import { fonts, commonStyle, BG_COLOR } from '../../styles';
-import { getProfileDetails, BASE_URL } from '../../../API';
+import { fonts, BG_COLOR } from '../../styles';
+import { getProfileDetails } from '../../../API';
 import { showMessage } from 'react-native-flash-message';
 import InfoPopup from '../common/InfoPopup';
 import { checkSubscription } from '../../../API';
@@ -44,7 +43,8 @@ class ProfileScreen extends Component {
     });
     checkSubscription().then(res => {
       if (res.return) {
-        if (!res.subscribed) {
+        console.log(res.message)
+        if (res.message === "expired") {
           this.setState({ dialogVisible: true })
         }
         return this.setState({ subscribed: res.subscribed })

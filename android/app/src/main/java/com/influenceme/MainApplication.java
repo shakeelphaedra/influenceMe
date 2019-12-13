@@ -1,18 +1,20 @@
 package com.influenceme;
 
 import android.app.Application;
-import android.util.Log;
-
+import android.content.Context;
 import com.facebook.react.PackageList;
-import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
-import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.react.ReactApplication;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.horcrux.svg.SvgPackage;
 import cl.json.RNSharePackage;
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
 import iyegoroff.RNColorMatrixImageFilters.ColorMatrixImageFiltersPackage;
+import com.dooboolab.RNIap.RNIapPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import com.influenceme.BuildConfig;
 
 import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage; // <-- Add this line
@@ -21,6 +23,7 @@ import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import com.appsflyer.reactnative.RNAppsFlyerPackage;
 import com.brentvatne.react.ReactVideoPackage;
+import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
 
 
 
@@ -44,6 +47,8 @@ public class MainApplication extends Application implements ReactApplication {
       packages.add(new RNFirebaseDatabasePackage());
       packages.add(new RNFirebaseCrashlyticsPackage());
       packages.add(new ReactVideoPackage());
+      packages.add(new RNCViewPagerPackage());
+
       return packages;
     }
 
@@ -52,6 +57,7 @@ public class MainApplication extends Application implements ReactApplication {
       return "index";
     }
   };
+  
 
   @Override
   public ReactNativeHost getReactNativeHost() {

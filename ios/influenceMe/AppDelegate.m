@@ -11,7 +11,11 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#if __has_include(<AppsFlyerLib/AppsFlyerTracker.h>) // from Pod
 #import <AppsFlyerLib/AppsFlyerTracker.h>
+#else
+#import "AppsFlyerTracker.h"
+#endif
 
 @implementation AppDelegate
 

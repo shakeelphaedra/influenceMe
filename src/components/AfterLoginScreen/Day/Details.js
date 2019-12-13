@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, Text, StyleSheet, Dimensions, TouchableHighlight , Platform} from 'react-native';
+import { View, ScrollView, Image, Text, StyleSheet, Dimensions, TouchableHighlight, Platform } from 'react-native';
 import { Spinner, BackButton, BlackButton, NoItem, ImageWithPlaceHolder } from '../../common';
 import { BG_COLOR, fonts, commonStyle } from '../../../styles';
 import { BASE_URL, startDay, completeDay } from '../../../../API';
 import InfoPopup from '../../common/InfoPopup';
-import {showMessage} from 'react-native-flash-message';
+import { showMessage } from 'react-native-flash-message';
 import { cannotStart } from '../../../utils/messages';
 import { NAMED_COLORS } from '../../../common/AppColors';
+
 screenWidth = Dimensions.get("window").width;
 screenHeight = Dimensions.get("window").height;
-
 class Details extends Component {
   constructor(props) {
     super(props);
     this.day = props.day.day;
     this.status = props.day;
-    debugger
     this.state = {
       start: props.day.start,
       complete: props.day.complete,
@@ -24,7 +23,7 @@ class Details extends Component {
       dialogCheckVisiable: false
     }
   }
-  
+
   submitFinialize = () => {
     this.setState({ dialogVisible: false });
     completeDay(this.day.id).then(res => {
@@ -41,9 +40,9 @@ class Details extends Component {
   }
   _startDay = () => {
     startDay(this.day.id).then(res => {
-      if(res.return == true){
+      if (res.return == true) {
         this.setState({ start: true })
-      }else{
+      } else {
         showMessage({
           message: res.error,
           type: "danger",
@@ -58,12 +57,12 @@ class Details extends Component {
     })
   }
   _renderButton() {
-    if(this.props.canStart && this.day && this.day.exercises.length > 0){
-      if(!this.state.complete){
+    if (this.props.canStart && this.day && this.day.exercises.length > 0) {
+      if (!this.state.complete) {
         if (this.state.start) {
           return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this.showDialog}>FINALIZAR RUTINA</BlackButton>
         } else {
-          return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this._startDay}>EMPREZAR</BlackButton>
+          return <BlackButton style={{ width: screenWidth * 0.8, height: 55, justifyContent: 'center' }} color={'white'} backgroundColor={'#fd451e'} textStyle={{ fontSize: 24, fontFamily: fonts.esp_light }} onPress={this._startDay}>EMPEZAR</BlackButton>
         }
       }
     }
@@ -72,10 +71,10 @@ class Details extends Component {
   renderExercises(exercises) {
     day = this.day
     count = exercises.length
-    if(count == 0)
-      return(
-        <View style={{flex: 1 , alignItems: 'center', height: screenHeight * 0.5}}>
-          <NoItem/>
+    if (count == 0)
+      return (
+        <View style={{ flex: 1, alignItems: 'center', height: screenHeight * 0.5 }}>
+          <NoItem />
         </View>
       )
     return exercises.map((exercise, index) => {
@@ -107,15 +106,15 @@ class Details extends Component {
             </BackButton>
           </View>
           <View style={{ height: 260 }}>
-            <ImageWithPlaceHolder uri={day.image_url ? day.image_url.replace("http:","https:"):  null} />
+            <ImageWithPlaceHolder uri={day.image_url ? day.image_url.replace("http:", "https:") : null} />
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: BG_COLOR, height: 40 }}>
             <Text style={[{ color: 'white', fontFamily: fonts.esp, fontSize: 12 }, commonStyle.shadowText]}> Ejecicios</Text>
           </View>
           {this.renderExercises(day.exercises)}
-          <View style={{height: screenHeight * 0.3, backgroundColor: BG_COLOR}}></View>
+          <View style={{ height: screenHeight * 0.3, backgroundColor: BG_COLOR }}></View>
         </ScrollView>
-        <View style={{ position: 'absolute', bottom: Platform.OS=="android"?screenHeight*0.1:screenHeight*0.15, zIndex: 3399999999993, alignSelf: 'center' ,marginBottom: 50}}>
+        <View style={{ position: 'absolute', bottom: Platform.OS == "android" ? screenHeight * 0.1 : screenHeight * 0.15, zIndex: 3399999999993, alignSelf: 'center', marginBottom: 50 }}>
           {this._renderButton()}
         </View>
         <View>

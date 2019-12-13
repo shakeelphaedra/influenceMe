@@ -49,7 +49,7 @@ class FAQScreen extends Component {
         <View style={{ backgroundColor: BG_COLOR, paddingVertical: 10, paddingHorizontal: 20, flexDirection: 'row', justifyContent: 'space-between', height: 60 }}>
           <View></View>
           <View style={{ alignItems: 'center', justifyContent: 'center' }}><Text style={{ fontFamily: fonts.esp_light, color: 'white' }}>FAQ</Text></View>
-          <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center'}}
+          <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }}
             onPress={() => this.props.navigation.goBack()}
           >
             <Icon name="uniF15D" color="white" size={30} />

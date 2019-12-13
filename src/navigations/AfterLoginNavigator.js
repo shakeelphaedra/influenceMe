@@ -1,13 +1,13 @@
 import React from 'react';
-import EnteranceScreen  from '../components/AfterLoginScreen/EnteranceScreen'
-import ExplorerScreen  from '../components/AfterLoginScreen/ExplorerScreen';
+import EnteranceScreen from '../components/AfterLoginScreen/EnteranceScreen'
+import ExplorerScreen from '../components/AfterLoginScreen/ExplorerScreen';
 // import ProfileScreen  from '../components/HomeScreen/ProfileScreen';
-import ProfileScreen  from '../containers/TabNavigator/Profile';
-import ProgressScreen  from '../components/AfterLoginScreen/ProgressScreen';
-import InfluencerDetails  from '../components/AfterLoginScreen/Influencers/Details';
-import PlanDetails  from '../containers/Plans/Details';
-import DayDetails  from '../containers/Days/Details';
-import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
+import ProfileScreen from '../containers/TabNavigator/Profile';
+import ProgressScreen from '../components/AfterLoginScreen/ProgressScreen';
+import InfluencerDetails from '../components/AfterLoginScreen/Influencers/Details';
+import PlanDetails from '../containers/Plans/Details';
+import DayDetails from '../containers/Days/Details';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { NavigationActions, StackActions } from 'react-navigation';
 
 import Icon from '../components/common/Icon';
@@ -26,20 +26,20 @@ const ExplorerStack = createStackNavigator(
     defaultNavigationOptions: {
       header: null
     }
-    
+
 
   }
-  
+
 );
 
 const AfterLoginNavigator = createBottomTabNavigator(
   {
     Explore: {
-      screen: ExplorerStack, 
+      screen: ExplorerStack,
       navigationOptions: {
-        tabBarLabel:"Explorer",
+        tabBarLabel: "Explorer",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name='uniF278'  color={tintColor}  size={20}  />
+          <Icon name='uniF278' color={tintColor} size={20} />
         ),
         tabBarOnPress: (scene) => {
           const resetAction = StackActions.reset({
@@ -55,16 +55,16 @@ const AfterLoginNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Progreso",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name='uniF201'  color={tintColor}  size={20}  />
+          <Icon name='uniF201' color={tintColor} size={20} />
         )
       }
     },
     EnteranceScreen: {
-      screen:  EnteranceScreen,
+      screen: EnteranceScreen,
       navigationOptions: {
         tabBarLabel: "Entrenar",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name='uniF1B3'  color={tintColor}  size={20}  />
+          <Icon name='uniF1B3' color={tintColor} size={20} />
         )
       }
     },
@@ -73,46 +73,46 @@ const AfterLoginNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Perfil",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name='uniF25E'  color={tintColor}  size={20}  />
+          <Icon name='uniF25E' color={tintColor} size={20} />
         )
       }
     }
   },
   {
     initialRouteName: "Explore",
-    tabBarOptions: 
-      {
-        activeTintColor: NAMED_COLORS.orangeColor,
-        inactiveTintColor:'#D3D3D3',
-        style:{
-            backgroundColor:'#4C4C4C',
-            alignItems: 'center',
-            alignSelf: 'center',
-            paddingLeft: 60,
-            paddingBottom: 10,
-            height: 60,
-            paddingRight: 60,
-        },
-        containerStyle: {
-          backgroundColor: 'yellow'
-        },
-        indicatorStyle: {
-            backgroundColor: 'red',
-        },
-        labelStyle: {
-          margin: 0,
-          fontSize: 9,
-          padding: 0,
-          fontFamily: fonts.esp_extraLight,
-        },
-        tabStyle: {
-          margin: 0,
-          paddingLeft: 0,
-          paddingRight: 0
-        },
+    tabBarOptions:
+    {
+      activeTintColor: NAMED_COLORS.orangeColor,
+      inactiveTintColor: '#D3D3D3',
+      style: {
+        backgroundColor: '#4C4C4C',
+        alignItems: 'center',
+        alignSelf: 'center',
+        paddingLeft: 60,
+        paddingBottom: 10,
+        height: 60,
+        paddingRight: 60,
       },
-    swipeEnabled: true,
-    animationEnabled: true,
+      containerStyle: {
+        backgroundColor: 'yellow'
+      },
+      indicatorStyle: {
+        backgroundColor: 'red',
+      },
+      labelStyle: {
+        margin: 0,
+        fontSize: 9,
+        padding: 0,
+        fontFamily: fonts.esp_extraLight,
+      },
+      tabStyle: {
+        margin: 0,
+        paddingLeft: 0,
+        paddingRight: 0
+      },
+    },
+    // swipeEnabled: true,
+    // animationEnabled: true,
   }
 );
 

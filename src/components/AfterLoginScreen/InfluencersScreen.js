@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { View, ScrollView, RefreshControl, AsyncStorage } from 'react-native';
+import { Alert, View, ScrollView, RefreshControl, AsyncStorage } from 'react-native';
 import { getInfluencers, req, BASE_URL } from '../../../API';
 import { Spinner, NoItem } from '../common';
+// import { subscribeGooglePlay } from '../../../API';
 import Influencer from './common/Card';
 
 class InfluencersScreen extends Component {
+
   state = {
     influencersList: [],
     refreshing: false,
   }
-  componentDidMount() {
+  async componentDidMount() {
+
     getInfluencers().then(({ influencer, user }) => {
       influencer.map(e => {
         splittedArray = e.video_url.split("v=");
@@ -23,6 +26,7 @@ class InfluencersScreen extends Component {
       console.log(this.state.influencersList)
     })
   }
+
   _onRefresh = () => {
     that = this;
     getInfluencers().then(({ influencer, user }) => {

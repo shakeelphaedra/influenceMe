@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, Image, Text, Platform, TouchableHighlight } from 'react-native';
+import { View, ImageBackground, Image, Text, Platform, TouchableHighlight, Dimensions } from 'react-native';
 import { getInfluencers, req, BASE_URL } from '../../../../API';
 import { FONT_FAMILY } from '../../../styles';
 import { TouchableNativeFeedback, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { showMessage, hideMessage } from "react-native-flash-message";
-
+const screenWidth = Dimensions.get("window").width;
 class Card extends Component {
   state = {
     placeHolderRemove: false
@@ -14,18 +14,18 @@ class Card extends Component {
     this.setState({ placeHolderRemove: true })
   }
 
-  renderCard(name, subTitle,typeStyle, titleStyle, locked){
-    if(locked == true){
+  renderCard(name, subTitle, typeStyle, titleStyle, locked) {
+    if (locked == true) {
       return (
         <View style={styles.boxShadow}>
           <View style={{ position: 'relative', flexDirection: 'column', flex: 1, alignItems: 'center' }}>
-            <Image source={require('../../../assets/www/dist/img/padlock.png')} style={{width:  40, height: 40, zIndex: 888, alignSelf: 'center'}}/>
+            <Image source={require('../../../assets/www/dist/img/padlock.png')} style={{ width: 40, height: 40, zIndex: 888, alignSelf: 'center' }} />
             <Text style={[styles.titleStyle, titleStyle]}>{name}</Text>
             <Text style={[styles.descriptionStyle, typeStyle]}>{subTitle}</Text>
           </View>
         </View>
       )
-    }else{
+    } else {
       return (
         <View style={styles.boxShadow}>
           <View style={{ position: 'relative', flexDirection: 'column', flex: 1 }}>
@@ -35,37 +35,38 @@ class Card extends Component {
         </View>
       )
     }
-    
+
   }
 
   render() {
-    const { onPress, subTitle, name, id, image_url, titleStyle, typeStyle, locked } = this.props;
-      return (
-        <TouchableHighlight key={id} onPress={locked ? 
-             () => showMessage({
-                message: "¡no tiene saldo!",
-                type: "warning",
-              }) : onPress} >
-          <View style={styles.backgroundImageContainerStyle} >
+    // () => showMessage({
+    //   message: "¡no tiene saldo!",
+    //   type: "warning",
+    // })
+    const { onPress, subTitle, name, id, image_url, titleStyle, typeStyle, locked, handleLocked } = this.props;
+    return (
+      <TouchableHighlight key={id} onPress={locked ?
+        handleLocked : onPress} >
+        <View style={styles.backgroundImageContainerStyle} >
+          <ImageBackground
+            style={{ width: '100%', height: '100%', alignItems: 'center' }}
+            source={{ uri: `${image_url}` }}
+            onLoad={this.removePlaceHolder.bind(this)}
+          >
+            <View ref="imagePlaceHolder" style={{ paddingLeft: 14, position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', opacity: this.state.placeHolderRemove ? 0 : 1, }}>
+              <Image source={require('../../../assets/www/dist/img/picture-w.png')} style={{ height: 40, width: 40, opacity: 0.7, alignSelf: 'center', left: 0, right: 0 }}
+              />
+            </View>
             <ImageBackground
-              style={{ width: '100%', height: '100%', alignItems: 'center' }}
-              source={{ uri:  image_url }}
-              onLoad={this.removePlaceHolder.bind(this)}
+              style={{ width: '100%', height: '100%', }}
+              source={require("../../../assets/image-overly.png")}
             >
-              <View ref="imagePlaceHolder" style={{ paddingLeft: 14,position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', opacity: this.state.placeHolderRemove ? 0 : 1, }}>
-                <Image source={require('../../../assets/www/dist/img/picture-w.png')} style={{ height: 40, width: 40, opacity: 0.7, alignSelf: 'center', left: 0 , right: 0}}
-                />
-              </View>
-              <ImageBackground
-                style={{ width: '100%', height: '100%', }}
-                source={require("../../../assets/image-overly.png")}
-              >
-                {this.renderCard(name, subTitle,typeStyle, titleStyle, locked)}
-              </ImageBackground>
+              {this.renderCard(name, subTitle, typeStyle, titleStyle, locked)}
             </ImageBackground>
-          </View>
-        </TouchableHighlight>
-      )
+          </ImageBackground>
+        </View>
+      </TouchableHighlight>
+    )
   }
 }
 

@@ -8,6 +8,8 @@ import { SET_CURRENT_USER, SET_LOADING_TRUE } from '../actions/types'
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { fonts } from '../styles';
 import InfoPopup from './common/InfoPopup';
+import firebase from 'react-native-firebase';
+
 const screenHeight = Dimensions.get("window").height;
 
 class ConfirmCodeScreen extends Component {
@@ -43,17 +45,26 @@ class ConfirmCodeScreen extends Component {
   }
 
   componentDidMount() {
-    showMessage({
-      message: "SMS envido",
-      backgroundColor: '#50ae54',
-      type: "success",
+    this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.props.verificationSuccess(user, this.props.navigation, this.props.dispatch);
+      } else {
+        showMessage({
+          message: "SMS envido",
+          backgroundColor: '#50ae54',
+          type: "success",
+        });
+      }
     });
   }
 
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   render() {
     return (
       <ScrollView style={{ flex: 1 }}
-      keyboardShouldPersistTaps='handled'>
+        keyboardShouldPersistTaps='handled'>
         <View style={{ height: screenHeight }}><WhiteHeader onPress={() => this.props.navigation.goBack()} />
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#EFF0F1' }}>
             <View style={{ marginLeft: 50, marginRight: 50, flexDirection: 'column', alignItems: 'center', }}>
@@ -108,7 +119,7 @@ class ConfirmCodeScreen extends Component {
         </View>
         {
           this.props.loading ? (
-            <View style={{ position: 'absolute',alignItems: 'center' ,justifyContent: 'center' , alignSelf: 'center', zIndex: 222222, height: screenHeight }}>
+            <View style={{ position: 'absolute', alignItems: 'center', justifyContent: 'center', alignSelf: 'center', zIndex: 222222, height: screenHeight }}>
               <ActivityIndicator color={"red"} size={"large"} />
             </View>) :
             null

@@ -3,8 +3,8 @@ import { Text, TouchableOpacity, View } from "react-native";
 import Dialog from "react-native-dialog";
 import { fonts } from "../../styles";
 import { NAMED_COLORS } from "../../common/AppColors";
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import Icon from './Icon';
 
 
@@ -14,7 +14,7 @@ class InfoPopup extends Component {
       case true:
         return (
           <View style={{ borderColor: '#ecf7e7', borderWidth: 5, borderRadius: 70, padding: 20, marginBottom: 20 }}>
-            <FontAwesomeIcon icon={faCheck} size={50} color="#a5da89" />
+            {/* <FontAwesomeIcon icon={faCheck} size={50} color="#a5da89" /> */}
           </View>
         )
       case "cross":
@@ -24,7 +24,7 @@ class InfoPopup extends Component {
       default:
         return (
           <View style={{ borderColor: '#f9ceab', borderWidth: 5, borderRadius: 70, padding: 20, marginBottom: 20 }}>
-            <FontAwesomeIcon icon={faExclamation} size={50} color="#f7bb89" />
+            {/* <FontAwesomeIcon icon={faExclamation} size={50} color="#f7bb89" /> */}
           </View>
         )
     }

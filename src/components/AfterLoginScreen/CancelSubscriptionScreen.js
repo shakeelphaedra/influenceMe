@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Platform, Linking } from 'react-native';
 import InputField from '../../common/Input';
 import { Field, reduxForm } from 'redux-form'
 import { NAMED_COLORS } from '../../common/AppColors';
 import { BlackButton, Popup } from '../common';
 import AppText from '../../common/AppText';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Icon from '../common/Icon';
 import { fonts } from '../../styles';
 import * as actions from '../../actions';
+import { checkSubscription } from '../../../API';
+
 
 let Screenheight = Dimensions.get('window').height;
 class CancelSubscriptionScreen extends Component {
+
+  state = {
+    mode: "", message: "", subscribed: false
+  }
+
+  async componentDidMount() {
+    this.setStates()
+  }
+
+  setStates = async () => {
+    checkSubscription().then(res => {
+      if (res.return) {
+        return this.setState({ subscribed: res.subscribed, message: res.message, mode: res.mode })
+      }
+    })
+  }
+
   render() {
     props = this.props;
     return (
@@ -22,7 +41,13 @@ class CancelSubscriptionScreen extends Component {
             <Icon name='uniF1F9' color='white' size={28} />
           </TouchableOpacity>
           <Text style={{ alignSelf: 'center', color: NAMED_COLORS.white, fontFamily: fonts.esp, fontSize: 12 }}>Cancelar Suscription</Text>
-          <TouchableOpacity onPress={() => { }} style={styles.touchableOpacityStyle}>
+          <TouchableOpacity
+            onPress={() => {
+              if (!(Platform.OS === 'ios') && this.state.mode && this.state.mode === "google_play") {
+                Linking.openURL('https://play.google.com/store/account/subscriptions?package=com.influenceme&sku=influenceme_premium_1')
+              }
+            }}
+            style={styles.touchableOpacityStyle}>
           </TouchableOpacity>
         </View>
 
@@ -40,10 +65,6 @@ class CancelSubscriptionScreen extends Component {
             alignSelf: 'center'
           }}
         />
-        <View style={{ marginTop: 50 }}>
-          <Popup {...props} />
-
-        </View>
       </View>
     )
   }
@@ -125,7 +146,7 @@ const styles = StyleSheet.create({
   },
 });
 const mapsStateToProps = (state) => {
-  return ( {
+  return ({
     subscription: true
   })
 }

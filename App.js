@@ -10,11 +10,14 @@ import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './src/reducers';
 import { Provider } from 'react-redux';
+import { YellowBox } from 'react-native';
 
 import FlashMessage from "react-native-flash-message";
 import appsFlyer from 'react-native-appsflyer';
 
 import { fonts } from './src/styles';
+
+YellowBox.ignoreWarnings(['ViewPagerAndroid']);
 
 this.onInstallConversionDataCanceller = appsFlyer.onInstallConversionData(
   (data) => {
