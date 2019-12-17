@@ -26,6 +26,9 @@ const itemSubs = Platform.select({
   android: [
     'influenceme_premium_1'
   ],
+  ios: [
+    'com.influenceme.Premium'
+  ]
 });
 
 let purchaseUpdateSubscription;
@@ -48,22 +51,29 @@ class SubscriptionScreen extends Component {
       console.warn(err.code, err.message);
     }
     await this.getSubscriptions();
+    // await this.inAppPurchase();
     purchaseUpdateSubscription = purchaseUpdatedListener(
       async (purchase) => {
         console.log('purchaseUpdatedListener', purchase);
-        if (
-          purchase.purchaseStateAndroid === 1 &&
-          !purchase.isAcknowledgedAndroid
-        ) {
-          try {
-            const ackResult = await acknowledgePurchaseAndroid(
-              purchase.purchaseToken,
-            );
-            console.log('ackResult', ackResult);
-          } catch (ackErr) {
-            console.warn('ackErr', ackErr);
+        if (Platform.os === 'ios') {
+          RNIap.finishTransactionIOS(purchase.transactionId);
+          console.log('finishTransactions');
+        } else {
+          if (
+            purchase.purchaseStateAndroid === 1 &&
+            !purchase.isAcknowledgedAndroid
+          ) {
+            try {
+              const ackResult = await acknowledgePurchaseAndroid(
+                purchase.purchaseToken,
+              );
+              console.log('ackResult', ackResult);
+            } catch (ackErr) {
+              console.warn('ackErr', ackErr);
+            }
           }
         }
+
         this.setState({ receipt: purchase.transactionReceipt, subscribed: true }, () =>
           this.backendSave(),
         );
@@ -77,7 +87,17 @@ class SubscriptionScreen extends Component {
       },
     );
   }
-
+  inAppPurchase = async () => {
+    try {
+      RNIap.requestPurchase('com.influenceme.Premium'); //ios: com.scriptsbundle.DWT.business , android: 12 ,item.android.code
+      await RNIap.purchaseUpdatedListener(async (purchase) => {
+        console.warn('purchase======>>>>', purchase);
+        await subscribeGooglePlay(purchase.transactionReceipt);
+      })
+    } catch (err) {
+      console.log('inAppPurchase ERROR===>>>', err.code, err.message);
+    }
+  }
   componentWillUnmount() {
     if (purchaseUpdateSubscription) {
       purchaseUpdateSubscription.remove();
@@ -90,7 +110,7 @@ class SubscriptionScreen extends Component {
   }
 
   backendSave = async () => {
-    await subscribeGooglePlay(this.state.receipt);
+    // await subscribeGooglePlay(this.state.receipt);
     // Alert.alert("Thanks for subscribing!");
   };
 
@@ -216,22 +236,36 @@ class SubscriptionScreen extends Component {
                     </TouchableOpacity>
                     {
                       productList && productList.length >= 1 ?
-                        < TouchableOpacity
-                          onPress={() =>
-                            this.requestSubscription(productList[0].productId)
-                          }
-                        >
-                          <View style={{ marginHorizontal: 10, marginVertical: 5, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: NAMED_COLORS.orangeColor, width: screenWidth * 0.89, padding: 13, borderColor: NAMED_COLORS.orangeColor, borderWidth: 1 }}>
-                            <Text style={[styles.textStyle]}>Pague a través de Google</Text>
-                          </View>
-                        </TouchableOpacity> : null
+                        Platform.OS === 'ios' ?
+                          < TouchableOpacity
+                            onPress={() =>
+                              this.inAppPurchase()
+                            }
+                          >
+                            <View style={{ marginHorizontal: 10, marginVertical: 5, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: NAMED_COLORS.orangeColor, width: screenWidth * 0.89, padding: 13, borderColor: NAMED_COLORS.orangeColor, borderWidth: 1 }}>
+                              <Text style={[styles.textStyle]}>Pague a través de Google</Text>
+                            </View>
+                          </TouchableOpacity>
+                          :
+                          < TouchableOpacity
+                            onPress={() =>
+                              this.requestSubscription(productList[0].productId)
+                            }
+                          >
+                            <View style={{ marginHorizontal: 10, marginVertical: 5, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: NAMED_COLORS.orangeColor, width: screenWidth * 0.89, padding: 13, borderColor: NAMED_COLORS.orangeColor, borderWidth: 1 }}>
+                              <Text style={[styles.textStyle]}>Pague a través de Google</Text>
+                            </View>
+                          </TouchableOpacity>
+                        : null
                     }
                   </View>
                   :
                   <View>
                     <TouchableOpacity
                       onPress={() => {
-                        if (!(Platform.OS === 'ios') && this.state.mode && this.state.mode === "google_play") {
+                        if (Platform.OS === 'ios') {
+                          Linking.openURL('https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions')
+                        } else {
                           Linking.openURL('https://play.google.com/store/account/subscriptions?package=com.influenceme&sku=influenceme_premium_1')
                         }
                       }}>
